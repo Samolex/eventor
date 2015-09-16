@@ -161,9 +161,30 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201509161224298_InitialCreate.cs" />
+    <Compile Include="Migrations\201509161224298_InitialCreate.Designer.cs">
+      <DependentUpon>201509161224298_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509161253545_AddUser.cs" />
+    <Compile Include="Migrations\201509161253545_AddUser.Designer.cs">
+      <DependentUpon>201509161253545_AddUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509161310258_NoBirthdate.cs" />
+    <Compile Include="Migrations\201509161310258_NoBirthdate.Designer.cs">
+      <DependentUpon>201509161310258_NoBirthdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\CurrentContext.cs" />
+    <Compile Include="Models\User\Benefits.cs" />
+    <Compile Include="Models\User\Contacts.cs" />
+    <Compile Include="Models\User\Place.cs" />
+    <Compile Include="Models\User\Role.cs" />
+    <Compile Include="Models\User\Sex.cs" />
+    <Compile Include="Models\User\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -205,14 +226,24 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201509161224298_InitialCreate.resx">
+      <DependentUpon>201509161224298_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509161253545_AddUser.resx">
+      <DependentUpon>201509161253545_AddUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509161310258_NoBirthdate.resx">
+      <DependentUpon>201509161310258_NoBirthdate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
