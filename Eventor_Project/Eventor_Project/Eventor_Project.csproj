@@ -179,6 +179,17 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CurrentContext.cs" />
+    <Compile Include="Models\ProjectModel\Category.cs" />
+    <Compile Include="Models\ProjectModel\Comment.cs" />
+    <Compile Include="Models\ProjectModel\Material.cs" />
+    <Compile Include="Models\ProjectModel\Money.cs" />
+    <Compile Include="Models\ProjectModel\Organizer.cs" />
+    <Compile Include="Models\ProjectModel\Project.cs" />
+    <Compile Include="Models\ProjectModel\ProjectNews.cs" />
+    <Compile Include="Models\ProjectModel\Relations\TypeAttitude.cs" />
+    <Compile Include="Models\ProjectModel\Relations\UserMaterial.cs" />
+    <Compile Include="Models\ProjectModel\Relations\UserMoney.cs" />
+    <Compile Include="Models\ProjectModel\Relations\UserProject.cs" />
     <Compile Include="Models\User\Benefits.cs" />
     <Compile Include="Models\User\Contacts.cs" />
     <Compile Include="Models\User\Place.cs" />
@@ -230,6 +241,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\Repository\SqlRepository\" />
+    <Folder Include="Models\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
