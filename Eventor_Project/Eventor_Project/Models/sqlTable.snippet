@@ -5,7 +5,7 @@
       <Title>
         Sql repository
       </Title>
-      <Shortcut>sqltable</Shortcut>
+      <Shortcut>sqltable3</Shortcut>
     </Header>
     <Snippet>
       <Declarations>
@@ -29,10 +29,10 @@
 
         public bool Create$Table$($Table$ instance)
         {
-            if (instance.ID == 0)
+            if (instance.$Table$Id == 0)
             {
-                Db.$Table$s.InsertOnSubmit(instance);
-                Db.$Table$s.Context.SubmitChanges();
+                Db.$Table$s.Add(instance);
+                Db.SaveChanges();
                 return true;
             }
 
@@ -41,28 +41,34 @@
 
         public bool Update$Table$($Table$ instance)
         {
-            $Table$ cache = Db.$Table$s.Where(p => p.ID == instance.ID).FirstOrDefault();
+            $Table$ cache = Db.$Table$s.Where(p => p.$Table$Id == instance.$Table$Id).FirstOrDefault();
             if (cache != null)
             {
                 //TODO : Update fields for $Table$
-                Db.$Table$s.Context.SubmitChanges();
+                Db.SaveChanges();
                 return true;
             }
 
             return false;
         }
 
-        public bool Remove$Table$(int id$Table$)
+        public bool Delete$Table$(int $Table$Id)
         {
-            $Table$ instance = Db.$Table$s.Where(p => p.ID == id$Table$).FirstOrDefault();
+            $Table$ instance = Db.$Table$s.Where(p => p.$Table$Id == $Table$Id).FirstOrDefault();
             if (instance != null)
             {
-                Db.$Table$s.DeleteOnSubmit(instance);
-                Db.$Table$s.Context.SubmitChanges();
+                Db.$Table$s.Remove(instance);
+                Db.SaveChanges();
                 return true;
             }
 
             return false;
+        }
+        
+        public $Table$ Read$Table$(int $Table$Id)
+        {
+            $Table$ instance = Db.$Table$s.Where(p => p.$Table$Id == $Table$Id).FirstOrDefault();
+            return instance;
         }
         ]]>
       </Code>

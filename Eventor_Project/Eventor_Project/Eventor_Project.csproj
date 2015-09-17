@@ -194,8 +194,11 @@
       <DependentUpon>DataClasses1.dbml</DependentUpon>
     </Compile>
     <Compile Include="Models\SqlRepository\IRepository.cs" />
+    <Compile Include="Models\SqlRepository\Place.cs" />
     <Compile Include="Models\SqlRepository\Role.cs" />
+    <Compile Include="Models\SqlRepository\SqlRepositoryData.cs" />
     <Compile Include="Models\SqlRepository\User.cs" />
+    <Compile Include="Models\SqlRepository\UserRole.cs" />
     <Compile Include="Models\User\Benefits.cs" />
     <Compile Include="Models\User\Place.cs" />
     <Compile Include="Models\User\Role.cs" />
@@ -220,7 +223,10 @@
       <LastGenOutput>DataClasses1.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Models\sqlTable.snippet" />
+    <Content Include="Models\sqlTable.snippet">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Models\irep.snippet" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

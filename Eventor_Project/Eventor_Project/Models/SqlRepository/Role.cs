@@ -9,8 +9,6 @@ namespace Eventor_Project.Models.SqlRepository
     public partial class SqlRepository : IRepository
     {
 
-        [Inject]
-        public CurrentContext Db { get; set; }
         public IQueryable<User.Role> Roles
         {
             get
@@ -48,7 +46,7 @@ namespace Eventor_Project.Models.SqlRepository
             return false;
         }
 
-        public bool ReadRole(int RoleId)
+        User.Role ReadRole(int RoleId)
         {
             throw new NotImplementedException();
         }
