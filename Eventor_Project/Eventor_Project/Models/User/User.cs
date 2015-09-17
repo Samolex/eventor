@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Eventor_Project.Models
+namespace Eventor_Project.Models.User
 {
     public class User
     {
@@ -17,8 +17,10 @@ namespace Eventor_Project.Models
         public Sex Sex { get; set; }
         public Place PlaceOfStudy { get; set; }
         public Place PlaceOfLiving { get; set; }
-        public List<Benefit> Benefits { get; set; }
-        public virtual List<Role> Roles { get; set; }
+        public string ContactEmail { get; set; }
+        public string PhoneNumber { get; set; }
+        public IEnumerable<Benefit> Benefits { get; set; }
+        public virtual IEnumerable<UserRole> Roles { get; set; }
         
     }
 }

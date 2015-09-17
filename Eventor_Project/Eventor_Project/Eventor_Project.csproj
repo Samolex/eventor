@@ -74,6 +74,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -177,14 +178,30 @@
     <Compile Include="Migrations\201509161310258_NoBirthdate.Designer.cs">
       <DependentUpon>201509161310258_NoBirthdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201509170918093_ConnectPlaceWithUser.cs" />
+    <Compile Include="Migrations\201509170918093_ConnectPlaceWithUser.Designer.cs">
+      <DependentUpon>201509170918093_ConnectPlaceWithUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509170944309_NoContacts.cs" />
+    <Compile Include="Migrations\201509170944309_NoContacts.Designer.cs">
+      <DependentUpon>201509170944309_NoContacts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CurrentContext.cs" />
+    <Compile Include="Models\DataClasses1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataClasses1.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SqlRepository\IRepository.cs" />
+    <Compile Include="Models\SqlRepository\Role.cs" />
+    <Compile Include="Models\SqlRepository\User.cs" />
     <Compile Include="Models\User\Benefits.cs" />
-    <Compile Include="Models\User\Contacts.cs" />
     <Compile Include="Models\User\Place.cs" />
     <Compile Include="Models\User\Role.cs" />
     <Compile Include="Models\User\Sex.cs" />
     <Compile Include="Models\User\User.cs" />
+    <Compile Include="Models\User\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -198,6 +215,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Models\DataClasses1.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>DataClasses1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Models\sqlTable.snippet" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -244,6 +267,18 @@
     <EmbeddedResource Include="Migrations\201509161310258_NoBirthdate.resx">
       <DependentUpon>201509161310258_NoBirthdate.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509170918093_ConnectPlaceWithUser.resx">
+      <DependentUpon>201509170918093_ConnectPlaceWithUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509170944309_NoContacts.resx">
+      <DependentUpon>201509170944309_NoContacts.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Models\DataClasses1.dbml.layout">
+      <DependentUpon>DataClasses1.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

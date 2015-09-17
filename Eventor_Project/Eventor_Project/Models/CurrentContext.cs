@@ -8,9 +8,9 @@ namespace Eventor_Project.Models
 {
     public class CurrentContext : DbContext 
     {
-        public DbSet<User> Users { get; set; }
-        public DbSet<Role> Roles { get; set; }
-        public DbSet<Place> Places { get; set; }
-        public DbSet<Contacts> Contacts { get; set; } 
+        public DbSet<User.User> Users { get; set; }
+        public DbSet<User.Role> Roles { get; set; }
+        public DbSet<User.Place> Places { get; set; }
+        public DbSet<User.UserRole> UserRole { get; set; }
     }
 }

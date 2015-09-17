@@ -61,6 +61,8 @@ namespace Eventor_Project.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<Models.CurrentContext>().ToMethod(c => new Models.CurrentContext());
+            kernel.Bind<Models.SqlRepository.IRepository>().To<Models.SqlRepository.SqlRepository>().InRequestScope();
         }        
     }
 }

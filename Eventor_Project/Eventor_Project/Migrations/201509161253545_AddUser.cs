@@ -12,6 +12,7 @@ namespace Eventor_Project.Migrations
                 c => new
                     {
                         PlaceId = c.Int(nullable: false, identity: true),
+                        PlaceInfo = c.String(),
                     })
                 .PrimaryKey(t => t.PlaceId);
             

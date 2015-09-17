@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Eventor_Project.Models.CurrentContext" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Eventor_Project.Models.CurrentContext.mdf;Integrated Security=True;Connect Timeout=30" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="Eventor_Project_Models_CurrentContextConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Places" Member="Places">
+    <Type Name="Places">
+      <Column Name="PlaceId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PlaceInfo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Places_Users" Member="Users" ThisKey="PlaceId" OtherKey="PlaceOfLiving_PlaceId" Type="Users" />
+      <Association Name="Places_Users1" Member="Users1" ThisKey="PlaceId" OtherKey="PlaceOfStudy_PlaceId" Type="Users" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Roles" Member="Roles">
+    <Type Name="Roles">
+      <Column Name="RoleId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Roles_UserRoles" Member="UserRoles" ThisKey="RoleId" OtherKey="RoleId" Type="UserRoles" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserRoles" Member="UserRoles">
+    <Type Name="UserRoles">
+      <Column Name="UserRoleId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RoleId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Roles_UserRoles" Member="Roles" ThisKey="RoleId" OtherKey="RoleId" Type="Roles" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Users_UserRoles" Member="Users" ThisKey="UserId" OtherKey="UserId" Type="Users" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="Users">
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Nickname" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Surname" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Patronymic" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Sex" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PlaceOfStudy_PlaceId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PlaceOfLiving_PlaceId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ContactEmail" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Users_UserRoles" Member="UserRoles" ThisKey="UserId" OtherKey="UserId" Type="UserRoles" />
+      <Association Name="Places_Users" Member="Places" ThisKey="PlaceOfLiving_PlaceId" OtherKey="PlaceId" Type="Places" IsForeignKey="true" />
+      <Association Name="Places_Users1" Member="Places1" ThisKey="PlaceOfStudy_PlaceId" OtherKey="PlaceId" Type="Places" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
