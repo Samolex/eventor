@@ -14,5 +14,6 @@ namespace Eventor_Project.Models.ProjectModel
         public string Body { get; set; }
 
         public virtual Project Project { get; set; }
+
     }
 }

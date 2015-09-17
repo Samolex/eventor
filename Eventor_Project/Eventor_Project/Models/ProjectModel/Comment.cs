@@ -7,7 +7,7 @@ namespace Eventor_Project.Models.ProjectModel
 {
     public class ProjectComment
     {
-        public int CommentId { get; set; }
+        public int ProjectCommentId { get; set; }
         public int ProjectId { get; set; }
         public int UserId { get; set; }
         public DateTime Date { get; set; }

@@ -165,18 +165,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201509161224298_InitialCreate.cs" />
-    <Compile Include="Migrations\201509161224298_InitialCreate.Designer.cs">
-      <DependentUpon>201509161224298_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509161253545_AddUser.cs" />
-    <Compile Include="Migrations\201509161253545_AddUser.Designer.cs">
-      <DependentUpon>201509161253545_AddUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509161310258_NoBirthdate.cs" />
-    <Compile Include="Migrations\201509161310258_NoBirthdate.Designer.cs">
-      <DependentUpon>201509161310258_NoBirthdate.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CurrentContext.cs" />
     <Compile Include="Models\ProjectModel\Category.cs" />
@@ -241,22 +229,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\Repository\SqlRepository\" />
+    <Folder Include="Models\SqlRepository\" />
     <Folder Include="Models\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201509161224298_InitialCreate.resx">
-      <DependentUpon>201509161224298_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509161253545_AddUser.resx">
-      <DependentUpon>201509161253545_AddUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509161310258_NoBirthdate.resx">
-      <DependentUpon>201509161310258_NoBirthdate.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
