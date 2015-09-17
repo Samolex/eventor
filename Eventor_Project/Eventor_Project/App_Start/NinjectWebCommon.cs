@@ -10,6 +10,8 @@ namespace Eventor_Project.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using Eventor_Project.Models;
+    using Eventor_Project.Models.SqlRepository;
 
     public static class NinjectWebCommon 
     {
@@ -61,6 +63,8 @@ namespace Eventor_Project.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<CurrentContext>().ToMethod(c => new CurrentContext());
+            kernel.Bind<IRepository>().To<SqlRepository>().InRequestScope();
         }        
     }
 }
