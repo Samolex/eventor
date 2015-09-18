@@ -1,4 +1,5 @@
-﻿using Eventor_Project.Models.ProjectModel.Relations;
+﻿using Eventor_Project.Models.ProjectModel;
+using Eventor_Project.Models.ProjectModel.Relations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,10 @@ namespace Eventor_Project.Models
 
 
         public virtual List<UserMaterial> Materials { get; set; }
+        public virtual List<UserCustomer> Customers { get; set; }
+        public virtual List<UserOrganizer> Organizers { get; set; }
+        public virtual List<ProjectComment> Comments { get; set; }
+        public virtual List<Project> Projects { get; set; }
         
     }
 }

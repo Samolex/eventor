@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="eventor_project_database" Class="ProjectDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(localdb)\mssqllocaldb;Initial Catalog=eventor_project_database;Integrated Security=True;Pooling=False" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="CurrentContext" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Projects" Member="Projects">
+    <Type Name="Project">
+      <Column Name="ProjectId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ShortDescription" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="OrganizationDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="EventDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="AuthorId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CategoryId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Headquarter" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Place" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Project_Organizer" Member="Organizers" ThisKey="ProjectId" OtherKey="ProjectId" Type="Organizer" />
+      <Association Name="Project_Material" Member="Materials" ThisKey="ProjectId" OtherKey="ProjectId" Type="Material" />
+      <Association Name="Project_Customer" Member="Customers" ThisKey="ProjectId" OtherKey="ProjectId" Type="Customer" />
+      <Association Name="Project_ProjectComment" Member="ProjectComments" ThisKey="ProjectId" OtherKey="ProjectId" Type="ProjectComment" />
+      <Association Name="Project_ProjectNew" Member="ProjectNews" ThisKey="ProjectId" OtherKey="ProjectId" Type="ProjectNew" />
+      <Association Name="User_Project" Member="User" ThisKey="AuthorId" OtherKey="UserId" Type="User" IsForeignKey="true" />
+      <Association Name="Category_Project" Member="Category" ThisKey="CategoryId" OtherKey="CategoryId" Type="Category" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Nickname" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Surname" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Patronymic" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Sex" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PlaceOfStudy_PlaceId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PlaceOfLiving_PlaceId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="User_Project" Member="Projects" ThisKey="UserId" OtherKey="AuthorId" Type="Project" />
+      <Association Name="User_UserOrganizer" Member="UserOrganizers" ThisKey="UserId" OtherKey="UserId" Type="UserOrganizer" />
+      <Association Name="User_UserMaterial" Member="UserMaterials" ThisKey="UserId" OtherKey="UserId" Type="UserMaterial" />
+      <Association Name="User_UserCustomer" Member="UserCustomers" ThisKey="UserId" OtherKey="UserId" Type="UserCustomer" />
+      <Association Name="User_ProjectComment" Member="ProjectComments" ThisKey="UserId" OtherKey="UserId" Type="ProjectComment" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserOrganizers" Member="UserOrganizers">
+    <Type Name="UserOrganizer">
+      <Column Name="UserOrganizerId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OrganizerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="User_UserOrganizer" Member="User" ThisKey="UserId" OtherKey="UserId" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Organizer_UserOrganizer" Member="Organizer" ThisKey="OrganizerId" OtherKey="OrganizerId" Type="Organizer" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Organizers" Member="Organizers">
+    <Type Name="Organizer">
+      <Column Name="OrganizerId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProjectId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Organizer_UserOrganizer" Member="UserOrganizers" ThisKey="OrganizerId" OtherKey="OrganizerId" Type="UserOrganizer" />
+      <Association Name="Project_Organizer" Member="Project" ThisKey="ProjectId" OtherKey="ProjectId" Type="Project" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserMaterials" Member="UserMaterials">
+    <Type Name="UserMaterial">
+      <Column Name="UserMaterialId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MaterialId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="User_UserMaterial" Member="User" ThisKey="UserId" OtherKey="UserId" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Material_UserMaterial" Member="Material" ThisKey="MaterialId" OtherKey="MaterialId" Type="Material" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Materials" Member="Materials">
+    <Type Name="Material">
+      <Column Name="MaterialId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProjectId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="RequiredAmount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Material_UserMaterial" Member="UserMaterials" ThisKey="MaterialId" OtherKey="MaterialId" Type="UserMaterial" />
+      <Association Name="Project_Material" Member="Project" ThisKey="ProjectId" OtherKey="ProjectId" Type="Project" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserCustomers" Member="UserCustomers">
+    <Type Name="UserCustomer">
+      <Column Name="UserCustomerId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="User_UserCustomer" Member="User" ThisKey="UserId" OtherKey="UserId" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Customer_UserCustomer" Member="Customer" ThisKey="CustomerId" OtherKey="CustomerId" Type="Customer" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Customers" Member="Customers">
+    <Type Name="Customer">
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProjectId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Role" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="MaxCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MinCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Customer_UserCustomer" Member="UserCustomers" ThisKey="CustomerId" OtherKey="CustomerId" Type="UserCustomer" />
+      <Association Name="Project_Customer" Member="Project" ThisKey="ProjectId" OtherKey="ProjectId" Type="Project" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Categories" Member="Categories">
+    <Type Name="Category">
+      <Column Name="CategoryId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Category_Project" Member="Projects" ThisKey="CategoryId" OtherKey="CategoryId" Type="Project" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProjectComments" Member="ProjectComments">
+    <Type Name="ProjectComment">
+      <Column Name="ProjectCommentId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProjectId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Body" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Project_ProjectComment" Member="Project" ThisKey="ProjectId" OtherKey="ProjectId" Type="Project" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="User_ProjectComment" Member="User" ThisKey="UserId" OtherKey="UserId" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProjectNews" Member="ProjectNews">
+    <Type Name="ProjectNew">
+      <Column Name="ProjectNewsId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProjectId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Body" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Project_ProjectNew" Member="Project" ThisKey="ProjectId" OtherKey="ProjectId" Type="Project" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+</Database>

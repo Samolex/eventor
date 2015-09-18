@@ -21,15 +21,15 @@ namespace Eventor_Project.Models
         public DbSet<Category> Categories { get; set; }
         public DbSet<ProjectComment> ProjectComments { get; set; }
         public DbSet<Material> Materials { get; set; }
-        public DbSet<Money> Moneys { get; set; }
         public DbSet<Organizer> Organisers { get; set; }
+        public DbSet<Customer> Customers { get; set; }
         public DbSet<ProjectNews> ProjectNews { get; set; }
 
         #region Relations Project
 
-        public DbSet<UserMaterial> UserMaterial { get; set; }
-        public DbSet<UserMoney> UserMoney { get; set; }
-        public DbSet<UserProject> UserProject { get; set; }
+        public DbSet<UserMaterial> UserMaterials { get; set; }
+        public DbSet<UserCustomer> UserCustomers { get; set; }
+        public DbSet<UserOrganizer> UserOrganizers { get; set; }
 
         #endregion
 

@@ -30,14 +30,13 @@ namespace Eventor_Project.Models.ProjectModel
 
         public virtual List<Organizer> Organisers { get; set; }
         public virtual List<Material> Inventory { get; set; }
-        public virtual List<Money> Money { get; set; }
 
         public DateTime OrganizationDate { get; set; }
 
         public DateTime EventDate { get; set; }
 
         public virtual List<ProjectNews> News { get; set; }
-        public virtual List<User> Users { get; set; }
+        public virtual List<Customer> Customers { get; set; }
 
         public virtual List<ProjectComment> Comments { get; set; }
 

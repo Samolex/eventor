@@ -14,7 +14,7 @@ namespace Eventor_Project.Models.SqlRepository
         {
             get
             {
-                return Db.UserMaterial;
+                return Db.UserMaterials;
             }
         }
 
@@ -22,7 +22,7 @@ namespace Eventor_Project.Models.SqlRepository
         {
             if (instance.UserMaterialId == 0)
             {
-                Db.UserMaterial.Add(instance);
+                Db.UserMaterials.Add(instance);
                 Db.SaveChanges();
                 return true;
             }
@@ -32,7 +32,7 @@ namespace Eventor_Project.Models.SqlRepository
 
         public bool UpdateUserMaterial(UserMaterial instance)
         {
-            UserMaterial cache = Db.UserMaterial.Where(p => p.UserMaterialId == instance.UserMaterialId).FirstOrDefault();
+            UserMaterial cache = Db.UserMaterials.Where(p => p.UserMaterialId == instance.UserMaterialId).FirstOrDefault();
             if (cache != null)
             {
                 //TODO : Update fields for UserMaterial
@@ -45,10 +45,10 @@ namespace Eventor_Project.Models.SqlRepository
 
         public bool DeleteUserMaterial(int UserMaterialId)
         {
-            UserMaterial instance = Db.UserMaterial.Where(p => p.UserMaterialId == UserMaterialId).FirstOrDefault();
+            UserMaterial instance = Db.UserMaterials.Where(p => p.UserMaterialId == UserMaterialId).FirstOrDefault();
             if (instance != null)
             {
-                Db.UserMaterial.Remove(instance);
+                Db.UserMaterials.Remove(instance);
                 Db.SaveChanges();
                 return true;
             }
@@ -58,7 +58,7 @@ namespace Eventor_Project.Models.SqlRepository
 
         public UserMaterial ReadUserMaterial(int UserMaterialId)
         {
-            UserMaterial instance = Db.UserMaterial.Where(p => p.UserMaterialId == UserMaterialId).FirstOrDefault();
+            UserMaterial instance = Db.UserMaterials.Where(p => p.UserMaterialId == UserMaterialId).FirstOrDefault();
             return instance;
         }
         
