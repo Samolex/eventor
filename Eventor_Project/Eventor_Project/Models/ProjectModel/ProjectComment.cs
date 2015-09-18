@@ -4,17 +4,16 @@ using System.Linq;
 using System.Text;
 
 namespace Eventor_Project.Models.ProjectModel
-{   //TODO: Null User
-    public class Organizer
+{
+    public class ProjectComment
     {
-        public int OrganizerId { get; set; }
+        public int ProjectCommentId { get; set; }
         public int ProjectId { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
         public int UserId { get; set; }
+        public DateTime Date { get; set; }
+        public string Body { get; set; }
 
-        public virtual User User { get; set; }
         public virtual Project Project { get; set; }
-
+        public virtual User Author { get; set; }
     }
 }

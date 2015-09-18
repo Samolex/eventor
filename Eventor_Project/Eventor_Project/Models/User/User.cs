@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Eventor_Project.Models.ProjectModel.Relations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,6 +20,10 @@ namespace Eventor_Project.Models
         public Place PlaceOfLiving { get; set; }
         public List<Benefit> Benefits { get; set; }
         public virtual List<Role> Roles { get; set; }
+
+
+
+        public virtual List<UserMaterial> Materials { get; set; }
         
     }
 }

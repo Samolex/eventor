@@ -11,8 +11,8 @@ namespace Eventor_Project.Models.ProjectModel
     {
         public int ProjectId { get; set; }
 
-        //public int AuthorId { get; set; }
-        //public User Author { get; set; }
+        public int AuthorId { get; set; }
+        public virtual User Author { get; set; }
 
         public string Title { get; set; }
 
@@ -23,22 +23,23 @@ namespace Eventor_Project.Models.ProjectModel
 
         public string Description { get; set; }
 
-        //public int CategoryId { get; set; }
-        //public Category Category { get; set; }
+        public string Headquarter { get; set; }
+        public string Place { get; set; }
+        public int CategoryId { get; set; }
+        public virtual Category Category { get; set; }
 
-        public List<Organizer> Organisers { get; set; }
-        public List<Material> Inventory { get; set;}
-        public List<Money> Money { get; set; }
-        public List<Member> Members { get; set; }
+        public virtual List<Organizer> Organisers { get; set; }
+        public virtual List<Material> Inventory { get; set; }
+        public virtual List<Money> Money { get; set; }
 
         public DateTime OrganizationDate { get; set; }
 
         public DateTime EventDate { get; set; }
 
-        public List<ProjectNews> News { get; set; }
-        public List<User> Users { get; set; }
+        public virtual List<ProjectNews> News { get; set; }
+        public virtual List<User> Users { get; set; }
 
-        public List<ProjectComment> Comments { get; set; }
+        public virtual List<ProjectComment> Comments { get; set; }
 
 
 

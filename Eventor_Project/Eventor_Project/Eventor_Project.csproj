@@ -165,10 +165,30 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201509171223399_AddProjectModel.cs" />
+    <Compile Include="Migrations\201509171223399_AddProjectModel.Designer.cs">
+      <DependentUpon>201509171223399_AddProjectModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509171229430_AddProjectModel1.cs" />
+    <Compile Include="Migrations\201509171229430_AddProjectModel1.Designer.cs">
+      <DependentUpon>201509171229430_AddProjectModel1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509171540055_Test.cs" />
+    <Compile Include="Migrations\201509171540055_Test.Designer.cs">
+      <DependentUpon>201509171540055_Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509171814582_Test1.cs" />
+    <Compile Include="Migrations\201509171814582_Test1.Designer.cs">
+      <DependentUpon>201509171814582_Test1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509171819589_Test2.cs" />
+    <Compile Include="Migrations\201509171819589_Test2.Designer.cs">
+      <DependentUpon>201509171819589_Test2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CurrentContext.cs" />
     <Compile Include="Models\ProjectModel\Category.cs" />
-    <Compile Include="Models\ProjectModel\Comment.cs" />
+    <Compile Include="Models\ProjectModel\ProjectComment.cs" />
     <Compile Include="Models\ProjectModel\Material.cs" />
     <Compile Include="Models\ProjectModel\Money.cs" />
     <Compile Include="Models\ProjectModel\Organizer.cs" />
@@ -179,7 +199,16 @@
     <Compile Include="Models\ProjectModel\Relations\UserMoney.cs" />
     <Compile Include="Models\ProjectModel\Relations\UserProject.cs" />
     <Compile Include="Models\SqlRepository\IRepository.cs" />
-    <Compile Include="Models\SqlRepository\Project\ProjectRepository.cs" />
+    <Compile Include="Models\SqlRepository\ProjectRepository\CategoryRepository.cs" />
+    <Compile Include="Models\SqlRepository\ProjectRepository\MaterialRepository.cs" />
+    <Compile Include="Models\SqlRepository\ProjectRepository\MoneyRepository.cs" />
+    <Compile Include="Models\SqlRepository\ProjectRepository\OrganizerRepository.cs" />
+    <Compile Include="Models\SqlRepository\ProjectRepository\ProjectCommentRepository.cs" />
+    <Compile Include="Models\SqlRepository\ProjectRepository\ProjectNewsRepository.cs" />
+    <Compile Include="Models\SqlRepository\ProjectRepository\ProjectRepository.cs" />
+    <Compile Include="Models\SqlRepository\ProjectRepository\UserMaterialRepository.cs" />
+    <Compile Include="Models\SqlRepository\ProjectRepository\UserMoneyRepository.cs" />
+    <Compile Include="Models\SqlRepository\ProjectRepository\UserProjectRepository.cs" />
     <Compile Include="Models\SqlRepository\SqlRepository.cs" />
     <Compile Include="Models\User\Benefits.cs" />
     <Compile Include="Models\User\Contacts.cs" />
@@ -237,6 +266,23 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201509171223399_AddProjectModel.resx">
+      <DependentUpon>201509171223399_AddProjectModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509171229430_AddProjectModel1.resx">
+      <DependentUpon>201509171229430_AddProjectModel1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509171540055_Test.resx">
+      <DependentUpon>201509171540055_Test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509171814582_Test1.resx">
+      <DependentUpon>201509171814582_Test1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509171819589_Test2.resx">
+      <DependentUpon>201509171819589_Test2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
