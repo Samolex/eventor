@@ -1,8 +1,5 @@
 ﻿using Eventor_Project.Models.ProjectModel;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace Eventor_Project.Models.SqlRepository
 {
@@ -19,45 +16,34 @@ namespace Eventor_Project.Models.SqlRepository
 
         public bool CreateMaterial(Material instance)
         {
-            if (instance.MaterialId == 0)
-            {
-                Db.Materials.Add(instance);
-                Db.SaveChanges();
-                return true;
-            }
-
-            return false;
+            if (instance.MaterialId != 0) return false;
+            Db.Materials.Add(instance);
+            Db.SaveChanges();
+            return true;
         }
 
         public bool UpdateMaterial(Material instance)
         {
-            Material cache = Db.Materials.Where(p => p.MaterialId == instance.MaterialId).FirstOrDefault();
-            if (cache != null)
-            {
-                //TODO : Update fields for Material
-                Db.SaveChanges();
-                return true;
-            }
-
-            return false;
+            var cache = Db.Materials.FirstOrDefault(p => p.MaterialId == instance.MaterialId);
+            if (cache == null) return false;
+            cache.RequiredAmount = instance.RequiredAmount;
+            cache.Title = instance.Title;
+            Db.SaveChanges();
+            return true;
         }
 
-        public bool DeleteMaterial(int MaterialId)
+        public bool DeleteMaterial(int materialId)
         {
-            Material instance = Db.Materials.Where(p => p.MaterialId == MaterialId).FirstOrDefault();
-            if (instance != null)
-            {
-                Db.Materials.Remove(instance);
-                Db.SaveChanges();
-                return true;
-            }
-
-            return false;
+            var instance = Db.Materials.FirstOrDefault(p => p.MaterialId == materialId);
+            if (instance == null) return false;
+            Db.Materials.Remove(instance);
+            Db.SaveChanges();
+            return true;
         }
 
-        public Material ReadMaterial(int MaterialId)
+        public Material ReadMaterial(int materialId)
         {
-            Material instance = Db.Materials.Where(p => p.MaterialId == MaterialId).FirstOrDefault();
+            var instance = Db.Materials.FirstOrDefault(p => p.MaterialId == materialId);
             return instance;
         }
         

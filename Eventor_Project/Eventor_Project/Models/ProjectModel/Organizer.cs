@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 
 namespace Eventor_Project.Models.ProjectModel
-{   //TODO: Null User
+{
     public class Organizer
     {
         public int OrganizerId { get; set; }

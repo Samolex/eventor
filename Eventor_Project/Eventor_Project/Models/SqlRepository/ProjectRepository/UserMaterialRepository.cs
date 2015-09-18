@@ -1,51 +1,35 @@
-﻿using Eventor_Project.Models.ProjectModel.Relations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
+using Eventor_Project.Models.ProjectModel.Relations;
 
 namespace Eventor_Project.Models.SqlRepository
 {
     public partial class SqlRepository
     {
-
-
         public IQueryable<UserMaterial> UserMaterials
         {
-            get
-            {
-                return Db.UserMaterials;
-            }
+            get { return Db.UserMaterials; }
         }
 
         public bool CreateUserMaterial(UserMaterial instance)
         {
-            if (instance.UserMaterialId == 0)
-            {
-                Db.UserMaterials.Add(instance);
-                Db.SaveChanges();
-                return true;
-            }
-
-            return false;
+            if (instance.UserMaterialId != 0) return false;
+            Db.UserMaterials.Add(instance);
+            Db.SaveChanges();
+            return true;
         }
 
         public bool UpdateUserMaterial(UserMaterial instance)
         {
-            UserMaterial cache = Db.UserMaterials.Where(p => p.UserMaterialId == instance.UserMaterialId).FirstOrDefault();
-            if (cache != null)
-            {
-                //TODO : Update fields for UserMaterial
-                Db.SaveChanges();
-                return true;
-            }
-
-            return false;
+            var cache = Db.UserMaterials.FirstOrDefault(p => p.UserMaterialId == instance.UserMaterialId);
+            if (cache == null) return false;
+            cache.Amount = instance.Amount;
+            Db.SaveChanges();
+            return true;
         }
 
-        public bool DeleteUserMaterial(int UserMaterialId)
+        public bool DeleteUserMaterial(int userMaterialId)
         {
-            UserMaterial instance = Db.UserMaterials.Where(p => p.UserMaterialId == UserMaterialId).FirstOrDefault();
+            var instance = Db.UserMaterials.FirstOrDefault(p => p.UserMaterialId == userMaterialId);
             if (instance != null)
             {
                 Db.UserMaterials.Remove(instance);
@@ -56,11 +40,10 @@ namespace Eventor_Project.Models.SqlRepository
             return false;
         }
 
-        public UserMaterial ReadUserMaterial(int UserMaterialId)
+        public UserMaterial ReadUserMaterial(int userMaterialId)
         {
-            UserMaterial instance = Db.UserMaterials.Where(p => p.UserMaterialId == UserMaterialId).FirstOrDefault();
+            var instance = Db.UserMaterials.FirstOrDefault(p => p.UserMaterialId == userMaterialId);
             return instance;
         }
-        
     }
 }

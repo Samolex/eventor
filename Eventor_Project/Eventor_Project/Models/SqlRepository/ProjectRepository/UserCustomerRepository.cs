@@ -1,8 +1,5 @@
 ﻿using Eventor_Project.Models.ProjectModel.Relations;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace Eventor_Project.Models.SqlRepository
 {
@@ -18,45 +15,24 @@ namespace Eventor_Project.Models.SqlRepository
 
         public bool CreateUserCustomer(UserCustomer instance)
         {
-            if (instance.UserCustomerId == 0)
-            {
-                Db.UserCustomers.Add(instance);
-                Db.SaveChanges();
-                return true;
-            }
-
-            return false;
+            if (instance.UserCustomerId != 0) return false;
+            Db.UserCustomers.Add(instance);
+            Db.SaveChanges();
+            return true;
         }
 
-        public bool UpdateUserCustomer(UserCustomer instance)
+        public bool DeleteUserCustomer(int userCustomerId)
         {
-            UserCustomer cache = Db.UserCustomers.Where(p => p.UserCustomerId == instance.UserCustomerId).FirstOrDefault();
-            if (cache != null)
-            {
-                //TODO : Update fields for UserCustomer
-                Db.SaveChanges();
-                return true;
-            }
-
-            return false;
+            var instance = Db.UserCustomers.FirstOrDefault(p => p.UserCustomerId == userCustomerId);
+            if (instance == null) return false;
+            Db.UserCustomers.Remove(instance);
+            Db.SaveChanges();
+            return true;
         }
 
-        public bool DeleteUserCustomer(int UserCustomerId)
+        public UserCustomer ReadUserCustomer(int userCustomerId)
         {
-            UserCustomer instance = Db.UserCustomers.Where(p => p.UserCustomerId == UserCustomerId).FirstOrDefault();
-            if (instance != null)
-            {
-                Db.UserCustomers.Remove(instance);
-                Db.SaveChanges();
-                return true;
-            }
-
-            return false;
-        }
-
-        public UserCustomer ReadUserCustomer(int UserCustomerId)
-        {
-            UserCustomer instance = Db.UserCustomers.Where(p => p.UserCustomerId == UserCustomerId).FirstOrDefault();
+            var instance = Db.UserCustomers.FirstOrDefault(p => p.UserCustomerId == userCustomerId);
             return instance;
         }
         

@@ -1,8 +1,5 @@
 ﻿using Eventor_Project.Models.ProjectModel.Relations;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace Eventor_Project.Models.SqlRepository
 {
@@ -19,45 +16,25 @@ namespace Eventor_Project.Models.SqlRepository
 
         public bool CreateUserOrganizer(UserOrganizer instance)
         {
-            if (instance.UserOrganizerId == 0)
-            {
-                Db.UserOrganizers.Add(instance);
-                Db.SaveChanges();
-                return true;
-            }
-
-            return false;
+            if (instance.UserOrganizerId != 0) return false;
+            Db.UserOrganizers.Add(instance);
+            Db.SaveChanges();
+            return true;
         }
 
-        public bool UpdateUserOrganizer(UserOrganizer instance)
-        {
-            UserOrganizer cache = Db.UserOrganizers.Where(p => p.UserOrganizerId == instance.UserOrganizerId).FirstOrDefault();
-            if (cache != null)
-            {
-                //TODO : Update fields for UserOrganizer
-                Db.SaveChanges();
-                return true;
-            }
 
-            return false;
+        public bool DeleteUserOrganizer(int userOrganizerId)
+        {
+            var instance = Db.UserOrganizers.FirstOrDefault(p => p.UserOrganizerId == userOrganizerId);
+            if (instance == null) return false;
+            Db.UserOrganizers.Remove(instance);
+            Db.SaveChanges();
+            return true;
         }
 
-        public bool DeleteUserOrganizer(int UserOrganizerId)
+        public UserOrganizer ReadUserOrganizer(int userOrganizerId)
         {
-            UserOrganizer instance = Db.UserOrganizers.Where(p => p.UserOrganizerId == UserOrganizerId).FirstOrDefault();
-            if (instance != null)
-            {
-                Db.UserOrganizers.Remove(instance);
-                Db.SaveChanges();
-                return true;
-            }
-
-            return false;
-        }
-
-        public UserOrganizer ReadUserOrganizer(int UserOrganizerId)
-        {
-            UserOrganizer instance = Db.UserOrganizers.Where(p => p.UserOrganizerId == UserOrganizerId).FirstOrDefault();
+            var instance = Db.UserOrganizers.FirstOrDefault(p => p.UserOrganizerId == userOrganizerId);
             return instance;
         }
         

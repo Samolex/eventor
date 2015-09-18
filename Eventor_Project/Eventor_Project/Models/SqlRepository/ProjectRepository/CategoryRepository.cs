@@ -1,8 +1,5 @@
 ﻿using Eventor_Project.Models.ProjectModel;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace Eventor_Project.Models.SqlRepository
 {
@@ -32,33 +29,25 @@ namespace Eventor_Project.Models.SqlRepository
 
         public bool UpdateCategory(Category instance)
         {
-            Category cache = Db.Categories.Where(p => p.CategoryId == instance.CategoryId).FirstOrDefault();
-            if (cache != null)
-            {
-                //TODO : Update fields for Category
-                Db.SaveChanges();
-                return true;
-            }
-
-            return false;
+            var cache = Db.Categories.FirstOrDefault(p => p.CategoryId == instance.CategoryId);
+            if (cache == null) return false;
+            cache.Name = instance.Name;
+            Db.SaveChanges();
+            return true;
         }
 
-        public bool DeleteCategory(int CategoryId)
+        public bool DeleteCategory(int categoryId)
         {
-            Category instance = Db.Categories.Where(p => p.CategoryId == CategoryId).FirstOrDefault();
-            if (instance != null)
-            {
-                Db.Categories.Remove(instance);
-                Db.SaveChanges();
-                return true;
-            }
-
-            return false;
+            var instance = Db.Categories.FirstOrDefault(p => p.CategoryId == categoryId);
+            if (instance == null) return false;
+            Db.Categories.Remove(instance);
+            Db.SaveChanges();
+            return true;
         }
 
-        public Category ReadCategory(int CategoryId)
+        public Category ReadCategory(int categoryId)
         {
-            Category instance = Db.Categories.Where(p => p.CategoryId == CategoryId).FirstOrDefault();
+            var instance = Db.Categories.FirstOrDefault(p => p.CategoryId == categoryId);
             return instance;
         }
         

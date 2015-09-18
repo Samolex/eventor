@@ -18,11 +18,7 @@ namespace Eventor_Project.Models.ProjectModel
         public int MinCount { get; set; }
         public int CurrentCount
         {
-            //TODO: Add currentCount
-            get
-            {
-                return 0;
-            }
+            get { return Customers.Count; }
         }
 
         public string Description { get; set; }

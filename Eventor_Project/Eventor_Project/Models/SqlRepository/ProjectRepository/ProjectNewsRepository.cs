@@ -1,20 +1,13 @@
-﻿using Eventor_Project.Models.ProjectModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
+using Eventor_Project.Models.ProjectModel;
 
 namespace Eventor_Project.Models.SqlRepository
 {
     public partial class SqlRepository
     {
-
         public IQueryable<ProjectNews> ProjectNews
         {
-            get
-            {
-                return Db.ProjectNews;
-            }
+            get { return Db.ProjectNews; }
         }
 
         public bool CreateProjectNews(ProjectNews instance)
@@ -31,10 +24,12 @@ namespace Eventor_Project.Models.SqlRepository
 
         public bool UpdateProjectNews(ProjectNews instance)
         {
-            ProjectNews cache = Db.ProjectNews.Where(p => p.ProjectNewsId == instance.ProjectNewsId).FirstOrDefault();
+            var cache = Db.ProjectNews.FirstOrDefault(p => p.ProjectNewsId == instance.ProjectNewsId);
             if (cache != null)
             {
-                //TODO : Update fields for ProjectNews
+                cache.Date = instance.Date;
+                cache.Title = instance.Title;
+                cache.Body = instance.Body;
                 Db.SaveChanges();
                 return true;
             }
@@ -42,9 +37,9 @@ namespace Eventor_Project.Models.SqlRepository
             return false;
         }
 
-        public bool DeleteProjectNews(int ProjectNewsId)
+        public bool DeleteProjectNews(int projectNewsId)
         {
-            ProjectNews instance = Db.ProjectNews.Where(p => p.ProjectNewsId == ProjectNewsId).FirstOrDefault();
+            var instance = Db.ProjectNews.FirstOrDefault(p => p.ProjectNewsId == projectNewsId);
             if (instance != null)
             {
                 Db.ProjectNews.Remove(instance);
@@ -55,11 +50,10 @@ namespace Eventor_Project.Models.SqlRepository
             return false;
         }
 
-        public ProjectNews ReadProjectNews(int ProjectNewsId)
+        public ProjectNews ReadProjectNews(int projectNewsId)
         {
-            ProjectNews instance = Db.ProjectNews.Where(p => p.ProjectNewsId == ProjectNewsId).FirstOrDefault();
+            var instance = Db.ProjectNews.FirstOrDefault(p => p.ProjectNewsId == projectNewsId);
             return instance;
         }
-        
     }
 }

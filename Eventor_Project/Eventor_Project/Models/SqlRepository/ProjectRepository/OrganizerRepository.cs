@@ -1,21 +1,13 @@
-﻿using Eventor_Project.Models.ProjectModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
+using Eventor_Project.Models.ProjectModel;
 
 namespace Eventor_Project.Models.SqlRepository
 {
     public partial class SqlRepository
     {
-
-
         public IQueryable<Organizer> Organisers
         {
-            get
-            {
-                return Db.Organisers;
-            }
+            get { return Db.Organisers; }
         }
 
         public bool CreateOrganizer(Organizer instance)
@@ -32,35 +24,27 @@ namespace Eventor_Project.Models.SqlRepository
 
         public bool UpdateOrganizer(Organizer instance)
         {
-            Organizer cache = Db.Organisers.Where(p => p.OrganizerId == instance.OrganizerId).FirstOrDefault();
-            if (cache != null)
-            {
-                //TODO : Update fields for Organizer
-                Db.SaveChanges();
-                return true;
-            }
-
-            return false;
+            var cache = Db.Organisers.FirstOrDefault(p => p.OrganizerId == instance.OrganizerId);
+            if (cache == null) return false;
+            cache.Name = instance.Name;
+            cache.Description = instance.Description;
+            Db.SaveChanges();
+            return true;
         }
 
-        public bool DeleteOrganizer(int OrganizerId)
+        public bool DeleteOrganizer(int organizerId)
         {
-            Organizer instance = Db.Organisers.Where(p => p.OrganizerId == OrganizerId).FirstOrDefault();
-            if (instance != null)
-            {
-                Db.Organisers.Remove(instance);
-                Db.SaveChanges();
-                return true;
-            }
-
-            return false;
+            var instance = Db.Organisers.FirstOrDefault(p => p.OrganizerId == organizerId);
+            if (instance == null) return false;
+            Db.Organisers.Remove(instance);
+            Db.SaveChanges();
+            return true;
         }
 
-        public Organizer ReadOrganizer(int OrganizerId)
+        public Organizer ReadOrganizer(int organizerId)
         {
-            Organizer instance = Db.Organisers.Where(p => p.OrganizerId == OrganizerId).FirstOrDefault();
+            var instance = Db.Organisers.FirstOrDefault(p => p.OrganizerId == organizerId);
             return instance;
         }
-        
     }
 }

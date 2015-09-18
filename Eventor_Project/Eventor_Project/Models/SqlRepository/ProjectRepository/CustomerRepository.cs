@@ -1,8 +1,5 @@
 ﻿using Eventor_Project.Models.ProjectModel;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace Eventor_Project.Models.SqlRepository
 {
@@ -31,33 +28,28 @@ namespace Eventor_Project.Models.SqlRepository
 
         public bool UpdateCustomer(Customer instance)
         {
-            Customer cache = Db.Customers.Where(p => p.CustomerId == instance.CustomerId).FirstOrDefault();
-            if (cache != null)
-            {
-                //TODO : Update fields for Customer
-                Db.SaveChanges();
-                return true;
-            }
-
-            return false;
+            var cache = Db.Customers.FirstOrDefault(p => p.CustomerId == instance.CustomerId);
+            if (cache == null) return false;
+            cache.Role = instance.Role;
+            cache.MaxCount = instance.MaxCount;
+            cache.MinCount = instance.MinCount;
+            cache.Description = instance.Description;
+            Db.SaveChanges();
+            return true;
         }
 
-        public bool DeleteCustomer(int CustomerId)
+        public bool DeleteCustomer(int customerId)
         {
-            Customer instance = Db.Customers.Where(p => p.CustomerId == CustomerId).FirstOrDefault();
-            if (instance != null)
-            {
-                Db.Customers.Remove(instance);
-                Db.SaveChanges();
-                return true;
-            }
-
-            return false;
+            var instance = Db.Customers.FirstOrDefault(p => p.CustomerId == customerId);
+            if (instance == null) return false;
+            Db.Customers.Remove(instance);
+            Db.SaveChanges();
+            return true;
         }
 
-        public Customer ReadCustomer(int CustomerId)
+        public Customer ReadCustomer(int customerId)
         {
-            Customer instance = Db.Customers.Where(p => p.CustomerId == CustomerId).FirstOrDefault();
+            var instance = Db.Customers.FirstOrDefault(p => p.CustomerId == customerId);
             return instance;
         }
         
