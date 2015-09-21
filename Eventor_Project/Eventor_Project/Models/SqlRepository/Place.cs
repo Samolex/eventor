@@ -7,8 +7,6 @@ namespace Eventor_Project.Models.SqlRepository
 {
     public partial class SqlRepository
     {
-        
-
         public IQueryable<User.Place> Places
         {
             get
@@ -34,7 +32,9 @@ namespace Eventor_Project.Models.SqlRepository
             User.Place cache = Db.Places.Where(p => p.PlaceId == instance.PlaceId).FirstOrDefault();
             if (cache != null)
             {
-                //TODO : Update fields for Place
+                cache.PlaceInfo = instance.PlaceInfo;
+                cache.StudyingUsers = instance.StudyingUsers;
+                cache.LivingUsers = instance.LivingUsers;
                 Db.SaveChanges();
                 return true;
             }

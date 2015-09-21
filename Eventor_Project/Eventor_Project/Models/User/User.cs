@@ -15,12 +15,12 @@ namespace Eventor_Project.Models.User
         public string Surname { get; set; }
         public string Patronymic { get; set; }
         public Sex Sex { get; set; }
-        public Place PlaceOfStudy { get; set; }
-        public Place PlaceOfLiving { get; set; }
+        public virtual Place PlaceOfStudy { get; set; }
+        public virtual Place PlaceOfLiving { get; set; }
         public string ContactEmail { get; set; }
         public string PhoneNumber { get; set; }
-        public IEnumerable<Benefit> Benefits { get; set; }
-        public virtual IEnumerable<UserRole> Roles { get; set; }
-        
+        public virtual ICollection<Benefit> Benefits { get; set; }
+        public virtual ICollection<Role> Roles { get; set; }
+
     }
 }

@@ -19,8 +19,8 @@ namespace Eventor_Project.Controllers
         public Models.SqlRepository.IRepository Repository { get; set; }
         public ActionResult Index()
         {
-            var roles = Repository.Roles.ToList();
-            return View(roles);
+            var user = Repository.ReadUser(17);
+            return View(user.Roles.ToList());
         }
 
     }

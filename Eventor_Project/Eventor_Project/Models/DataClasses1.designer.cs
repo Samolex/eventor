@@ -30,18 +30,24 @@ namespace Eventor_Project.Models
 		
     #region Определения метода расширяемости
     partial void OnCreated();
+    partial void InsertBenefits(Benefits instance);
+    partial void UpdateBenefits(Benefits instance);
+    partial void DeleteBenefits(Benefits instance);
+    partial void InsertUsers(Users instance);
+    partial void UpdateUsers(Users instance);
+    partial void DeleteUsers(Users instance);
+    partial void InsertBenefitUsers(BenefitUsers instance);
+    partial void UpdateBenefitUsers(BenefitUsers instance);
+    partial void DeleteBenefitUsers(BenefitUsers instance);
     partial void InsertPlaces(Places instance);
     partial void UpdatePlaces(Places instance);
     partial void DeletePlaces(Places instance);
     partial void InsertRoles(Roles instance);
     partial void UpdateRoles(Roles instance);
     partial void DeleteRoles(Roles instance);
-    partial void InsertUserRoles(UserRoles instance);
-    partial void UpdateUserRoles(UserRoles instance);
-    partial void DeleteUserRoles(UserRoles instance);
-    partial void InsertUsers(Users instance);
-    partial void UpdateUsers(Users instance);
-    partial void DeleteUsers(Users instance);
+    partial void InsertRoleUsers(RoleUsers instance);
+    partial void UpdateRoleUsers(RoleUsers instance);
+    partial void DeleteRoleUsers(RoleUsers instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -74,6 +80,30 @@ namespace Eventor_Project.Models
 			OnCreated();
 		}
 		
+		public System.Data.Linq.Table<Benefits> Benefits
+		{
+			get
+			{
+				return this.GetTable<Benefits>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Users> Users
+		{
+			get
+			{
+				return this.GetTable<Users>();
+			}
+		}
+		
+		public System.Data.Linq.Table<BenefitUsers> BenefitUsers
+		{
+			get
+			{
+				return this.GetTable<BenefitUsers>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Places> Places
 		{
 			get
@@ -90,213 +120,63 @@ namespace Eventor_Project.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<UserRoles> UserRoles
+		public System.Data.Linq.Table<RoleUsers> RoleUsers
 		{
 			get
 			{
-				return this.GetTable<UserRoles>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Users> Users
-		{
-			get
-			{
-				return this.GetTable<Users>();
+				return this.GetTable<RoleUsers>();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Places")]
-	public partial class Places : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Benefits")]
+	public partial class Benefits : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _PlaceId;
-		
-		private string _PlaceInfo;
-		
-		private EntitySet<Users> _Users;
-		
-		private EntitySet<Users> _Users1;
-		
-    #region Определения метода расширяемости
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnPlaceIdChanging(int value);
-    partial void OnPlaceIdChanged();
-    partial void OnPlaceInfoChanging(string value);
-    partial void OnPlaceInfoChanged();
-    #endregion
-		
-		public Places()
-		{
-			this._Users = new EntitySet<Users>(new Action<Users>(this.attach_Users), new Action<Users>(this.detach_Users));
-			this._Users1 = new EntitySet<Users>(new Action<Users>(this.attach_Users1), new Action<Users>(this.detach_Users1));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlaceId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int PlaceId
-		{
-			get
-			{
-				return this._PlaceId;
-			}
-			set
-			{
-				if ((this._PlaceId != value))
-				{
-					this.OnPlaceIdChanging(value);
-					this.SendPropertyChanging();
-					this._PlaceId = value;
-					this.SendPropertyChanged("PlaceId");
-					this.OnPlaceIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlaceInfo", DbType="NVarChar(MAX)")]
-		public string PlaceInfo
-		{
-			get
-			{
-				return this._PlaceInfo;
-			}
-			set
-			{
-				if ((this._PlaceInfo != value))
-				{
-					this.OnPlaceInfoChanging(value);
-					this.SendPropertyChanging();
-					this._PlaceInfo = value;
-					this.SendPropertyChanged("PlaceInfo");
-					this.OnPlaceInfoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Places_Users", Storage="_Users", ThisKey="PlaceId", OtherKey="PlaceOfLiving_PlaceId")]
-		public EntitySet<Users> Users
-		{
-			get
-			{
-				return this._Users;
-			}
-			set
-			{
-				this._Users.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Places_Users1", Storage="_Users1", ThisKey="PlaceId", OtherKey="PlaceOfStudy_PlaceId")]
-		public EntitySet<Users> Users1
-		{
-			get
-			{
-				return this._Users1;
-			}
-			set
-			{
-				this._Users1.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Users(Users entity)
-		{
-			this.SendPropertyChanging();
-			entity.Places = this;
-		}
-		
-		private void detach_Users(Users entity)
-		{
-			this.SendPropertyChanging();
-			entity.Places = null;
-		}
-		
-		private void attach_Users1(Users entity)
-		{
-			this.SendPropertyChanging();
-			entity.Places1 = this;
-		}
-		
-		private void detach_Users1(Users entity)
-		{
-			this.SendPropertyChanging();
-			entity.Places1 = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Roles")]
-	public partial class Roles : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _RoleId;
+		private int _BenefitId;
 		
 		private string _Code;
 		
 		private string _Name;
 		
-		private EntitySet<UserRoles> _UserRoles;
+		private EntitySet<BenefitUsers> _BenefitUsers;
 		
     #region Определения метода расширяемости
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnRoleIdChanging(int value);
-    partial void OnRoleIdChanged();
+    partial void OnBenefitIdChanging(int value);
+    partial void OnBenefitIdChanged();
     partial void OnCodeChanging(string value);
     partial void OnCodeChanged();
     partial void OnNameChanging(string value);
     partial void OnNameChanged();
     #endregion
 		
-		public Roles()
+		public Benefits()
 		{
-			this._UserRoles = new EntitySet<UserRoles>(new Action<UserRoles>(this.attach_UserRoles), new Action<UserRoles>(this.detach_UserRoles));
+			this._BenefitUsers = new EntitySet<BenefitUsers>(new Action<BenefitUsers>(this.attach_BenefitUsers), new Action<BenefitUsers>(this.detach_BenefitUsers));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int RoleId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BenefitId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int BenefitId
 		{
 			get
 			{
-				return this._RoleId;
+				return this._BenefitId;
 			}
 			set
 			{
-				if ((this._RoleId != value))
+				if ((this._BenefitId != value))
 				{
-					this.OnRoleIdChanging(value);
+					this.OnBenefitIdChanging(value);
 					this.SendPropertyChanging();
-					this._RoleId = value;
-					this.SendPropertyChanged("RoleId");
-					this.OnRoleIdChanged();
+					this._BenefitId = value;
+					this.SendPropertyChanged("BenefitId");
+					this.OnBenefitIdChanged();
 				}
 			}
 		}
@@ -341,16 +221,16 @@ namespace Eventor_Project.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Roles_UserRoles", Storage="_UserRoles", ThisKey="RoleId", OtherKey="RoleId")]
-		public EntitySet<UserRoles> UserRoles
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Benefits_BenefitUsers", Storage="_BenefitUsers", ThisKey="BenefitId", OtherKey="Benefit_BenefitId")]
+		public EntitySet<BenefitUsers> BenefitUsers
 		{
 			get
 			{
-				return this._UserRoles;
+				return this._BenefitUsers;
 			}
 			set
 			{
-				this._UserRoles.Assign(value);
+				this._BenefitUsers.Assign(value);
 			}
 		}
 		
@@ -374,208 +254,16 @@ namespace Eventor_Project.Models
 			}
 		}
 		
-		private void attach_UserRoles(UserRoles entity)
+		private void attach_BenefitUsers(BenefitUsers entity)
 		{
 			this.SendPropertyChanging();
-			entity.Roles = this;
+			entity.Benefits = this;
 		}
 		
-		private void detach_UserRoles(UserRoles entity)
+		private void detach_BenefitUsers(BenefitUsers entity)
 		{
 			this.SendPropertyChanging();
-			entity.Roles = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserRoles")]
-	public partial class UserRoles : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _UserRoleId;
-		
-		private int _UserId;
-		
-		private int _RoleId;
-		
-		private EntityRef<Roles> _Roles;
-		
-		private EntityRef<Users> _Users;
-		
-    #region Определения метода расширяемости
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnUserRoleIdChanging(int value);
-    partial void OnUserRoleIdChanged();
-    partial void OnUserIdChanging(int value);
-    partial void OnUserIdChanged();
-    partial void OnRoleIdChanging(int value);
-    partial void OnRoleIdChanged();
-    #endregion
-		
-		public UserRoles()
-		{
-			this._Roles = default(EntityRef<Roles>);
-			this._Users = default(EntityRef<Users>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserRoleId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int UserRoleId
-		{
-			get
-			{
-				return this._UserRoleId;
-			}
-			set
-			{
-				if ((this._UserRoleId != value))
-				{
-					this.OnUserRoleIdChanging(value);
-					this.SendPropertyChanging();
-					this._UserRoleId = value;
-					this.SendPropertyChanged("UserRoleId");
-					this.OnUserRoleIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int NOT NULL")]
-		public int UserId
-		{
-			get
-			{
-				return this._UserId;
-			}
-			set
-			{
-				if ((this._UserId != value))
-				{
-					if (this._Users.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnUserIdChanging(value);
-					this.SendPropertyChanging();
-					this._UserId = value;
-					this.SendPropertyChanged("UserId");
-					this.OnUserIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleId", DbType="Int NOT NULL")]
-		public int RoleId
-		{
-			get
-			{
-				return this._RoleId;
-			}
-			set
-			{
-				if ((this._RoleId != value))
-				{
-					if (this._Roles.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnRoleIdChanging(value);
-					this.SendPropertyChanging();
-					this._RoleId = value;
-					this.SendPropertyChanged("RoleId");
-					this.OnRoleIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Roles_UserRoles", Storage="_Roles", ThisKey="RoleId", OtherKey="RoleId", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public Roles Roles
-		{
-			get
-			{
-				return this._Roles.Entity;
-			}
-			set
-			{
-				Roles previousValue = this._Roles.Entity;
-				if (((previousValue != value) 
-							|| (this._Roles.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Roles.Entity = null;
-						previousValue.UserRoles.Remove(this);
-					}
-					this._Roles.Entity = value;
-					if ((value != null))
-					{
-						value.UserRoles.Add(this);
-						this._RoleId = value.RoleId;
-					}
-					else
-					{
-						this._RoleId = default(int);
-					}
-					this.SendPropertyChanged("Roles");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_UserRoles", Storage="_Users", ThisKey="UserId", OtherKey="UserId", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public Users Users
-		{
-			get
-			{
-				return this._Users.Entity;
-			}
-			set
-			{
-				Users previousValue = this._Users.Entity;
-				if (((previousValue != value) 
-							|| (this._Users.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Users.Entity = null;
-						previousValue.UserRoles.Remove(this);
-					}
-					this._Users.Entity = value;
-					if ((value != null))
-					{
-						value.UserRoles.Add(this);
-						this._UserId = value.UserId;
-					}
-					else
-					{
-						this._UserId = default(int);
-					}
-					this.SendPropertyChanged("Users");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
+			entity.Benefits = null;
 		}
 	}
 	
@@ -607,7 +295,9 @@ namespace Eventor_Project.Models
 		
 		private string _PhoneNumber;
 		
-		private EntitySet<UserRoles> _UserRoles;
+		private EntitySet<BenefitUsers> _BenefitUsers;
+		
+		private EntitySet<RoleUsers> _RoleUsers;
 		
 		private EntityRef<Places> _Places;
 		
@@ -643,7 +333,8 @@ namespace Eventor_Project.Models
 		
 		public Users()
 		{
-			this._UserRoles = new EntitySet<UserRoles>(new Action<UserRoles>(this.attach_UserRoles), new Action<UserRoles>(this.detach_UserRoles));
+			this._BenefitUsers = new EntitySet<BenefitUsers>(new Action<BenefitUsers>(this.attach_BenefitUsers), new Action<BenefitUsers>(this.detach_BenefitUsers));
+			this._RoleUsers = new EntitySet<RoleUsers>(new Action<RoleUsers>(this.attach_RoleUsers), new Action<RoleUsers>(this.detach_RoleUsers));
 			this._Places = default(EntityRef<Places>);
 			this._Places1 = default(EntityRef<Places>);
 			OnCreated();
@@ -877,16 +568,29 @@ namespace Eventor_Project.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_UserRoles", Storage="_UserRoles", ThisKey="UserId", OtherKey="UserId")]
-		public EntitySet<UserRoles> UserRoles
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_BenefitUsers", Storage="_BenefitUsers", ThisKey="UserId", OtherKey="User_UserId")]
+		public EntitySet<BenefitUsers> BenefitUsers
 		{
 			get
 			{
-				return this._UserRoles;
+				return this._BenefitUsers;
 			}
 			set
 			{
-				this._UserRoles.Assign(value);
+				this._BenefitUsers.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_RoleUsers", Storage="_RoleUsers", ThisKey="UserId", OtherKey="User_UserId")]
+		public EntitySet<RoleUsers> RoleUsers
+		{
+			get
+			{
+				return this._RoleUsers;
+			}
+			set
+			{
+				this._RoleUsers.Assign(value);
 			}
 		}
 		
@@ -978,16 +682,644 @@ namespace Eventor_Project.Models
 			}
 		}
 		
-		private void attach_UserRoles(UserRoles entity)
+		private void attach_BenefitUsers(BenefitUsers entity)
 		{
 			this.SendPropertyChanging();
 			entity.Users = this;
 		}
 		
-		private void detach_UserRoles(UserRoles entity)
+		private void detach_BenefitUsers(BenefitUsers entity)
 		{
 			this.SendPropertyChanging();
 			entity.Users = null;
+		}
+		
+		private void attach_RoleUsers(RoleUsers entity)
+		{
+			this.SendPropertyChanging();
+			entity.Users = this;
+		}
+		
+		private void detach_RoleUsers(RoleUsers entity)
+		{
+			this.SendPropertyChanging();
+			entity.Users = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.BenefitUsers")]
+	public partial class BenefitUsers : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Benefit_BenefitId;
+		
+		private int _User_UserId;
+		
+		private EntityRef<Benefits> _Benefits;
+		
+		private EntityRef<Users> _Users;
+		
+    #region Определения метода расширяемости
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnBenefit_BenefitIdChanging(int value);
+    partial void OnBenefit_BenefitIdChanged();
+    partial void OnUser_UserIdChanging(int value);
+    partial void OnUser_UserIdChanged();
+    #endregion
+		
+		public BenefitUsers()
+		{
+			this._Benefits = default(EntityRef<Benefits>);
+			this._Users = default(EntityRef<Users>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Benefit_BenefitId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Benefit_BenefitId
+		{
+			get
+			{
+				return this._Benefit_BenefitId;
+			}
+			set
+			{
+				if ((this._Benefit_BenefitId != value))
+				{
+					if (this._Benefits.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnBenefit_BenefitIdChanging(value);
+					this.SendPropertyChanging();
+					this._Benefit_BenefitId = value;
+					this.SendPropertyChanged("Benefit_BenefitId");
+					this.OnBenefit_BenefitIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_UserId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int User_UserId
+		{
+			get
+			{
+				return this._User_UserId;
+			}
+			set
+			{
+				if ((this._User_UserId != value))
+				{
+					if (this._Users.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUser_UserIdChanging(value);
+					this.SendPropertyChanging();
+					this._User_UserId = value;
+					this.SendPropertyChanged("User_UserId");
+					this.OnUser_UserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Benefits_BenefitUsers", Storage="_Benefits", ThisKey="Benefit_BenefitId", OtherKey="BenefitId", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public Benefits Benefits
+		{
+			get
+			{
+				return this._Benefits.Entity;
+			}
+			set
+			{
+				Benefits previousValue = this._Benefits.Entity;
+				if (((previousValue != value) 
+							|| (this._Benefits.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Benefits.Entity = null;
+						previousValue.BenefitUsers.Remove(this);
+					}
+					this._Benefits.Entity = value;
+					if ((value != null))
+					{
+						value.BenefitUsers.Add(this);
+						this._Benefit_BenefitId = value.BenefitId;
+					}
+					else
+					{
+						this._Benefit_BenefitId = default(int);
+					}
+					this.SendPropertyChanged("Benefits");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_BenefitUsers", Storage="_Users", ThisKey="User_UserId", OtherKey="UserId", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public Users Users
+		{
+			get
+			{
+				return this._Users.Entity;
+			}
+			set
+			{
+				Users previousValue = this._Users.Entity;
+				if (((previousValue != value) 
+							|| (this._Users.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Users.Entity = null;
+						previousValue.BenefitUsers.Remove(this);
+					}
+					this._Users.Entity = value;
+					if ((value != null))
+					{
+						value.BenefitUsers.Add(this);
+						this._User_UserId = value.UserId;
+					}
+					else
+					{
+						this._User_UserId = default(int);
+					}
+					this.SendPropertyChanged("Users");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Places")]
+	public partial class Places : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _PlaceId;
+		
+		private string _PlaceInfo;
+		
+		private EntitySet<Users> _Users;
+		
+		private EntitySet<Users> _Users1;
+		
+    #region Определения метода расширяемости
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPlaceIdChanging(int value);
+    partial void OnPlaceIdChanged();
+    partial void OnPlaceInfoChanging(string value);
+    partial void OnPlaceInfoChanged();
+    #endregion
+		
+		public Places()
+		{
+			this._Users = new EntitySet<Users>(new Action<Users>(this.attach_Users), new Action<Users>(this.detach_Users));
+			this._Users1 = new EntitySet<Users>(new Action<Users>(this.attach_Users1), new Action<Users>(this.detach_Users1));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlaceId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int PlaceId
+		{
+			get
+			{
+				return this._PlaceId;
+			}
+			set
+			{
+				if ((this._PlaceId != value))
+				{
+					this.OnPlaceIdChanging(value);
+					this.SendPropertyChanging();
+					this._PlaceId = value;
+					this.SendPropertyChanged("PlaceId");
+					this.OnPlaceIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlaceInfo", DbType="NVarChar(MAX)")]
+		public string PlaceInfo
+		{
+			get
+			{
+				return this._PlaceInfo;
+			}
+			set
+			{
+				if ((this._PlaceInfo != value))
+				{
+					this.OnPlaceInfoChanging(value);
+					this.SendPropertyChanging();
+					this._PlaceInfo = value;
+					this.SendPropertyChanged("PlaceInfo");
+					this.OnPlaceInfoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Places_Users", Storage="_Users", ThisKey="PlaceId", OtherKey="PlaceOfLiving_PlaceId")]
+		public EntitySet<Users> Users
+		{
+			get
+			{
+				return this._Users;
+			}
+			set
+			{
+				this._Users.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Places_Users1", Storage="_Users1", ThisKey="PlaceId", OtherKey="PlaceOfStudy_PlaceId")]
+		public EntitySet<Users> Users1
+		{
+			get
+			{
+				return this._Users1;
+			}
+			set
+			{
+				this._Users1.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Users(Users entity)
+		{
+			this.SendPropertyChanging();
+			entity.Places = this;
+		}
+		
+		private void detach_Users(Users entity)
+		{
+			this.SendPropertyChanging();
+			entity.Places = null;
+		}
+		
+		private void attach_Users1(Users entity)
+		{
+			this.SendPropertyChanging();
+			entity.Places1 = this;
+		}
+		
+		private void detach_Users1(Users entity)
+		{
+			this.SendPropertyChanging();
+			entity.Places1 = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Roles")]
+	public partial class Roles : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _RoleId;
+		
+		private string _Code;
+		
+		private string _Name;
+		
+		private EntitySet<RoleUsers> _RoleUsers;
+		
+    #region Определения метода расширяемости
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnRoleIdChanging(int value);
+    partial void OnRoleIdChanged();
+    partial void OnCodeChanging(string value);
+    partial void OnCodeChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    #endregion
+		
+		public Roles()
+		{
+			this._RoleUsers = new EntitySet<RoleUsers>(new Action<RoleUsers>(this.attach_RoleUsers), new Action<RoleUsers>(this.detach_RoleUsers));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int RoleId
+		{
+			get
+			{
+				return this._RoleId;
+			}
+			set
+			{
+				if ((this._RoleId != value))
+				{
+					this.OnRoleIdChanging(value);
+					this.SendPropertyChanging();
+					this._RoleId = value;
+					this.SendPropertyChanged("RoleId");
+					this.OnRoleIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Code", DbType="NVarChar(MAX)")]
+		public string Code
+		{
+			get
+			{
+				return this._Code;
+			}
+			set
+			{
+				if ((this._Code != value))
+				{
+					this.OnCodeChanging(value);
+					this.SendPropertyChanging();
+					this._Code = value;
+					this.SendPropertyChanged("Code");
+					this.OnCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(MAX)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Roles_RoleUsers", Storage="_RoleUsers", ThisKey="RoleId", OtherKey="Role_RoleId")]
+		public EntitySet<RoleUsers> RoleUsers
+		{
+			get
+			{
+				return this._RoleUsers;
+			}
+			set
+			{
+				this._RoleUsers.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_RoleUsers(RoleUsers entity)
+		{
+			this.SendPropertyChanging();
+			entity.Roles = this;
+		}
+		
+		private void detach_RoleUsers(RoleUsers entity)
+		{
+			this.SendPropertyChanging();
+			entity.Roles = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RoleUsers")]
+	public partial class RoleUsers : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Role_RoleId;
+		
+		private int _User_UserId;
+		
+		private EntityRef<Roles> _Roles;
+		
+		private EntityRef<Users> _Users;
+		
+    #region Определения метода расширяемости
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnRole_RoleIdChanging(int value);
+    partial void OnRole_RoleIdChanged();
+    partial void OnUser_UserIdChanging(int value);
+    partial void OnUser_UserIdChanged();
+    #endregion
+		
+		public RoleUsers()
+		{
+			this._Roles = default(EntityRef<Roles>);
+			this._Users = default(EntityRef<Users>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Role_RoleId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Role_RoleId
+		{
+			get
+			{
+				return this._Role_RoleId;
+			}
+			set
+			{
+				if ((this._Role_RoleId != value))
+				{
+					if (this._Roles.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnRole_RoleIdChanging(value);
+					this.SendPropertyChanging();
+					this._Role_RoleId = value;
+					this.SendPropertyChanged("Role_RoleId");
+					this.OnRole_RoleIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_UserId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int User_UserId
+		{
+			get
+			{
+				return this._User_UserId;
+			}
+			set
+			{
+				if ((this._User_UserId != value))
+				{
+					if (this._Users.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUser_UserIdChanging(value);
+					this.SendPropertyChanging();
+					this._User_UserId = value;
+					this.SendPropertyChanged("User_UserId");
+					this.OnUser_UserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Roles_RoleUsers", Storage="_Roles", ThisKey="Role_RoleId", OtherKey="RoleId", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public Roles Roles
+		{
+			get
+			{
+				return this._Roles.Entity;
+			}
+			set
+			{
+				Roles previousValue = this._Roles.Entity;
+				if (((previousValue != value) 
+							|| (this._Roles.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Roles.Entity = null;
+						previousValue.RoleUsers.Remove(this);
+					}
+					this._Roles.Entity = value;
+					if ((value != null))
+					{
+						value.RoleUsers.Add(this);
+						this._Role_RoleId = value.RoleId;
+					}
+					else
+					{
+						this._Role_RoleId = default(int);
+					}
+					this.SendPropertyChanged("Roles");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_RoleUsers", Storage="_Users", ThisKey="User_UserId", OtherKey="UserId", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public Users Users
+		{
+			get
+			{
+				return this._Users.Entity;
+			}
+			set
+			{
+				Users previousValue = this._Users.Entity;
+				if (((previousValue != value) 
+							|| (this._Users.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Users.Entity = null;
+						previousValue.RoleUsers.Remove(this);
+					}
+					this._Users.Entity = value;
+					if ((value != null))
+					{
+						value.RoleUsers.Add(this);
+						this._User_UserId = value.UserId;
+					}
+					else
+					{
+						this._User_UserId = default(int);
+					}
+					this.SendPropertyChanged("Users");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

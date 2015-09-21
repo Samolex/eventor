@@ -43,6 +43,9 @@
       <HintPath>..\packages\AutoMapper.4.0.4\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.2.1507.0118\lib\net40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
@@ -186,6 +189,14 @@
     <Compile Include="Migrations\201509170944309_NoContacts.Designer.cs">
       <DependentUpon>201509170944309_NoContacts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201509200931521_Configuration-2.cs" />
+    <Compile Include="Migrations\201509200931521_Configuration-2.Designer.cs">
+      <DependentUpon>201509200931521_Configuration-2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509210623308_Test.cs" />
+    <Compile Include="Migrations\201509210623308_Test.Designer.cs">
+      <DependentUpon>201509210623308_Test.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CurrentContext.cs" />
     <Compile Include="Models\DataClasses1.designer.cs">
@@ -193,18 +204,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataClasses1.dbml</DependentUpon>
     </Compile>
-    <Compile Include="Models\SqlRepository\IRepository.cs" />
+    <Compile Include="Models\SqlRepository\Benefit.cs" />
+    <Compile Include="Models\SqlRepositoryData\IRepository.cs" />
     <Compile Include="Models\SqlRepository\Place.cs" />
     <Compile Include="Models\SqlRepository\Role.cs" />
-    <Compile Include="Models\SqlRepository\SqlRepositoryData.cs" />
+    <Compile Include="Models\SqlRepositoryData\SqlRepositoryData.cs" />
     <Compile Include="Models\SqlRepository\User.cs" />
-    <Compile Include="Models\SqlRepository\UserRole.cs" />
-    <Compile Include="Models\User\Benefits.cs" />
+    <Compile Include="Models\User\Benefit.cs" />
     <Compile Include="Models\User\Place.cs" />
     <Compile Include="Models\User\Role.cs" />
     <Compile Include="Models\User\Sex.cs" />
     <Compile Include="Models\User\User.cs" />
-    <Compile Include="Models\User\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -278,6 +288,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201509170944309_NoContacts.resx">
       <DependentUpon>201509170944309_NoContacts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509200931521_Configuration-2.resx">
+      <DependentUpon>201509200931521_Configuration-2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509210623308_Test.resx">
+      <DependentUpon>201509210623308_Test.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Models\DataClasses1.dbml.layout">
       <DependentUpon>DataClasses1.dbml</DependentUpon>

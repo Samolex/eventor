@@ -12,9 +12,10 @@ namespace Eventor_Project.Models.User
         public string PlaceInfo { get; set; }
 
         [InverseProperty("PlaceOfLiving")]
-        public ICollection<User> LivingUsers { get; set; }
+        public virtual ICollection<User> LivingUsers { get; set; }
 
         [InverseProperty("PlaceOfStudy")]
-        public ICollection<User> StudyingUsers { get; set; }
+        public virtual ICollection<User> StudyingUsers { get; set; }
+
     }
 }

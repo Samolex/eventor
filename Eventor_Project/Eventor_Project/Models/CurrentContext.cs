@@ -11,6 +11,6 @@ namespace Eventor_Project.Models
         public DbSet<User.User> Users { get; set; }
         public DbSet<User.Role> Roles { get; set; }
         public DbSet<User.Place> Places { get; set; }
-        public DbSet<User.UserRole> UserRole { get; set; }
+        public DbSet<User.Benefit> Benefits { get; set; }
     }
 }

@@ -30,7 +30,17 @@ namespace Eventor_Project.Models.SqlRepository
 
         public bool UpdateRole(User.Role instance)
         {
-            throw new NotImplementedException();
+            User.Role cache = Db.Roles.Where(p => p.RoleId == instance.RoleId).FirstOrDefault();
+            if (cache != null)
+            {
+                cache.Code = instance.Code;
+                cache.Name = instance.Name;
+                cache.Users = instance.Users;
+                Db.SaveChanges();
+                return true;
+            }
+
+            return false;
         }
 
         public bool DeleteRole(int RoleId)
@@ -46,9 +56,10 @@ namespace Eventor_Project.Models.SqlRepository
             return false;
         }
 
-        User.Role ReadRole(int RoleId)
+        public User.Role ReadRole(int RoleId)
         {
-            throw new NotImplementedException();
+            User.Role instance = Db.Roles.Where(p => p.RoleId == RoleId).FirstOrDefault();
+            return instance;
         }
     }
 }
