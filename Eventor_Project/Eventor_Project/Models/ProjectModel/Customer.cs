@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Eventor_Project.Models.ProjectModel
 {
@@ -8,7 +9,9 @@ namespace Eventor_Project.Models.ProjectModel
         public int ProjectId { get; set; }
 
         public string Role { get; set; }
+        [Required]
         public int MaxCount { get; set; }
+        [Required]
         public int MinCount { get; set; }
 
         public int CurrentCount
