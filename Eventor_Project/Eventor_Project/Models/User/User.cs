@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
+using Eventor_Project.Models.ProjectModel;
+using Eventor_Project.Models.ProjectModel.Relations;
 
 namespace Eventor_Project.Models.User
 {
@@ -22,5 +21,10 @@ namespace Eventor_Project.Models.User
         public virtual ICollection<Benefit> Benefits { get; set; }
         public virtual ICollection<Role> Roles { get; set; }
 
+        public virtual ICollection<UserMaterial> Materials { get; set; }
+        public virtual ICollection<Customer> Customers { get; set; }
+        public virtual ICollection<Organizer> Organizers { get; set; }
+        public virtual ICollection<ProjectComment> Comments { get; set; }
+        public virtual ICollection<Project> Projects { get; set; }
     }
 }

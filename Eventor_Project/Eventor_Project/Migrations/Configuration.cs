@@ -1,18 +1,16 @@
+using System.Data.Entity.Migrations;
+using Eventor_Project.Models;
+
 namespace Eventor_Project.Migrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
-    internal sealed class Configuration : DbMigrationsConfiguration<Eventor_Project.Models.CurrentContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<CurrentContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Eventor_Project.Models.CurrentContext context)
+        protected override void Seed(CurrentContext context)
         {
             //  This method will be called after migrating to the latest version.
 

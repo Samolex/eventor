@@ -1,4 +1,4 @@
-﻿using Eventor_Project.Models;
+using Eventor_Project.Models;
 using Ninject;
 using NLog;
 using System;
@@ -7,9 +7,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
 namespace Eventor_Project.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         //
         // GET: /Home/
@@ -19,9 +20,9 @@ namespace Eventor_Project.Controllers
         public Models.SqlRepository.IRepository Repository { get; set; }
         public ActionResult Index()
         {
-            var user = Repository.ReadUser(17);
-            return View(user.Roles.ToList());
-        }
 
+            var user = Repository.Roles;
+            return View(user);   
+	}
     }
 }

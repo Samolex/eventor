@@ -5,7 +5,6 @@ using System.Linq;
 using System.Web;
 
 namespace Eventor_Project.Models.User
-{
     public class Place
     {
         public int PlaceId { get; set; }

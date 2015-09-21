@@ -33,6 +33,10 @@
             {
                 Db.$Table$s.Add(instance);
                 Db.SaveChanges();
+            if (instance.ID == 0)
+            {
+                Db.$Table$s.InsertOnSubmit(instance);
+                Db.$Table$s.Context.SubmitChanges();
                 return true;
             }
 
@@ -45,7 +49,11 @@
             if (cache != null)
             {
                 //TODO : Update fields for $Table$
-                Db.SaveChanges();
+            $Table$ cache = Db.$Table$s.Where(p => p.ID == instance.ID).FirstOrDefault();
+            if (cache != null)
+            {
+                //TODO : Update fields for $Table$
+                Db.$Table$s.Context.SubmitChanges();
                 return true;
             }
 
@@ -59,6 +67,13 @@
             {
                 Db.$Table$s.Remove(instance);
                 Db.SaveChanges();
+        public bool Remove$Table$(int id$Table$)
+        {
+            $Table$ instance = Db.$Table$s.Where(p => p.ID == id$Table$).FirstOrDefault();
+            if (instance != null)
+            {
+                Db.$Table$s.DeleteOnSubmit(instance);
+                Db.$Table$s.Context.SubmitChanges();
                 return true;
             }
 
