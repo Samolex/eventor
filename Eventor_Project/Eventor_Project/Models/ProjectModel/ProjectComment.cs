@@ -11,6 +11,6 @@ namespace Eventor_Project.Models.ProjectModel
         public string Body { get; set; }
 
         public virtual Project Project { get; set; }
-        public virtual User Author { get; set; }
+        public virtual User.User Author { get; set; }
     }
 }

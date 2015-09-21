@@ -171,37 +171,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201509171229430_AddProjectModel.cs" />
-    <Compile Include="Migrations\201509171229430_AddProjectModel.Designer.cs">
-      <DependentUpon>201509171229430_AddProjectModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509180437275_RemoveMoney.cs" />
-    <Compile Include="Migrations\201509180437275_RemoveMoney.Designer.cs">
-      <DependentUpon>201509180437275_RemoveMoney.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509180613289_SetProjectModel.cs" />
-    <Compile Include="Migrations\201509180613289_SetProjectModel.Designer.cs">
-      <DependentUpon>201509180613289_SetProjectModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509210844124_AddAutoRelations.cs" />
-    <Compile Include="Migrations\201509210844124_AddAutoRelations.Designer.cs">
-      <DependentUpon>201509210844124_AddAutoRelations.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509170918093_ConnectPlaceWithUser.cs" />
-    <Compile Include="Migrations\201509170918093_ConnectPlaceWithUser.Designer.cs">
-      <DependentUpon>201509170918093_ConnectPlaceWithUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509170944309_NoContacts.cs" />
-    <Compile Include="Migrations\201509170944309_NoContacts.Designer.cs">
-      <DependentUpon>201509170944309_NoContacts.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509200931521_Configuration-2.cs" />
-    <Compile Include="Migrations\201509200931521_Configuration-2.Designer.cs">
-      <DependentUpon>201509200931521_Configuration-2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509210623308_Test.cs" />
-    <Compile Include="Migrations\201509210623308_Test.Designer.cs">
-      <DependentUpon>201509210623308_Test.cs</DependentUpon>
+    <Compile Include="Migrations\201509211803107_TestMigration.cs" />
+    <Compile Include="Migrations\201509211803107_TestMigration.Designer.cs">
+      <DependentUpon>201509211803107_TestMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CurrentContext.cs" />
@@ -225,21 +197,14 @@
     <Compile Include="Models\ProjectModel\Project.cs" />
     <Compile Include="Models\ProjectModel\ProjectNews.cs" />
     <Compile Include="Models\ProjectModel\Relations\UserMaterial.cs" />
-    <Compile Include="Models\SqlRepository\IRepository.cs" />
     <Compile Include="Models\SqlRepository\ProjectRepository\CategoryRepository.cs" />
     <Compile Include="Models\SqlRepository\ProjectRepository\CustomerRepository.cs" />
     <Compile Include="Models\SqlRepository\ProjectRepository\MaterialRepository.cs" />
     <Compile Include="Models\SqlRepository\ProjectRepository\OrganizerRepository.cs" />
     <Compile Include="Models\SqlRepository\ProjectRepository\ProjectCommentRepository.cs" />
-    <Compile Include="Models\SqlRepository\ProjectRepository\ProjectLINQ.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProjectLINQ.dbml</DependentUpon>
-    </Compile>
     <Compile Include="Models\SqlRepository\ProjectRepository\ProjectNewsRepository.cs" />
     <Compile Include="Models\SqlRepository\ProjectRepository\ProjectRepository.cs" />
     <Compile Include="Models\SqlRepository\ProjectRepository\UserMaterialRepository.cs" />
-    <Compile Include="Models\SqlRepository\SqlRepository.cs" />
     <Compile Include="Models\User\Place.cs" />
     <Compile Include="Models\User\Role.cs" />
     <Compile Include="Models\User\Sex.cs" />
@@ -266,11 +231,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Models\irep.snippet" />
-    <Content Include="Models\SqlRepository\ProjectRepository\ProjectLINQ.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>ProjectLINQ.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <None Include="Models\sqlTable.snippet" />
     <Content Include="Scripts\bootstrap.js" />
@@ -311,38 +271,17 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201509171229430_AddProjectModel.resx">
-      <DependentUpon>201509171229430_AddProjectModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509180437275_RemoveMoney.resx">
-      <DependentUpon>201509180437275_RemoveMoney.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509180613289_SetProjectModel.resx">
-      <DependentUpon>201509180613289_SetProjectModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509170918093_ConnectPlaceWithUser.resx">
-      <DependentUpon>201509170918093_ConnectPlaceWithUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509170944309_NoContacts.resx">
-      <DependentUpon>201509170944309_NoContacts.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509200931521_Configuration-2.resx">
-      <DependentUpon>201509200931521_Configuration-2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509210623308_Test.resx">
-      <DependentUpon>201509210623308_Test.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Models\DataClasses1.dbml.layout">
       <DependentUpon>DataClasses1.dbml</DependentUpon>
-    <EmbeddedResource Include="Migrations\201509210844124_AddAutoRelations.resx">
-      <DependentUpon>201509210844124_AddAutoRelations.cs</DependentUpon>
-    </EmbeddedResource>
-    <None Include="Models\SqlRepository\ProjectRepository\ProjectLINQ.dbml.layout">
-      <DependentUpon>ProjectLINQ.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201509211803107_TestMigration.resx">
+      <DependentUpon>201509211803107_TestMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

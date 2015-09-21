@@ -20,6 +20,6 @@ namespace Eventor_Project.Models.ProjectModel
 
 
         public virtual Project Project { get; set; }
-        public virtual ICollection<User> Customers { get; set; }
+        public virtual ICollection<User.User> Customers { get; set; }
     }
 }

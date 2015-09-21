@@ -9,7 +9,7 @@ namespace Eventor_Project.Models.ProjectModel
         public int ProjectId { get; set; }
 
         public int AuthorId { get; set; }
-        public virtual User Author { get; set; }
+        public virtual User.User Author { get; set; }
 
         public string Title { get; set; }
         public string ShortDescription { get; set; }
