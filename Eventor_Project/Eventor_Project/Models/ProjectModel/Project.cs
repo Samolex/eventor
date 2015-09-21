@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 
 namespace Eventor_Project.Models.ProjectModel
-{   //TODO: Add "Attached files", Ratting, Private
+{ //TODO: Add "Attached files", Ratting, Private
+
     public class Project
     {
         public int ProjectId { get; set; }
@@ -29,18 +30,10 @@ namespace Eventor_Project.Models.ProjectModel
         public DateTime EventDate { get; set; }
 
 
-        public virtual List<Organizer> Organisers { get; set; }
-        public virtual List<Material> Inventory { get; set; }
-        public virtual List<ProjectNews> News { get; set; }
-        public virtual List<Customer> Customers { get; set; }
-        public virtual List<ProjectComment> Comments { get; set; }
-
-
-
-
-
-
-
-
+        public virtual ICollection<Organizer> Organisers { get; set; }
+        public virtual ICollection<Material> Inventory { get; set; }
+        public virtual ICollection<ProjectNews> News { get; set; }
+        public virtual ICollection<Customer> Customers { get; set; }
+        public virtual ICollection<ProjectComment> Comments { get; set; }
     }
 }

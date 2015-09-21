@@ -1,18 +1,13 @@
-﻿using Eventor_Project.Models.ProjectModel;
-using System.Linq;
+﻿using System.Linq;
+using Eventor_Project.Models.ProjectModel;
 
 namespace Eventor_Project.Models.SqlRepository
 {
     public partial class SqlRepository
     {
-
-
         public IQueryable<Category> Categories
         {
-            get
-            {
-                return Db.Categories;
-            }
+            get { return Db.Categories; }
         }
 
         public bool CreateCategory(Category instance)
@@ -50,6 +45,5 @@ namespace Eventor_Project.Models.SqlRepository
             var instance = Db.Categories.FirstOrDefault(p => p.CategoryId == categoryId);
             return instance;
         }
-        
     }
 }

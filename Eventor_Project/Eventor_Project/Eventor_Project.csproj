@@ -164,28 +164,13 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201509171223399_AddProjectModel.cs" />
-    <Compile Include="Migrations\201509171223399_AddProjectModel.Designer.cs">
-      <DependentUpon>201509171223399_AddProjectModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509171229430_AddProjectModel1.cs" />
-    <Compile Include="Migrations\201509171229430_AddProjectModel1.Designer.cs">
-      <DependentUpon>201509171229430_AddProjectModel1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509171540055_Test.cs" />
-    <Compile Include="Migrations\201509171540055_Test.Designer.cs">
-      <DependentUpon>201509171540055_Test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509171814582_Test1.cs" />
-    <Compile Include="Migrations\201509171814582_Test1.Designer.cs">
-      <DependentUpon>201509171814582_Test1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509171819589_Test2.cs" />
-    <Compile Include="Migrations\201509171819589_Test2.Designer.cs">
-      <DependentUpon>201509171819589_Test2.cs</DependentUpon>
+    <Compile Include="Migrations\201509171229430_AddProjectModel.cs" />
+    <Compile Include="Migrations\201509171229430_AddProjectModel.Designer.cs">
+      <DependentUpon>201509171229430_AddProjectModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201509180437275_RemoveMoney.cs" />
     <Compile Include="Migrations\201509180437275_RemoveMoney.Designer.cs">
@@ -194,6 +179,10 @@
     <Compile Include="Migrations\201509180613289_SetProjectModel.cs" />
     <Compile Include="Migrations\201509180613289_SetProjectModel.Designer.cs">
       <DependentUpon>201509180613289_SetProjectModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509210844124_AddAutoRelations.cs" />
+    <Compile Include="Migrations\201509210844124_AddAutoRelations.Designer.cs">
+      <DependentUpon>201509210844124_AddAutoRelations.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CurrentContext.cs" />
@@ -204,25 +193,21 @@
     <Compile Include="Models\ProjectModel\Organizer.cs" />
     <Compile Include="Models\ProjectModel\Project.cs" />
     <Compile Include="Models\ProjectModel\ProjectNews.cs" />
-    <Compile Include="Models\ProjectModel\Relations\UserCustomer.cs" />
     <Compile Include="Models\ProjectModel\Relations\UserMaterial.cs" />
-    <Compile Include="Models\ProjectModel\Relations\UserOrganizer.cs" />
     <Compile Include="Models\SqlRepository\IRepository.cs" />
     <Compile Include="Models\SqlRepository\ProjectRepository\CategoryRepository.cs" />
     <Compile Include="Models\SqlRepository\ProjectRepository\CustomerRepository.cs" />
     <Compile Include="Models\SqlRepository\ProjectRepository\MaterialRepository.cs" />
     <Compile Include="Models\SqlRepository\ProjectRepository\OrganizerRepository.cs" />
     <Compile Include="Models\SqlRepository\ProjectRepository\ProjectCommentRepository.cs" />
-    <Compile Include="Models\SqlRepository\ProjectRepository\ProjectDB.designer.cs">
+    <Compile Include="Models\SqlRepository\ProjectRepository\ProjectLINQ.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ProjectDB.dbml</DependentUpon>
+      <DependentUpon>ProjectLINQ.dbml</DependentUpon>
     </Compile>
     <Compile Include="Models\SqlRepository\ProjectRepository\ProjectNewsRepository.cs" />
     <Compile Include="Models\SqlRepository\ProjectRepository\ProjectRepository.cs" />
-    <Compile Include="Models\SqlRepository\ProjectRepository\UserCustomerRepository.cs" />
     <Compile Include="Models\SqlRepository\ProjectRepository\UserMaterialRepository.cs" />
-    <Compile Include="Models\SqlRepository\ProjectRepository\UserOrganizerRepository.cs" />
     <Compile Include="Models\SqlRepository\SqlRepository.cs" />
     <Compile Include="Models\User\Benefits.cs" />
     <Compile Include="Models\User\Contacts.cs" />
@@ -243,9 +228,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Models\SqlRepository\ProjectRepository\ProjectDB.dbml">
+    <Content Include="Models\SqlRepository\ProjectRepository\ProjectLINQ.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>ProjectDB.designer.cs</LastGenOutput>
+      <LastGenOutput>ProjectLINQ.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
@@ -278,6 +263,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Projects\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -287,20 +273,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201509171223399_AddProjectModel.resx">
-      <DependentUpon>201509171223399_AddProjectModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509171229430_AddProjectModel1.resx">
-      <DependentUpon>201509171229430_AddProjectModel1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509171540055_Test.resx">
-      <DependentUpon>201509171540055_Test.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509171814582_Test1.resx">
-      <DependentUpon>201509171814582_Test1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509171819589_Test2.resx">
-      <DependentUpon>201509171819589_Test2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201509171229430_AddProjectModel.resx">
+      <DependentUpon>201509171229430_AddProjectModel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201509180437275_RemoveMoney.resx">
       <DependentUpon>201509180437275_RemoveMoney.cs</DependentUpon>
@@ -308,8 +282,11 @@
     <EmbeddedResource Include="Migrations\201509180613289_SetProjectModel.resx">
       <DependentUpon>201509180613289_SetProjectModel.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Models\SqlRepository\ProjectRepository\ProjectDB.dbml.layout">
-      <DependentUpon>ProjectDB.dbml</DependentUpon>
+    <EmbeddedResource Include="Migrations\201509210844124_AddAutoRelations.resx">
+      <DependentUpon>201509210844124_AddAutoRelations.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Models\SqlRepository\ProjectRepository\ProjectLINQ.dbml.layout">
+      <DependentUpon>ProjectLINQ.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

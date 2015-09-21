@@ -1,8 +1,4 @@
-﻿using Eventor_Project.Models.ProjectModel.Relations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Eventor_Project.Models.ProjectModel
 {
@@ -13,8 +9,7 @@ namespace Eventor_Project.Models.ProjectModel
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public virtual List<UserOrganizer> Users { get; set; }
+        public virtual ICollection<User> Users { get; set; }
         public virtual Project Project { get; set; }
-
     }
 }

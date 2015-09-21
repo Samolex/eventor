@@ -1,17 +1,13 @@
-﻿using Eventor_Project.Models.ProjectModel;
-using System.Linq;
+﻿using System.Linq;
+using Eventor_Project.Models.ProjectModel;
 
 namespace Eventor_Project.Models.SqlRepository
 {
     public partial class SqlRepository
     {
-
         public IQueryable<Customer> Customers
         {
-            get
-            {
-                return Db.Customers;
-            }
+            get { return Db.Customers; }
         }
 
         public bool CreateCustomer(Customer instance)
@@ -52,6 +48,5 @@ namespace Eventor_Project.Models.SqlRepository
             var instance = Db.Customers.FirstOrDefault(p => p.CustomerId == customerId);
             return instance;
         }
-        
     }
 }

@@ -1,17 +1,13 @@
-﻿using Eventor_Project.Models.ProjectModel;
-using System.Linq;
+﻿using System.Linq;
+using Eventor_Project.Models.ProjectModel;
 
 namespace Eventor_Project.Models.SqlRepository
 {
     public partial class SqlRepository
     {
-
         public IQueryable<Material> Materials
         {
-            get
-            {
-                return Db.Materials;
-            }
+            get { return Db.Materials; }
         }
 
         public bool CreateMaterial(Material instance)
@@ -46,6 +42,5 @@ namespace Eventor_Project.Models.SqlRepository
             var instance = Db.Materials.FirstOrDefault(p => p.MaterialId == materialId);
             return instance;
         }
-        
     }
 }

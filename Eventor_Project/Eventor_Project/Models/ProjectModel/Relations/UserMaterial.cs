@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Eventor_Project.Models.ProjectModel.Relations
+﻿namespace Eventor_Project.Models.ProjectModel.Relations
 {
     public class UserMaterial
     {
@@ -12,6 +7,6 @@ namespace Eventor_Project.Models.ProjectModel.Relations
         public virtual User User { get; set; }
         public int MaterialId { get; set; }
         public virtual Material Material { get; set; }
-        public int Amount { get; set;}
+        public int Amount { get; set; }
     }
 }

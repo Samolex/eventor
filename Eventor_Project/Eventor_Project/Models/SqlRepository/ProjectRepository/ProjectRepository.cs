@@ -1,21 +1,13 @@
-﻿using Eventor_Project.Models.ProjectModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
+using Eventor_Project.Models.ProjectModel;
 
 namespace Eventor_Project.Models.SqlRepository
 {
     public partial class SqlRepository
     {
-
-
         public IQueryable<Project> Projects
         {
-            get
-            {
-                return Db.Projects;
-            }
+            get { return Db.Projects; }
         }
 
         public bool CreateProject(Project instance)
@@ -32,10 +24,9 @@ namespace Eventor_Project.Models.SqlRepository
 
         public bool UpdateProject(Project instance)
         {
-            Project cache = Db.Projects.Where(p => p.ProjectId == instance.ProjectId).FirstOrDefault();
+            var cache = Db.Projects.Where(p => p.ProjectId == instance.ProjectId).FirstOrDefault();
             if (cache != null)
             {
-                
                 Db.SaveChanges();
                 return true;
             }
@@ -45,7 +36,7 @@ namespace Eventor_Project.Models.SqlRepository
 
         public bool DeleteProject(int ProjectId)
         {
-            Project instance = Db.Projects.Where(p => p.ProjectId == ProjectId).FirstOrDefault();
+            var instance = Db.Projects.Where(p => p.ProjectId == ProjectId).FirstOrDefault();
             if (instance != null)
             {
                 Db.Projects.Remove(instance);
@@ -58,9 +49,8 @@ namespace Eventor_Project.Models.SqlRepository
 
         public Project ReadProject(int ProjectId)
         {
-            Project instance = Db.Projects.Where(p => p.ProjectId == ProjectId).FirstOrDefault();
+            var instance = Db.Projects.Where(p => p.ProjectId == ProjectId).FirstOrDefault();
             return instance;
         }
-        
     }
 }

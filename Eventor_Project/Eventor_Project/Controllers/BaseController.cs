@@ -7,10 +7,9 @@ namespace Eventor_Project.Controllers
 {
     public class BaseController : Controller
     {
-        [Inject]
-        public IRepository Repository { get; set; }
-
         protected static Logger Logger = LogManager.GetCurrentClassLogger();
 
+        [Inject]
+        public IRepository Repository { get; set; }
     }
 }

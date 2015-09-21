@@ -5,13 +5,13 @@ namespace Eventor_Project.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    public sealed partial class Test1 : IMigrationMetadata
+    public sealed partial class AddProjectModel : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Test1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddProjectModel));
         
         string IMigrationMetadata.Id
         {
-            get { return "201509171814582_Test1"; }
+            get { return "201509171229430_AddProjectModel1"; }
         }
         
         string IMigrationMetadata.Source
