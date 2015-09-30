@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Data;
+using System.Linq;
 using Eventor_Project.Models.ProjectModel;
 
 namespace Eventor_Project.Models.SqlRepository
@@ -25,8 +26,18 @@ namespace Eventor_Project.Models.SqlRepository
         public bool UpdateProject(Project instance)
         {
             var cache = Db.Projects.Where(p => p.ProjectId == instance.ProjectId).FirstOrDefault();
-            if (cache != null)
+            if (instance != null)
             {
+                cache.Title = instance.Title;
+                cache.ShortDescription = instance.ShortDescription;
+                cache.Description = instance.Description;
+                cache.CategoryId = instance.CategoryId;
+                cache.Headquarter = instance.Headquarter;
+                cache.Place = instance.Place;
+                cache.OrganizationDate = instance.OrganizationDate;
+                cache.EventDate = instance.EventDate;
+                cache.ChangeTime = instance.ChangeTime;
+                
                 Db.SaveChanges();
                 return true;
             }

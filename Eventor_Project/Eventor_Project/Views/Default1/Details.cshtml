@@ -1,0 +1,92 @@
+﻿@model Eventor_Project.Models.ProjectModel.Project
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Project</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AuthorId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AuthorId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ShortDescription)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ShortDescription)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Headquarter)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Headquarter)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Place)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Place)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Category.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Category.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.OrganizationDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.OrganizationDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EventDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EventDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AddedTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AddedTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ChangeTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ChangeTime)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ProjectId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -13,9 +13,14 @@ namespace Eventor_Project
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include("~/Scripts/bootstrap*"));
 
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                "~/Scripts/modernizr-*"));
+                "~/Scripts/modernizr*"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css").Include("~/Content/bootstrap*"));
+            bundles.Add(new ScriptBundle("~/bundles/moment").Include("~/Scripts/moment*"));
+
+            bundles.Add(new ScriptBundle("~/bundles/main").Include(
+                "~/Scripts/main.js"));
+
+            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/bootstrap*", "~/Content/Site.css", "~/Content/bootstrap-datetimepicker.css"));
         }
     }
 }

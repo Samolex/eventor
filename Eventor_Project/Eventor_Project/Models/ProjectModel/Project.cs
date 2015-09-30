@@ -8,13 +8,15 @@ namespace Eventor_Project.Models.ProjectModel
     public class Project
     {
         public int ProjectId { get; set; }
-
+        [Required]
         public int AuthorId { get; set; }
         public virtual User.User Author { get; set; }
 
-        [MaxLength(50), MinLength(10), Required]
+        [MaxLength(50, ErrorMessage = "Максимальная длина названия 50 символов"),
+        MinLength(10, ErrorMessage = "Минимальная длина названия 10 символов"), 
+        Required(ErrorMessage = "Введите название.")]
         public string Title { get; set; }
-        [Required, MaxLength(150)]
+        [Required(ErrorMessage = "Ввведите краткое описание"), MaxLength(150) ]
         public string ShortDescription { get; set; }
         public string Description { get; set; }
 
@@ -26,7 +28,7 @@ namespace Eventor_Project.Models.ProjectModel
         public string Headquarter { get; set; }
         [Required]
         public string Place { get; set; }
-
+        [Required]
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
 
@@ -41,8 +43,9 @@ namespace Eventor_Project.Models.ProjectModel
         public virtual ICollection<ProjectNews> News { get; set; }
         public virtual ICollection<Customer> Customers { get; set; }
         public virtual ICollection<ProjectComment> Comments { get; set; }
-
+        [Required]
         public DateTime AddedTime { get; set; }
+        [Required]
         public DateTime ChangeTime { get; set; }
     }
 }
