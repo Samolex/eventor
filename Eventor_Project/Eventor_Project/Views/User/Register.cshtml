@@ -1,0 +1,83 @@
+﻿@model Eventor_Project.Models.ViewModels.UserRegisterView
+    <h2>RegisterUser</h2>
+    @using (Html.BeginForm("Register", "User", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        <fieldset>
+            @Html.ValidationSummary(). 
+            <div class="control-group">
+                <label class="control-label" for="Email">
+                    E-mail
+                </label>
+                <div class="controls">
+                    @Html.TextBox("Email", Model.Email)
+                    @Html.ValidationMessage("Email")
+                </div>
+                <label class="control-label" for="FirstName">
+                    Пароль
+                </label>
+                <div class="controls">
+                    @Html.Password("Password", Model.Password)
+                    @Html.ValidationMessage("Password")
+                </div>
+                <label class="control-label" for="FirstName">
+                    Подтверждение пароля
+                </label>
+                <div class="controls">
+                    @Html.Password("ConfirmPassword", Model.ConfirmPassword)
+                    @Html.ValidationMessage("ConfirmPassword")
+                </div>
+                <label class="control-label" for="FirstName">
+                    Имя
+                </label>
+                <div class="controls">
+                    @Html.EditorFor(model => model.Name)
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+                <label class="control-label" for="FirstName">
+                    Фамилия
+                </label>
+                <div class="controls">
+                    @Html.EditorFor(model => model.Surname)
+                    @Html.ValidationMessageFor(model => model.Surname)
+                </div>
+                <label class="control-label" for="FirstName">
+                    Отчество
+                </label>
+                <div class="controls">
+                    @Html.EditorFor(model => model.Patronymic)
+                    @Html.ValidationMessageFor(model => model.Patronymic)
+                </div>
+
+                <label class="control-label" for="FirstName">
+                    Номер телефона
+                </label>
+                <div class="controls">
+                    @Html.EditorFor(model => model.PhoneNumber)
+                    @Html.ValidationMessageFor(model => model.PhoneNumber)
+                </div>
+
+
+
+
+
+                <label class="controls" for="FirstName">
+                    <img src="@Url.Action("Captcha", "User")" alt="captcha" />
+                </label>
+                <label class="controls" for="FirstName">
+                    <br />
+                    Введите цифры с картинки
+                </label>
+                <div class="controls">
+                    @Html.TextBox("Captcha", Model.Captcha)
+                    @Html.ValidationMessage("Captcha")
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                    Register
+                </button>
+                @Html.ActionLink("Cancel", "Index", null, null, new { @class = "btn" })
+            </div>
+        </fieldset>
+    }

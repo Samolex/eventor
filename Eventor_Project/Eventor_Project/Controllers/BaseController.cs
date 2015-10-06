@@ -2,6 +2,7 @@
 using Eventor_Project.Models.SqlRepository;
 using Ninject;
 using NLog;
+using Eventor_Project.Mappers;
 
 namespace Eventor_Project.Controllers
 {
@@ -11,5 +12,7 @@ namespace Eventor_Project.Controllers
 
         [Inject]
         public IRepository Repository { get; set; }
+        [Inject]
+        public IMapper ModelMapper { get; set; }
     }
 }
