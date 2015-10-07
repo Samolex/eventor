@@ -1,6 +1,29 @@
-﻿@{
+﻿
+@model IEnumerable<Eventor_Project.Models.ProjectModel.Project>
+
+@{
     ViewBag.Title = "Index";
-    Layout = "~/Views/_ViewStart.cshtml";
 }
 
-<h2>Index</h2>
+<div class="tab-content">
+    <h2>Index</h2>
+    @foreach (var item in Model)
+    {
+        <div class="project-card col-md-3">
+            <a href="Projects/Edit?project_id=@item.ProjectId">
+                <p>
+                    <b>
+                        @item.Title
+                    </b>
+                </p>
+
+            </a>
+            <p>
+                @item.ShortDescription
+            </p>
+            <p>
+                @item.AuthorId
+            </p>
+        </div>
+    }
+</div>

@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using AutoMapper;
+using Eventor_Project.Models.ProjectModel;
 
 namespace Eventor_Project.Mappers
 {

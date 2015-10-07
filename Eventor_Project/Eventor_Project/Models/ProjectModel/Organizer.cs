@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Eventor_Project.Models.ProjectModel
 {
@@ -6,6 +7,7 @@ namespace Eventor_Project.Models.ProjectModel
     {
         public int OrganizerId { get; set; }
         public int ProjectId { get; set; }
+        [Required]
         public string Name { get; set; }
         public string Description { get; set; }
 

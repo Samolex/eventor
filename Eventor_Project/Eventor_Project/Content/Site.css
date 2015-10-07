@@ -1,18 +1,38 @@
 ﻿body {
-    background-color: #fff;
+    background-color: #d1c4e9;
     color: #232323;
-    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
-    font-size: .85em;
+}
+
+.link-decor-none a, .link-decor-none a:hover, .link-decor-none a:visited {
+    text-decoration: none;
+    color: #fff;
+}
+
+.content {
+    padding: 60px 0px;
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+nav .content {
+    padding: 0px;
 }
 
 header, footer, nav, section { display: block; }
+
+textarea {
+    -moz-resize: none;
+    -ms-resize: none;
+    -o-resize: none;
+    resize: none;
+}
 
 
 /* Styles for basic forms
 -----------------------------------------------------------*/
 
 fieldset {
-    border: 1px solid #ddd;
     margin: 0 0 1.5em 0;
     padding: 0 1.4em 1.4em 1.4em;
 }
@@ -22,11 +42,6 @@ legend {
     font-weight: bold;
 }
 
-textarea { min-height: 75px; }
-
-.editor-label { margin: 1em 0 0 0; }
-
-.editor-field { margin: 0.5em 0 0 0; }
 
 
 /* Styles for validation helpers
@@ -34,16 +49,50 @@ textarea { min-height: 75px; }
 
 .field-validation-error { color: #f00; }
 
-.field-validation-valid { display: none; }
+.field-validation-valid { display: block; }
 
-.input-validation-error {
-    background-color: #fee;
-    border: 1px solid #f00;
+.validation-summary-valid { 
+    display: none;
 }
 
-.validation-summary-errors {
-    color: #f00;
-    font-weight: bold;
+
+/*----- Content of Tabs -----*/
+.tab-links {
+    padding:5px;
+    -ms-border-radius:3px;
+    border-radius:3px;
+    -webkit-box-shadow:-1px 1px 1px rgba(0,0,0,0.15);
+    -ms-box-shadow:-1px 1px 1px rgba(0,0,0,0.15);
+    box-shadow:-1px 1px 1px rgba(0,0,0,0.15);
+    background:#fff;
+    margin-bottom: 5px;
+}
+.tab-links li{ display: block;}
+.tabs ul li {
+    width: 24%;
+    padding: 5px 5px;
+}
+/* Clearfix */
+    .tab-links:after {
+        display:block;
+        clear:both;
+        content:'';
+    }
+
+.tab-content{
+    padding:10px;
+    -ms-border-radius:3px;
+    border-radius:3px;
+    -webkit-box-shadow:-1px 1px 1px rgba(0,0,0,0.15);
+    -ms-box-shadow:-1px 1px 1px rgba(0,0,0,0.15);
+    box-shadow:-1px 1px 1px rgba(0,0,0,0.15);
+    background:#fff;
 }
 
-.validation-summary-valid { display: none; }
+.tab {
+    display:none;
+}
+ 
+.tab.active {
+    display:block;
+}

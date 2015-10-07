@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Eventor_Project.Models;
 using Eventor_Project.Models.SqlRepository;
 using Ninject;
 using NLog;
@@ -27,5 +28,6 @@ namespace Eventor_Project.Controllers
         public IRepository Repository { get; set; }
         [Inject]
         public IMapper ModelMapper { get; set; }
+        public CurrentContext Db { get; set; }  
     }
 }
