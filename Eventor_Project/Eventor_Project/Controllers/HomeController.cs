@@ -21,11 +21,16 @@ namespace Eventor_Project.Controllers
                 Expires = DateTime.Now.AddMinutes(10),
             };
             Response.SetCookie(cookie);
-
+            var cookie2 = Request.Cookies["test_cookie"];
             Type t = typeof(Models.User.User);
             var methods = t.GetProperties();
             var roles = Repository.Roles;
             return View(roles.ToList());   
 	    }
+
+        public ActionResult UserLogin()
+        {
+            return View(CurrentUser);
+        }
     }
 }

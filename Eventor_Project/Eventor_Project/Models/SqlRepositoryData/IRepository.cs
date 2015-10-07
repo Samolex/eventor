@@ -10,6 +10,8 @@ namespace Eventor_Project.Models.SqlRepository
 {
     public interface IRepository
     {
+        User.User GetUser(string email);
+        User.User Login(string email, string password);
 
         #region Role
 

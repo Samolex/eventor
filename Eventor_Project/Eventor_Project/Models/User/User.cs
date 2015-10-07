@@ -3,7 +3,7 @@ using Eventor_Project.Models.ProjectModel;
 using Eventor_Project.Models.ProjectModel.Relations;
 using System.ComponentModel.DataAnnotations;
 using System;
-
+using System.Linq;
 namespace Eventor_Project.Models.User
 {
     public class User
@@ -39,5 +39,23 @@ namespace Eventor_Project.Models.User
         public virtual ICollection<Organizer> Organizers { get; set; }
         public virtual ICollection<ProjectComment> Comments { get; set; }
         public virtual ICollection<Project> Projects { get; set; }
+        public bool InRoles(string roles)
+        {
+            if (string.IsNullOrWhiteSpace(roles))
+            {
+                return false;
+            }
+
+            var rolesArray = roles.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var role in rolesArray)
+            {
+                var hasRole = Roles.Any(p => string.Compare(p.Code, role, true) == 0);
+                if (hasRole)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

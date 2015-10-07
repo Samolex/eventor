@@ -9,6 +9,16 @@ namespace Eventor_Project.Models.SqlRepository
     public partial class SqlRepository
     {
 
+        public User.User GetUser(string email)
+        {
+            return Db.Users.FirstOrDefault(p => string.Compare(p.Email, email, true) == 0);
+        }
+
+        public User.User Login(string email, string password)
+        {
+            return Db.Users.FirstOrDefault(p => string.Compare(p.Email, email, true) == 0 && p.Password == password);
+        }
+
         public IQueryable<User.User> Users
         {
             get
