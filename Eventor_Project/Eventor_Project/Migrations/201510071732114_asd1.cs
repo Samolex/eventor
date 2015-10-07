@@ -3,7 +3,7 @@ namespace Eventor_Project.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class TestMigration : DbMigration
+    public partial class asd1 : DbMigration
     {
         public override void Up()
         {
@@ -12,14 +12,16 @@ namespace Eventor_Project.Migrations
                 c => new
                     {
                         UserId = c.Int(nullable: false, identity: true),
-                        Email = c.String(),
-                        Nickname = c.String(),
-                        Name = c.String(),
-                        Surname = c.String(),
-                        Patronymic = c.String(),
+                        Email = c.String(nullable: false, maxLength: 200),
+                        Nickname = c.String(maxLength: 20),
+                        Name = c.String(nullable: false, maxLength: 50),
+                        Surname = c.String(maxLength: 50),
+                        Patronymic = c.String(maxLength: 50),
                         Sex = c.Int(nullable: false),
-                        ContactEmail = c.String(),
-                        PhoneNumber = c.String(),
+                        ContactEmail = c.String(maxLength: 200),
+                        PhoneNumber = c.String(maxLength: 50),
+                        Password = c.String(nullable: false, maxLength: 200),
+                        Birthdate = c.DateTime(nullable: false),
                         PlaceOfLiving_PlaceId = c.Int(),
                         PlaceOfStudy_PlaceId = c.Int(),
                     })
@@ -34,7 +36,7 @@ namespace Eventor_Project.Migrations
                 c => new
                     {
                         PlaceId = c.Int(nullable: false, identity: true),
-                        PlaceInfo = c.String(),
+                        PlaceInfo = c.String(maxLength: 2000),
                     })
                 .PrimaryKey(t => t.PlaceId);
             
@@ -43,8 +45,8 @@ namespace Eventor_Project.Migrations
                 c => new
                     {
                         BenefitId = c.Int(nullable: false, identity: true),
-                        Code = c.String(),
-                        Name = c.String(),
+                        Code = c.String(nullable: false, maxLength: 50),
+                        Name = c.String(maxLength: 50),
                     })
                 .PrimaryKey(t => t.BenefitId);
             
@@ -53,8 +55,8 @@ namespace Eventor_Project.Migrations
                 c => new
                     {
                         RoleId = c.Int(nullable: false, identity: true),
-                        Code = c.String(),
-                        Name = c.String(),
+                        Code = c.String(nullable: false, maxLength: 50),
+                        Name = c.String(maxLength: 50),
                     })
                 .PrimaryKey(t => t.RoleId);
             
@@ -79,7 +81,7 @@ namespace Eventor_Project.Migrations
                     {
                         MaterialId = c.Int(nullable: false, identity: true),
                         ProjectId = c.Int(nullable: false),
-                        Title = c.String(),
+                        Title = c.String(nullable: false),
                         RequiredAmount = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.MaterialId)
@@ -92,14 +94,16 @@ namespace Eventor_Project.Migrations
                     {
                         ProjectId = c.Int(nullable: false, identity: true),
                         AuthorId = c.Int(nullable: false),
-                        Title = c.String(),
-                        ShortDescription = c.String(),
+                        Title = c.String(nullable: false, maxLength: 50),
+                        ShortDescription = c.String(nullable: false, maxLength: 150),
                         Description = c.String(),
-                        Headquarter = c.String(),
-                        Place = c.String(),
+                        Headquarter = c.String(nullable: false),
+                        Place = c.String(nullable: false),
                         CategoryId = c.Int(nullable: false),
                         OrganizationDate = c.DateTime(nullable: false),
                         EventDate = c.DateTime(nullable: false),
+                        AddedTime = c.DateTime(nullable: false),
+                        ChangeTime = c.DateTime(nullable: false),
                         Author_UserId = c.Int(),
                     })
                 .PrimaryKey(t => t.ProjectId)
@@ -113,7 +117,7 @@ namespace Eventor_Project.Migrations
                 c => new
                     {
                         CategoryId = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
+                        Name = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.CategoryId);
             
@@ -123,7 +127,7 @@ namespace Eventor_Project.Migrations
                     {
                         OrganizerId = c.Int(nullable: false, identity: true),
                         ProjectId = c.Int(nullable: false),
-                        Name = c.String(),
+                        Name = c.String(nullable: false),
                         Description = c.String(),
                     })
                 .PrimaryKey(t => t.OrganizerId)
@@ -137,8 +141,8 @@ namespace Eventor_Project.Migrations
                         ProjectNewsId = c.Int(nullable: false, identity: true),
                         ProjectId = c.Int(nullable: false),
                         Date = c.DateTime(nullable: false),
-                        Title = c.String(),
-                        Body = c.String(),
+                        Title = c.String(nullable: false),
+                        Body = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.ProjectNewsId)
                 .ForeignKey("dbo.Projects", t => t.ProjectId, cascadeDelete: true)
@@ -167,7 +171,7 @@ namespace Eventor_Project.Migrations
                         ProjectId = c.Int(nullable: false),
                         UserId = c.Int(nullable: false),
                         Date = c.DateTime(nullable: false),
-                        Body = c.String(),
+                        Body = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.ProjectCommentId)
                 .ForeignKey("dbo.Projects", t => t.ProjectId, cascadeDelete: true)

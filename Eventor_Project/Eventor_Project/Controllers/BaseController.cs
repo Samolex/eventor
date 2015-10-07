@@ -28,6 +28,7 @@ namespace Eventor_Project.Controllers
         public IRepository Repository { get; set; }
         [Inject]
         public IMapper ModelMapper { get; set; }
+        [Inject]
         public CurrentContext Db { get; set; }  
     }
 }

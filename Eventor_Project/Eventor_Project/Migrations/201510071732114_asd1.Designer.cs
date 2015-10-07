@@ -5,13 +5,13 @@ namespace Eventor_Project.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    public sealed partial class TestMigration : IMigrationMetadata
+    public sealed partial class asd1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(TestMigration));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(asd1));
         
         string IMigrationMetadata.Id
         {
-            get { return "201509211803107_TestMigration"; }
+            get { return "201510071732114_asd1"; }
         }
         
         string IMigrationMetadata.Source

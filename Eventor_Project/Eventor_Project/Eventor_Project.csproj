@@ -182,32 +182,12 @@
     </Compile>
     <Compile Include="Mappers\CommonMapper.cs" />
     <Compile Include="Mappers\IMapper.cs" />
-    <Compile Include="Migrations\201509211803107_TestMigration.cs" />
-    <Compile Include="Migrations\201509211803107_TestMigration.Designer.cs">
-      <DependentUpon>201509211803107_TestMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509221417197_AddAttributes.cs" />
-    <Compile Include="Migrations\201509221417197_AddAttributes.Designer.cs">
-      <DependentUpon>201509221417197_AddAttributes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509221421366_SomeMoreAttributes.cs" />
-    <Compile Include="Migrations\201509221421366_SomeMoreAttributes.Designer.cs">
-      <DependentUpon>201509221421366_SomeMoreAttributes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509221604427_Add-Date-Time.cs" />
-    <Compile Include="Migrations\201509221604427_Add-Date-Time.Designer.cs">
-      <DependentUpon>201509221604427_Add-Date-Time.cs</DependentUpon>
-    <Compile Include="Migrations\201509212039350_Add_EF_DataAnnotains.cs" />
-    <Compile Include="Migrations\201509212039350_Add_EF_DataAnnotains.Designer.cs">
-      <DependentUpon>201509212039350_Add_EF_DataAnnotains.cs</DependentUpon>
+    <Compile Include="Migrations\201510071732114_asd1.cs" />
+    <Compile Include="Migrations\201510071732114_asd1.Designer.cs">
+      <DependentUpon>201510071732114_asd1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CurrentContext.cs" />
-    <Compile Include="Models\DataClasses1.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataClasses1.dbml</DependentUpon>
-    </Compile>
     <Compile Include="Models\SqlRepository\UserRepository\BenefitRepository.cs" />
     <Compile Include="Models\SqlRepositoryData\IRepository.cs" />
     <Compile Include="Models\SqlRepository\UserRepository\PlaceRepository.cs" />
@@ -282,11 +262,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\DataClasses1.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>DataClasses1.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Models\sqlTable.snippet">
       <SubType>Designer</SubType>
     </Content>
@@ -362,27 +337,11 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Models\DataClasses1.dbml.layout">
-      <DependentUpon>DataClasses1.dbml</DependentUpon>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201509211803107_TestMigration.resx">
-      <DependentUpon>201509211803107_TestMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509221417197_AddAttributes.resx">
-      <DependentUpon>201509221417197_AddAttributes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509221421366_SomeMoreAttributes.resx">
-      <DependentUpon>201509221421366_SomeMoreAttributes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509221604427_Add-Date-Time.resx">
-      <DependentUpon>201509221604427_Add-Date-Time.cs</DependentUpon>
-    <EmbeddedResource Include="Migrations\201509212039350_Add_EF_DataAnnotains.resx">
-      <DependentUpon>201509212039350_Add_EF_DataAnnotains.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201510071732114_asd1.resx">
+      <DependentUpon>201510071732114_asd1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
