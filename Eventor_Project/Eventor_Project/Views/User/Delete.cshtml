@@ -9,63 +9,9 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <fieldset>
-    <legend>User</legend>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Email)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Email)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Nickname)
-    </div>
-    <div class="display-field">
+    <legend>
         @Html.DisplayFor(model => model.Nickname)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Name)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Name)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Surname)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Surname)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Patronymic)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Patronymic)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.ContactEmail)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ContactEmail)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.PhoneNumber)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.PhoneNumber)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Password)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Password)
-    </div>
+    </legend>
 </fieldset>
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()

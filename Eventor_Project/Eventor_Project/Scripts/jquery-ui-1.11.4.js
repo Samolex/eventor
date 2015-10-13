@@ -12585,7 +12585,7 @@ var selectmenu = $.widget( "ui.selectmenu", {
 					break;
 				case $.ui.keyCode.ENTER:
 					if ( this.isOpen ) {
-						this._selectFocusedItem( event );
+						this._selectFocuEditem( event );
 					}
 					break;
 				case $.ui.keyCode.UP:
@@ -12604,7 +12604,7 @@ var selectmenu = $.widget( "ui.selectmenu", {
 					break;
 				case $.ui.keyCode.SPACE:
 					if ( this.isOpen ) {
-						this._selectFocusedItem( event );
+						this._selectFocuEditem( event );
 					} else {
 						this._toggle( event );
 					}
@@ -12634,7 +12634,7 @@ var selectmenu = $.widget( "ui.selectmenu", {
 		}
 	},
 
-	_selectFocusedItem: function( event ) {
+	_selectFocuEditem: function( event ) {
 		var item = this.menuItems.eq( this.focusIndex );
 		if ( !item.hasClass( "ui-state-disabled" ) ) {
 			this._select( item.data( "ui-selectmenu-item" ), event );

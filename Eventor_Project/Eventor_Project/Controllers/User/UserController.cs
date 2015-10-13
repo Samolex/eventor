@@ -9,12 +9,18 @@ using Eventor_Project.Models;
 using Eventor_Project.Models.ViewModels;
 using Eventor_Project.Tools;
 using System.Drawing.Imaging;
+using System.Reflection;
+using Ninject;
+using Eventor_Project.Auth;
 
 namespace Eventor_Project.Controllers.User
 {
     public class UserController : BaseController
     {
         private CurrentContext db = new CurrentContext();
+
+        [Inject]
+        public IAuthentication Auth { get; set; }
 
         [HttpGet]
         public ActionResult Register()
@@ -35,7 +41,6 @@ namespace Eventor_Project.Controllers.User
             {
                 ModelState.AddModelError("Email", "Пользователь с таким email уже зарегистрирован");
             }
-
             if (ModelState.IsValid)
             {
                 var user = (Models.User.User)ModelMapper.Map(userView, typeof(UserRegisterView), typeof(Models.User.User));
@@ -73,8 +78,18 @@ namespace Eventor_Project.Controllers.User
         //
         // GET: /User/Details/5
 
-        public ActionResult Details(int id = 0)
+        public ActionResult SDetails(int id = 0)
         {
+            Models.User.User user = db.Users.Find(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            } 
+            return View(user);
+        }
+        public ActionResult Details()
+        {
+            var id = CurrentUser.UserId;
             Models.User.User user = db.Users.Find(id);
             if (user == null)
             {
@@ -82,7 +97,6 @@ namespace Eventor_Project.Controllers.User
             }
             return View(user);
         }
-
         //
         // GET: /User/Create
 
@@ -107,11 +121,28 @@ namespace Eventor_Project.Controllers.User
             return View(user);
         }
 
+
+        private Models.User.User CurrentUser
+        {
+            get
+            {
+                return ((IUserProvider)Auth.CurrentUser.Identity).User;
+            }
+        }
         //
         // GET: /User/Edit/5
-
-        public ActionResult Edit(int id = 0)
+        public ActionResult SEdit(int id)
         {
+            Models.User.User user = db.Users.Find(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
+        public ActionResult Edit()
+        {
+            var id = CurrentUser.UserId;
             Models.User.User user = db.Users.Find(id);
             if (user == null)
             {
@@ -129,8 +160,22 @@ namespace Eventor_Project.Controllers.User
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
-                
+
+                Models.User.User dbUser = db.Users.Find(user.UserId);
+                var a = this.MemberwiseClone();
+
+                Type t = user.GetType();
+                foreach (PropertyInfo info in t.GetProperties())
+                {
+                    if (info.CanWrite)
+                    {
+                        var value = info.GetValue(user);
+                        if (value != null)
+                            info.SetValue(dbUser, value, null);
+                    }
+                }
+
+                //db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

@@ -1,72 +1,65 @@
 ﻿@model Eventor_Project.Models.User.User
-
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Личный кабинет";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Мой профиль</h2>
 
 <fieldset>
-    <legend>User</legend>
+    <legend>
+        @Html.DisplayFor(model => model.Nickname)
+    </legend>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Email)
-    </div>
-    <div class="display-field">
+        @Html.LabelFor(model => model.Email)<b>:</b>
         @Html.DisplayFor(model => model.Email)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Nickname)
-    </div>
-    <div class="display-field">
+        @Html.LabelFor(model => model.Nickname)<b>:</b>
         @Html.DisplayFor(model => model.Nickname)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Name)
-    </div>
-    <div class="display-field">
+        @Html.LabelFor(model => model.Name)<b>:</b>
         @Html.DisplayFor(model => model.Name)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Surname)
-    </div>
-    <div class="display-field">
+        @Html.LabelFor(model => model.Surname)<b>:</b>
         @Html.DisplayFor(model => model.Surname)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Patronymic)
-    </div>
-    <div class="display-field">
+        @Html.LabelFor(model => model.Patronymic)<b>:</b>
         @Html.DisplayFor(model => model.Patronymic)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.ContactEmail)
-    </div>
-    <div class="display-field">
+        @Html.LabelFor(model => model.ContactEmail)<b>:</b>
         @Html.DisplayFor(model => model.ContactEmail)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.PhoneNumber)
-    </div>
-    <div class="display-field">
+        @Html.LabelFor(model => model.PhoneNumber)<b>:</b>
         @Html.DisplayFor(model => model.PhoneNumber)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Password)
-    </div>
-    <div class="display-field">
+        @Html.LabelFor(model => model.Password)<b>:</b>
         @Html.DisplayFor(model => model.Password)
     </div>
+    
+    <form action=@Url.Action("Edit", "User")>
+        <div class="btn-group right" role="group">
+            <input type="submit" class="btn btn-primary" value="Редактировать">
+        </div>
+    </form>
+    
 </fieldset>
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.UserId }) |
+    <!-- @Html.ActionLink("Edit", "Edit", new { id=Model.UserId }) -->
     @Html.ActionLink("Back to List", "Index")
 </p>

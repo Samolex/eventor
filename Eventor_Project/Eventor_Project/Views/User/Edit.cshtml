@@ -12,9 +12,16 @@
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>User</legend>
+        <legend>
+            @Html.DisplayFor(model => model.Nickname)
+        </legend>
+
 
         @Html.HiddenFor(model => model.UserId)
+        @Html.HiddenFor(model => model.Birthdate)
+        @Html.HiddenFor(model => model.PlaceOfStudy)
+        @Html.HiddenFor(model => model.PlaceOfLiving)
+        @Html.HiddenFor(model => model.Sex)
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Email)
@@ -81,7 +88,9 @@
         </div>
 
         <p>
-            <input type="submit" value="Save" />
+            <div class="btn-group right" role="group">
+                <input type="submit" class="btn btn-success" value="Сохранить">
+            </div>
         </p>
     </fieldset>
 }

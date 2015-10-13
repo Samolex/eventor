@@ -91,7 +91,10 @@ namespace Eventor_Project.Auth
                         _currentUser = new UserProvider(null, null);
                     }
                 }
+                var z = _currentUser;
+
                 return _currentUser;
+                
             }
         }
         #endregion
