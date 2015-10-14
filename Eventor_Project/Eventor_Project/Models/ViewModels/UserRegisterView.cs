@@ -56,5 +56,12 @@ namespace Eventor_Project.Models.ViewModels
 
         [Phone, MaxLength(50)]
         public string PhoneNumber { get; set; }
+
+        public IEnumerable<User.Sex> SexOptions =
+            new List<User.Sex>
+            {
+                User.Sex.Male,
+                User.Sex.Female,
+            };
     }
 }

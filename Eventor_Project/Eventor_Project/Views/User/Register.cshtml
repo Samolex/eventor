@@ -62,6 +62,16 @@
                     @Html.ValidationMessageFor(model => model.PhoneNumber)
                 </div>
 
+                <label class="control-label" for="FirstName">
+                    Ваш пол
+                </label>
+                <div class="controls">
+                @Html.DropDownListFor(m => m.Sex,
+                             new SelectList(Model.SexOptions,
+                                                Model.SexOptions.First()))
+                    @Html.ValidationMessageFor(model => model.Sex)
+                </div>
+                
 
 
 
