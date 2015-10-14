@@ -46,12 +46,21 @@
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.4.0.4\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="DelegateDecompiler, Version=0.9.1.0, Culture=neutral, PublicKeyToken=93b26a10a04705bd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DelegateDecompiler.0.9.1.0\lib\net40-Client\DelegateDecompiler.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Mono.Reflection, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Mono.Reflection.1.0.0.0\lib\Mono.Reflection.dll</HintPath>
+    </Reference>
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.2.1507.0118\lib\net40\Moq.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
@@ -80,6 +89,10 @@
     <Reference Include="NUnit.VisualStudio.TestAdapter">
       <HintPath>..\packages\NUnitTestAdapter.2.0.0\lib\NUnit.VisualStudio.TestAdapter.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="PerpetuumSoft.Knockout, Version=0.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\kMVC.0.6.0\lib\net40\PerpetuumSoft.Knockout.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -172,7 +185,6 @@
     <Compile Include="Auth\UserIndentity.cs" />
     <Compile Include="Auth\UserProvider.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\Default1Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\User\LoginController.cs" />
@@ -185,6 +197,22 @@
     <Compile Include="Migrations\201510071732114_asd1.cs" />
     <Compile Include="Migrations\201510071732114_asd1.Designer.cs">
       <DependentUpon>201510071732114_asd1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510080647328_Remove_Requried_Fields_In_ProjectModel.cs" />
+    <Compile Include="Migrations\201510080647328_Remove_Requried_Fields_In_ProjectModel.Designer.cs">
+      <DependentUpon>201510080647328_Remove_Requried_Fields_In_ProjectModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510080722331_nullable_datetype.cs" />
+    <Compile Include="Migrations\201510080722331_nullable_datetype.Designer.cs">
+      <DependentUpon>201510080722331_nullable_datetype.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510080724340_nullable_categotyid_projectmodel.cs" />
+    <Compile Include="Migrations\201510080724340_nullable_categotyid_projectmodel.Designer.cs">
+      <DependentUpon>201510080724340_nullable_categotyid_projectmodel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510121522371_AddRequiredCount_Organizer_Project.cs" />
+    <Compile Include="Migrations\201510121522371_AddRequiredCount_Organizer_Project.Designer.cs">
+      <DependentUpon>201510121522371_AddRequiredCount_Organizer_Project.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CurrentContext.cs" />
@@ -266,6 +294,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Models\irep.snippet" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
@@ -289,15 +318,17 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\knockout-2.2.0.debug.js" />
-    <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\knockout-3.1.0.debug.js" />
+    <Content Include="Scripts\knockout-3.1.0.js" />
+    <Content Include="Scripts\knockout.mapping-latest.debug.js" />
+    <Content Include="Scripts\knockout.mapping-latest.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\moment-with-locales.js" />
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
-    <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\perpetuum.knockout.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -323,15 +354,11 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Home\UserLogin.cshtml" />
     <Content Include="Views\Projects\Project.cshtml" />
-    <Content Include="Views\Default1\Index.cshtml" />
-    <Content Include="Views\Default1\Details.cshtml" />
-    <Content Include="Views\Default1\Create.cshtml" />
-    <Content Include="Views\Default1\Edit.cshtml" />
-    <Content Include="Views\Default1\Delete.cshtml" />
     <Content Include="Views\Projects\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Partial\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -342,6 +369,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201510071732114_asd1.resx">
       <DependentUpon>201510071732114_asd1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510080647328_Remove_Requried_Fields_In_ProjectModel.resx">
+      <DependentUpon>201510080647328_Remove_Requried_Fields_In_ProjectModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510080722331_nullable_datetype.resx">
+      <DependentUpon>201510080722331_nullable_datetype.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510080724340_nullable_categotyid_projectmodel.resx">
+      <DependentUpon>201510080724340_nullable_categotyid_projectmodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510121522371_AddRequiredCount_Organizer_Project.resx">
+      <DependentUpon>201510121522371_AddRequiredCount_Organizer_Project.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

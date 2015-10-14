@@ -14,7 +14,7 @@ namespace Eventor_Project.Models.ProjectModel
         [Required]
         public int MinCount { get; set; }
 
-        public int CurrentCount
+        public virtual int CurrentCount
         {
             get { return Customers.Count; }
         }

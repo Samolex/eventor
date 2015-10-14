@@ -5,7 +5,9 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using Eventor_Project.Models.ProjectModel;
+using Newtonsoft.Json;
 using Ninject.Infrastructure.Language;
 
 namespace Eventor_Project.Controllers
@@ -22,6 +24,7 @@ namespace Eventor_Project.Controllers
             }
             return View(projects);
         }
+
         [HttpGet]
         public ActionResult Project(int author_id, int project_id)
         {
@@ -33,21 +36,16 @@ namespace Eventor_Project.Controllers
             }
             return View(project);
         }
+
         [HttpGet]
+        [Authorize]
         public ActionResult Add()
         {
              var project = new  Project()
              {
-                 //TODO: Add current user
-                 AuthorId = 1,
-                 Title = "10101010101",
-                 ShortDescription = "10",
-                 Description = "10",
-                 Headquarter = "10",
-                 Place = "10",
-                 CategoryId = 1,
-                 OrganizationDate = DateTime.MinValue.AddYears(1970),
-                 EventDate = DateTime.MinValue.AddYears(1970),
+                 AuthorId = CurrentUser.UserId,
+                 EventDate = null,
+                 OrganizationDate = null,
                  AddedTime = DateTime.Now,
                  ChangeTime = DateTime.Now
              };
@@ -81,26 +79,6 @@ namespace Eventor_Project.Controllers
         }
 
         [HttpPost]
-        public EmptyResult AddMaterial(Material material)
-        {
-            if (ModelState.IsValid)
-            {
-                Db.Materials.Add(material);
-                Db.SaveChanges();
-            }
-            return new EmptyResult();
-        }
-
-        [HttpGet]
-        public EmptyResult DeleteMaterial(int material_id)
-        {
-            Db.Materials.Remove(Db.Materials.Find(material_id));
-            //TODO: Delete UserMaterial witn Id == materialId
-            Db.SaveChanges();
-            return new EmptyResult();
-        }
-
-        [HttpPost]
         public ActionResult Edit(Project project)
         {
             if (ModelState.IsValid)
@@ -118,5 +96,11 @@ namespace Eventor_Project.Controllers
             Db.Dispose();
             base.Dispose(disposing);
         }
+
+        #region Inventory_Methods
+
+
+
+        #endregion
     }
 }

@@ -3,11 +3,13 @@ using Ninject;
 using NLog;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using Eventor_Project.Models.ProjectModel;
 
 namespace Eventor_Project.Controllers
 {

@@ -24,7 +24,7 @@ namespace Eventor_Project.Controllers.User
                 {
                     return RedirectToAction("Index", "Home");
                 }
-                ModelState["Password"].Errors.Add("Пароли не совпадают");
+                ModelState["Password"].Errors.Add("Неверный логин или пароль!");
             }
             return View(loginView);
         }
