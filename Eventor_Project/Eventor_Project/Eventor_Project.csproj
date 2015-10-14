@@ -195,25 +195,9 @@
     </Compile>
     <Compile Include="Mappers\CommonMapper.cs" />
     <Compile Include="Mappers\IMapper.cs" />
-    <Compile Include="Migrations\201510071732114_asd1.cs" />
-    <Compile Include="Migrations\201510071732114_asd1.Designer.cs">
-      <DependentUpon>201510071732114_asd1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201510080647328_Remove_Requried_Fields_In_ProjectModel.cs" />
-    <Compile Include="Migrations\201510080647328_Remove_Requried_Fields_In_ProjectModel.Designer.cs">
-      <DependentUpon>201510080647328_Remove_Requried_Fields_In_ProjectModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201510080722331_nullable_datetype.cs" />
-    <Compile Include="Migrations\201510080722331_nullable_datetype.Designer.cs">
-      <DependentUpon>201510080722331_nullable_datetype.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201510080724340_nullable_categotyid_projectmodel.cs" />
-    <Compile Include="Migrations\201510080724340_nullable_categotyid_projectmodel.Designer.cs">
-      <DependentUpon>201510080724340_nullable_categotyid_projectmodel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201510121522371_AddRequiredCount_Organizer_Project.cs" />
-    <Compile Include="Migrations\201510121522371_AddRequiredCount_Organizer_Project.Designer.cs">
-      <DependentUpon>201510121522371_AddRequiredCount_Organizer_Project.cs</DependentUpon>
+    <Compile Include="Migrations\201510141447585_SuperMigration.cs" />
+    <Compile Include="Migrations\201510141447585_SuperMigration.Designer.cs">
+      <DependentUpon>201510141447585_SuperMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CurrentContext.cs" />
@@ -369,20 +353,8 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201510071732114_asd1.resx">
-      <DependentUpon>201510071732114_asd1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510080647328_Remove_Requried_Fields_In_ProjectModel.resx">
-      <DependentUpon>201510080647328_Remove_Requried_Fields_In_ProjectModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510080722331_nullable_datetype.resx">
-      <DependentUpon>201510080722331_nullable_datetype.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510080724340_nullable_categotyid_projectmodel.resx">
-      <DependentUpon>201510080724340_nullable_categotyid_projectmodel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510121522371_AddRequiredCount_Organizer_Project.resx">
-      <DependentUpon>201510121522371_AddRequiredCount_Organizer_Project.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201510141447585_SuperMigration.resx">
+      <DependentUpon>201510141447585_SuperMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

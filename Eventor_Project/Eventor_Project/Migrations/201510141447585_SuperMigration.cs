@@ -3,7 +3,7 @@ namespace Eventor_Project.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class asd1 : DbMigration
+    public partial class SuperMigration : DbMigration
     {
         public override void Up()
         {
@@ -94,21 +94,21 @@ namespace Eventor_Project.Migrations
                     {
                         ProjectId = c.Int(nullable: false, identity: true),
                         AuthorId = c.Int(nullable: false),
-                        Title = c.String(nullable: false, maxLength: 50),
-                        ShortDescription = c.String(nullable: false, maxLength: 150),
+                        Title = c.String(),
+                        ShortDescription = c.String(),
                         Description = c.String(),
-                        Headquarter = c.String(nullable: false),
-                        Place = c.String(nullable: false),
-                        CategoryId = c.Int(nullable: false),
-                        OrganizationDate = c.DateTime(nullable: false),
-                        EventDate = c.DateTime(nullable: false),
+                        Headquarter = c.String(),
+                        Place = c.String(),
+                        CategoryId = c.Int(),
+                        OrganizationDate = c.DateTime(),
+                        EventDate = c.DateTime(),
                         AddedTime = c.DateTime(nullable: false),
                         ChangeTime = c.DateTime(nullable: false),
                         Author_UserId = c.Int(),
                     })
                 .PrimaryKey(t => t.ProjectId)
                 .ForeignKey("dbo.Users", t => t.Author_UserId)
-                .ForeignKey("dbo.Categories", t => t.CategoryId, cascadeDelete: true)
+                .ForeignKey("dbo.Categories", t => t.CategoryId)
                 .Index(t => t.Author_UserId)
                 .Index(t => t.CategoryId);
             
@@ -128,6 +128,7 @@ namespace Eventor_Project.Migrations
                         OrganizerId = c.Int(nullable: false, identity: true),
                         ProjectId = c.Int(nullable: false),
                         Name = c.String(nullable: false),
+                        RequiredCount = c.Int(nullable: false),
                         Description = c.String(),
                     })
                 .PrimaryKey(t => t.OrganizerId)

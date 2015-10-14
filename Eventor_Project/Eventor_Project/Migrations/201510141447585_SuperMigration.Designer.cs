@@ -5,13 +5,13 @@ namespace Eventor_Project.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    public sealed partial class Remove_Requried_Fields_In_ProjectModel : IMigrationMetadata
+    public sealed partial class SuperMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Remove_Requried_Fields_In_ProjectModel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(SuperMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "201510080647328_Remove_Requried_Fields_In_ProjectModel"; }
+            get { return "201510141447585_SuperMigration"; }
         }
         
         string IMigrationMetadata.Source

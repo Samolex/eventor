@@ -65,10 +65,11 @@ namespace Eventor_Project.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<IAuthentication>().To<CustomAuthentication>().InRequestScope();
             kernel.Bind<CurrentContext>().ToMethod(c => new CurrentContext());
             kernel.Bind<IRepository>().To<SqlRepository>().InRequestScope();
             kernel.Bind<IMapper>().To<CommonMapper>().InSingletonScope();
-            kernel.Bind<IAuthentication>().To<CustomAuthentication>().InRequestScope();
+            
         }
     }
 }
