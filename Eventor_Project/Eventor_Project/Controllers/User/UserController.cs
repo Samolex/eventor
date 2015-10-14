@@ -84,8 +84,8 @@ namespace Eventor_Project.Controllers.User
             if (user == null)
             {
                 return HttpNotFound();
-            } 
-            return View(user);
+            }
+            return View("Details", user);
         }
         public ActionResult Details()
         {
@@ -95,7 +95,7 @@ namespace Eventor_Project.Controllers.User
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View("Details", user);
         }
         //
         // GET: /User/Create
@@ -138,7 +138,7 @@ namespace Eventor_Project.Controllers.User
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View("Edit", user);
         }
         public ActionResult Edit()
         {
@@ -148,7 +148,7 @@ namespace Eventor_Project.Controllers.User
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View("Edit", user);
         }
 
         //
