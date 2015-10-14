@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using Eventor_Project.Models;
 using Eventor_Project.Models.SqlRepository;
 using Ninject;
@@ -23,12 +24,17 @@ namespace Eventor_Project.Controllers
                 return ((IUserProvider)Auth.CurrentUser.Identity).User;
             }
         }
-
         [Inject]
         public IRepository Repository { get; set; }
         [Inject]
         public IMapper ModelMapper { get; set; }
         [Inject]
-        public CurrentContext Db { get; set; }  
+        public CurrentContext Db { get; set; }
+
+        protected override IAsyncResult BeginExecuteCore(AsyncCallback callback, object state)
+        {
+            ViewBag.CurrentUser = CurrentUser;
+            return base.BeginExecuteCore(callback, state);
+        }
     }
 }

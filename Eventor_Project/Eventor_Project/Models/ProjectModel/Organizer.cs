@@ -9,6 +9,10 @@ namespace Eventor_Project.Models.ProjectModel
         public int ProjectId { get; set; }
         [Required]
         public string Name { get; set; }
+
+        [Required]
+        public int RequiredCount { get; set; }
+
         public string Description { get; set; }
 
         public virtual ICollection<User.User> Users { get; set; }

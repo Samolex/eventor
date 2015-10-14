@@ -3,21 +3,16 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="tab-content">
     <h2>Index</h2>
+
     @foreach (var item in Model)
     {
         <div class="project-card col-md-3">
-            <a href="Projects/Edit?project_id=@item.ProjectId">
-                <p>
-                    <b>
-                        @item.Title
-                    </b>
-                </p>
-
-            </a>
+            @Html.ActionLink(@item.Title??"Название", "Edit", "Projects", new{project_id=@item.ProjectId},null)
             <p>
                 @item.ShortDescription
             </p>

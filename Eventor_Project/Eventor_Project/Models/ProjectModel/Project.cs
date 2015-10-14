@@ -12,11 +12,8 @@ namespace Eventor_Project.Models.ProjectModel
         public int AuthorId { get; set; }
         public virtual User.User Author { get; set; }
 
-        [MaxLength(50, ErrorMessage = "Максимальная длина названия 50 символов"),
-        MinLength(10, ErrorMessage = "Минимальная длина названия 10 символов"), 
-        Required(ErrorMessage = "Введите название.")]
+        
         public string Title { get; set; }
-        [Required(ErrorMessage = "Ввведите краткое описание"), MaxLength(150) ]
         public string ShortDescription { get; set; }
         public string Description { get; set; }
 
@@ -24,28 +21,22 @@ namespace Eventor_Project.Models.ProjectModel
         //public string CoverURL { get; set; }
         //public Bitmap Cover { get; set; }
 
-        [Required]
         public string Headquarter { get; set; }
-        [Required]
         public string Place { get; set; }
-        [Required]
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
         public virtual Category Category { get; set; }
 
-        [Required]
-        public DateTime OrganizationDate { get; set; }
-        [Required]
-        public DateTime EventDate { get; set; }
+        public DateTime? OrganizationDate { get; set; }
+        public DateTime? EventDate { get; set; }
 
 
         public virtual ICollection<Organizer> Organisers { get; set; }
         public virtual ICollection<Material> Inventory { get; set; }
         public virtual ICollection<ProjectNews> News { get; set; }
-        public virtual ICollection<Customer> Customers { get; set; }
+        public virtual List<Customer> Customers { get; set; }
         public virtual ICollection<ProjectComment> Comments { get; set; }
-        [Required]
+
         public DateTime AddedTime { get; set; }
-        [Required]
         public DateTime ChangeTime { get; set; }
     }
 }
