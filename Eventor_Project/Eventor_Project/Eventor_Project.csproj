@@ -179,6 +179,7 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\sesrtgstsrxfbdfhbtrdh\sesrtgstsrxfbdfhbtrdhAreaRegistration.cs" />
     <Compile Include="AuthAreaRegistration.cs" />
     <Compile Include="Auth\CustomAuthentication.cs" />
     <Compile Include="Auth\IAuthentication.cs" />
@@ -189,6 +190,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\User\LoginController.cs" />
+    <Compile Include="Controllers\User\MailController.cs" />
+    <Compile Include="Controllers\User\RegisterController.cs" />
     <Compile Include="Controllers\User\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -199,10 +202,27 @@
     <Compile Include="Migrations\201510141447585_SuperMigration.Designer.cs">
       <DependentUpon>201510141447585_SuperMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511021627042_message3.cs" />
+    <Compile Include="Migrations\201511021627042_message3.Designer.cs">
+      <DependentUpon>201511021627042_message3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511021643088_message4.cs" />
+    <Compile Include="Migrations\201511021643088_message4.Designer.cs">
+      <DependentUpon>201511021643088_message4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511022134242_messages5.cs" />
+    <Compile Include="Migrations\201511022134242_messages5.Designer.cs">
+      <DependentUpon>201511022134242_messages5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511031013504_message-6.cs" />
+    <Compile Include="Migrations\201511031013504_message-6.Designer.cs">
+      <DependentUpon>201511031013504_message-6.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CurrentContext.cs" />
     <Compile Include="Models\SqlRepository\UserRepository\BenefitRepository.cs" />
     <Compile Include="Models\SqlRepositoryData\IRepository.cs" />
+    <Compile Include="Models\SqlRepository\UserRepository\MessageRepository.cs" />
     <Compile Include="Models\SqlRepository\UserRepository\PlaceRepository.cs" />
     <Compile Include="Models\SqlRepository\UserRepository\RoleRepository.cs" />
     <Compile Include="Models\SqlRepositoryData\SqlRepositoryData.cs" />
@@ -224,11 +244,13 @@
     <Compile Include="Models\SqlRepository\ProjectRepository\ProjectNewsRepository.cs" />
     <Compile Include="Models\SqlRepository\ProjectRepository\ProjectRepository.cs" />
     <Compile Include="Models\SqlRepository\ProjectRepository\UserMaterialRepository.cs" />
+    <Compile Include="Models\User\Message.cs" />
     <Compile Include="Models\User\Place.cs" />
     <Compile Include="Models\User\Role.cs" />
     <Compile Include="Models\User\Sex.cs" />
     <Compile Include="Models\User\User.cs" />
     <Compile Include="Models\ViewModels\LoginView.cs" />
+    <Compile Include="Models\ViewModels\MessageView.cs" />
     <Compile Include="Models\ViewModels\UserRegisterView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\CaptchaImage.cs" />
@@ -285,6 +307,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Areas\sesrtgstsrxfbdfhbtrdh\Views\Web.config" />
     <None Include="Models\sqlTable.snippet" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
@@ -334,16 +357,21 @@
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Delete.cshtml" />
-    <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\Register\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Home\UserLogin.cshtml" />
     <Content Include="Views\Projects\Project.cshtml" />
     <Content Include="Views\Projects\Edit.cshtml" />
     <Content Include="Views\User\Hidden.cshtml" />
     <Content Include="Views\Default1\Edit.cshtml" />
+    <Content Include="Views\Mail\Index.cshtml" />
+    <Content Include="Views\Mail\NewMessage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\sesrtgstsrxfbdfhbtrdh\Controllers\" />
+    <Folder Include="Areas\sesrtgstsrxfbdfhbtrdh\Models\" />
+    <Folder Include="Areas\sesrtgstsrxfbdfhbtrdh\Views\Shared\" />
     <Folder Include="Views\Partial\" />
   </ItemGroup>
   <ItemGroup>
@@ -355,6 +383,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201510141447585_SuperMigration.resx">
       <DependentUpon>201510141447585_SuperMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511021627042_message3.resx">
+      <DependentUpon>201511021627042_message3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511021643088_message4.resx">
+      <DependentUpon>201511021643088_message4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511022134242_messages5.resx">
+      <DependentUpon>201511022134242_messages5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511031013504_message-6.resx">
+      <DependentUpon>201511031013504_message-6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

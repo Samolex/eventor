@@ -8,6 +8,7 @@ namespace Eventor_Project.Models
     public class CurrentContext : DbContext
     {
         public DbSet<User.User> Users { get; set; }
+        public DbSet<Message> Messages { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Place> Places { get; set; }
         public DbSet<Benefit> Benefits { get; set; }

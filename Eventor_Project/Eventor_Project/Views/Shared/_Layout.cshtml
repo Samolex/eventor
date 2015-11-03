@@ -45,7 +45,7 @@
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li>@Html.ActionLink("Вход", "Index", "Login")</li>
-                                        <li>@Html.ActionLink("Регистрация", "Register", "User")</li>
+                                        <li>@Html.ActionLink("Регистрация", "Index", "Register")</li>
                                     </ul>
                                 </li>
                             }
@@ -60,6 +60,9 @@
                                     </a>
                                     <ul class="dropdown-menu">
                                         <!--Insert your links here-->
+                                        <li>@Html.ActionLink("Личный кабинет", "Details", "User")</li>
+                                        <li>@Html.ActionLink("Сообщения", "Index", "Mail")</li>
+                                        <li>@Html.ActionLink("Новое сообщение", "NewMessage", "Mail")</li>
                                         <li role="separator" class="divider"></li>
                                         <li>@Html.ActionLink("Выход", "Logout", "Login")</li>
                                     </ul>

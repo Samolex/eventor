@@ -11,6 +11,7 @@ namespace Eventor_Project.Models.SqlRepository
     public interface IRepository
     {
         User.User GetUser(string email);
+        User.User GetUser(int id);
         User.User Login(string email, string password);
 
         #region Role
@@ -67,7 +68,18 @@ namespace Eventor_Project.Models.SqlRepository
         User.Place ReadPlace(int PlaceId);
 
         #endregion 
-        
+
+        #region Message
+        IQueryable<User.Message> Messages { get; }
+
+        bool CreateMessage(User.Message instance);
+
+        bool UpdateMessage(User.Message instance);
+
+        bool DeleteMessage(int MessageId);
+        User.Message ReadMessage(int MessageId);
+#endregion
+
         #region ProjectRepository
         #region Category
 

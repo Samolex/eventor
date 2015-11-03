@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Eventor_Project.Models.User.Message>
+
+@{
+    ViewBag.Title = "Messages";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Входящие</h1>
+
+<table>
+    @foreach (var item in Model.Where(u => u.ReceiverId == ViewBag.CurrentUser.UserId))
+    {
+        <tr>
+            <td>
+                <h3>
+                    @String.Format("Тема: {0}", item.Topic)
+                </h3>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @String.Format("Отправитель: {0}", item.SenderId)
+                <br/>
+                @String.Format("Сообщение: {0}", item.Text)
+            </td>
+        </tr>
+    }
+</table>
+
+<h1>Исходящие</h1>
+
+<table>
+
+    @foreach (var item in Model.Where(u => u.SenderId == ViewBag.CurrentUser.UserId))
+    {
+        <tr>
+            <td>
+                <h3>
+                    @String.Format("Тема: {0}. ", item.Topic)
+                </h3>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @String.Format("Получатель: {0}", item.ReceiverId)
+                <br />
+                @String.Format("Сообщение: {0}", item.Text)
+            </td>
+        </tr>
+    }
+
+</table>

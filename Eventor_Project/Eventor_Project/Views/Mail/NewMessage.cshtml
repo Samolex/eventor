@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "NewMessage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@model Eventor_Project.Models.ViewModels.MessageView
+<h2>Новое сообщение</h2>
+@using (Html.BeginForm("NewMessage", "Mail", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <div id="main" class="tab active">
+        @Html.AntiForgeryToken()
+        <fieldset>
+            <legend>
+                @String.Format("Новое сообщение для '{0}' (id: {1})", Model.ReceiverNick, Model.ReceiverId)
+            </legend>
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(m => m.SenderId)
+            @Html.HiddenFor(m => m.ReceiverId)
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Topic, "Тема сообщения")
+                @Html.TextBoxFor(m => m.Topic, new {@class = "form-control"})
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Text, "Текст собщения")
+                @Html.TextAreaFor(m => m.Text, new { @class = "form-control", @rows = "3" })
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                    Отправить
+                </button>
+            </div>
+        </fieldset>
+    </div>
+}

@@ -67,6 +67,8 @@ namespace Eventor_Project.Models.User
         public virtual ICollection<Organizer> Organizers { get; set; }
         public virtual ICollection<ProjectComment> Comments { get; set; }
         public virtual ICollection<Project> Projects { get; set; }
+
+
         public bool InRoles(string roles)
         {
             if (string.IsNullOrWhiteSpace(roles))
