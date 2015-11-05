@@ -49,9 +49,9 @@ namespace Eventor_Project.Controllers.User
 
 
         [Authorize]
-        public ActionResult Details(int id = -1)
+        public ActionResult Details()
         {
-            id = (id > 0) ? id : CurrentUser.UserId;
+            var id =  CurrentUser.UserId;
             Models.User.User user = db.Users.Find(id);
             if (user == null)
             {
@@ -61,29 +61,10 @@ namespace Eventor_Project.Controllers.User
         }
 
 
-        //
-        // POST: /User/Create
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create(Models.User.User user)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        Repository.CreateUser(user);
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    return View(user);
-        //}
-
-
         [Authorize]
         public ActionResult Edit()
         {
-
-            var id = CurrentUser.UserId;
-            Models.User.User user = db.Users.Find(id);
+            Models.User.User user = CurrentUser;
             if (user == null)
             {
                 return HttpNotFound();
@@ -101,22 +82,7 @@ namespace Eventor_Project.Controllers.User
             if (ModelState.IsValid)
             {
 
-                Models.User.User dbUser = db.Users.Find(user.UserId);
-                var a = this.MemberwiseClone();
-
-                Type t = user.GetType();
-                foreach (PropertyInfo info in t.GetProperties())
-                {
-                    if (info.CanWrite)
-                    {
-                        var value = info.GetValue(user);
-                        if (value != null)
-                            info.SetValue(dbUser, value, null);
-                    }
-                }
-
-                //db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
+                Repository.UpdateUser(user);
                 return RedirectToAction("Index");
             }
             return View(user);

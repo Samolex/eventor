@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using Eventor_Project.Models.ProjectModel;
 using Eventor_Project.Models.ProjectModel.Relations;
@@ -55,23 +56,20 @@ namespace Eventor_Project.Models.SqlRepository
 
         public bool UpdateUser(User.User instance)
         {
-            User.User cache = Db.Users.Where(p => p.UserId == instance.UserId).FirstOrDefault();
-            if (cache != null)
+            Models.User.User dbUser = GetUser(instance.UserId);
+            if (dbUser != null)
             {
-                cache.ContactEmail = instance.ContactEmail;
-                cache.Email = instance.Email;
-                cache.Name = instance.Name;
-                cache.Nickname = instance.Nickname;
-                cache.Patronymic = instance.Patronymic;
-                cache.PhoneNumber = instance.PhoneNumber;
-                cache.PlaceOfLiving = instance.PlaceOfLiving;
-                cache.PlaceOfStudy = instance.PlaceOfStudy;
-                cache.Sex = instance.Sex;
-                cache.Surname = instance.Surname;
-                cache.Password = instance.Password;
-
-                cache.Benefits = instance.Benefits;
-                cache.Roles = instance.Roles;
+                var a = this.MemberwiseClone();
+                Type t = instance.GetType();
+                foreach (PropertyInfo info in t.GetProperties())
+                {
+                    if (info.CanWrite)
+                    {
+                        var value = info.GetValue(instance);
+                        if (value != null)
+                            info.SetValue(dbUser, value, null);
+                    }
+                }
 
                 Db.SaveChanges();
                 return true;
@@ -82,7 +80,7 @@ namespace Eventor_Project.Models.SqlRepository
 
         public bool DeleteUser(int UserId)
         {
-            User.User instance = Db.Users.Where(p => p.UserId == UserId).FirstOrDefault();
+            User.User instance = Db.Users.FirstOrDefault(p => p.UserId == UserId);
             if (instance != null)
             {
                 Db.Users.Remove(instance);
@@ -95,7 +93,7 @@ namespace Eventor_Project.Models.SqlRepository
 
         public User.User ReadUser(int UserId)
         {
-            User.User instance = Db.Users.Where(p => p.UserId == UserId).FirstOrDefault();
+            User.User instance = Db.Users.FirstOrDefault(p => p.UserId == UserId);
             return instance;
         }
         
