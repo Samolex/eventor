@@ -3,53 +3,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using Eventor_Project.Models.ProjectModel;
 
-namespace Eventor_Project.Models.ProjectModel
-{ 
+namespace Eventor_Project.Models.ViewModels
+{
     //TODO: Add "Attached files", Ratting, Private
-    public class Project
+    public class ProjectCardViewModel
     {
         public int ProjectId { get; set; }
-        [Required]
         public int AuthorId { get; set; }
-        public virtual User.User Author { get; set; }
 
-        [DisplayName("Заголовок")]
         public string Title { get; set; }
-        [DisplayName("Короткое описание")]
         public string ShortDescription { get; set; }
-        [DisplayName("Полное описание")]
         public string Description { get; set; }
 
-        //TODO: This
-        //public string CoverURL { get; set; }
-        //public Bitmap Cover { get; set; }
-        [DisplayName("Штаб-квартира")]
         public string Headquarter { get; set; }
-        [DisplayName("Место проведения")]
         public string Place { get; set; }
 
-        [DisplayName("Категория")]
         public int? CategoryId { get; set; }
-        public virtual Category Category { get; set; }
 
-        [DisplayName("Дата организации")]
         public DateTime? OrganizationDate { get; set; }
-        [DisplayName("Дата проведения")]
         public DateTime? EventDate { get; set; }
 
 
-        public virtual ICollection<Organizer> Organisers { get; set; }
-        public virtual ICollection<Material> Inventory { get; set; }
-        public virtual ICollection<ProjectNews> News { get; set; }
-        public virtual ICollection<Customer> Customers { get; set; }
-        public virtual ICollection<ProjectComment> Comments { get; set; }
+        public List<Organizer> Organisers { get; set; }
+        public List<Material> Inventory { get; set; }
+        public List<ProjectNews> News { get; set; }
+        public List<Customer> Customers { get; set; }
+        public List<ProjectComment> Comments { get; set; }
 
         public virtual int OrganisersCurrentCount
         {
             get
             {
-                return Organisers != null ? Organisers.Sum(m=>m.CurrentCount) : 0;
+                return Organisers != null ? Organisers.Sum(m => m.CurrentCount) : 0;
             }
         }
 
@@ -61,11 +48,19 @@ namespace Eventor_Project.Models.ProjectModel
             }
         }
 
+        public virtual float OrganisersCurrentPercents
+        {
+            get
+            {
+                return OrganisersCurrentCount / OrganisersRequiredCount + 20;
+            }
+        }
+
         public virtual int InventoryCurrentCount
         {
             get
             {
-                return Inventory != null ? Inventory.Sum(m=>m.CurrentAmount) : 0;
+                return Inventory != null ? Inventory.Sum(m => m.CurrentAmount) : 0;
             }
         }
 
@@ -77,11 +72,19 @@ namespace Eventor_Project.Models.ProjectModel
             }
         }
 
+        public virtual float InventoryCurrentPercents
+        {
+            get
+            {
+                return InventoryCurrentCount / InventoryRequiredCount + 20;
+            }
+        }
+
         public virtual int CustomersCurrentCount
         {
             get
             {
-                return Customers != null ? Customers.Sum(m=>m.CurrentCount) : 0;
+                return Customers != null ? Customers.Sum(m => m.CurrentCount) : 0;
             }
         }
 
@@ -89,10 +92,16 @@ namespace Eventor_Project.Models.ProjectModel
         {
             get
             {
-                return Customers != null ? Customers.Sum(m=>m.MinCount) : 0;
+                return Customers != null ? Customers.Sum(m => m.MinCount) : 0;
             }
         }
-
+        public virtual float CustomersCurrentPercents
+        {
+            get
+            {
+                return CustomersCurrentCount / CustomersRequiredCount + 20;
+            }
+        }
         public DateTime AddedTime { get; set; }
         public DateTime ChangeTime { get; set; }
     }

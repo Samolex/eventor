@@ -18,10 +18,7 @@ namespace Eventor_Project.Controllers.User
     public class UserController : BaseController
     {
         private CurrentContext db = new CurrentContext();
-
-        [Inject]
-        public IAuthentication Auth { get; set; }
-
+        
         [HttpGet]
         public ActionResult Register()
         {

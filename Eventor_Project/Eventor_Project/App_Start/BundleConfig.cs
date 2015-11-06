@@ -10,8 +10,7 @@ namespace Eventor_Project
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                 "~/Scripts/jquery-{version}.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/knockout").Include("~/Scripts/knockout-{version}.js",
-                "~/Scripts/knockout.mapping-latest.js", "~/Scripts/perpetuum.knockout.js"));
+            bundles.Add(new ScriptBundle("~/bundles/knockout").Include("~/Scripts/knockout-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include("~/Scripts/bootstrap*"));
 
@@ -22,6 +21,9 @@ namespace Eventor_Project
 
             bundles.Add(new ScriptBundle("~/bundles/main").Include(
                 "~/Scripts/main.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/materials").Include(
+                "~/Scripts/materials.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/bootstrap*", "~/Content/Site.css", "~/Content/bootstrap-datetimepicker.css"));
         }

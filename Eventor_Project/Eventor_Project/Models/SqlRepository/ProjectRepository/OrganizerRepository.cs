@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Eventor_Project.Models.ProjectModel;
+using System;
 
 namespace Eventor_Project.Models.SqlRepository
 {
@@ -12,33 +13,63 @@ namespace Eventor_Project.Models.SqlRepository
 
         public bool CreateOrganizer(Organizer instance)
         {
-            if (instance.OrganizerId == 0)
+            try
             {
-                Db.Organisers.Add(instance);
-                Db.SaveChanges();
-                return true;
+                if (instance.OrganizerId == 0)
+                {
+                    Db.Organisers.Add(instance);
+                    Db.SaveChanges();
+                    return true;
+                }
+                return false;
             }
-
-            return false;
+            catch
+            {
+                return false;
+            }
         }
 
         public bool UpdateOrganizer(Organizer instance)
         {
-            var cache = Db.Organisers.FirstOrDefault(p => p.OrganizerId == instance.OrganizerId);
-            if (cache == null) return false;
-            cache.Name = instance.Name;
-            cache.Description = instance.Description;
-            Db.SaveChanges();
-            return true;
+            try
+            {
+                Organizer organizer = Db.Organisers.Find(instance.OrganizerId);
+                Type type = instance.GetType();
+
+                foreach(var info in type.GetProperties())
+                {
+                    if(info.CanWrite)
+                    {
+                        var value = info.GetValue(instance);
+                        if(value != null)
+                        {
+                            info.SetValue(organizer, value, null);
+                        }
+                    }
+                }
+                Db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public bool DeleteOrganizer(int organizerId)
         {
-            var instance = Db.Organisers.FirstOrDefault(p => p.OrganizerId == organizerId);
-            if (instance == null) return false;
-            Db.Organisers.Remove(instance);
-            Db.SaveChanges();
-            return true;
+            try
+            {
+                var instance = Db.Organisers.FirstOrDefault(p => p.OrganizerId == organizerId);
+                if (instance == null) return false;
+                Db.Organisers.Remove(instance);
+                Db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public Organizer ReadOrganizer(int organizerId)

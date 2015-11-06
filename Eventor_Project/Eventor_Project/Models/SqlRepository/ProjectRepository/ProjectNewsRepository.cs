@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Eventor_Project.Models.ProjectModel;
+using System;
 
 namespace Eventor_Project.Models.SqlRepository
 {
@@ -12,42 +13,65 @@ namespace Eventor_Project.Models.SqlRepository
 
         public bool CreateProjectNews(ProjectNews instance)
         {
-            if (instance.ProjectNewsId == 0)
+            try
             {
-                Db.ProjectNews.Add(instance);
-                Db.SaveChanges();
-                return true;
+                if (instance.ProjectNewsId == 0)
+                {
+                    Db.ProjectNews.Add(instance);
+                    Db.SaveChanges();
+                    return true;
+                }
+                return false;
             }
-
-            return false;
+            catch
+            {
+                return false;
+            }
         }
 
         public bool UpdateProjectNews(ProjectNews instance)
         {
-            var cache = Db.ProjectNews.FirstOrDefault(p => p.ProjectNewsId == instance.ProjectNewsId);
-            if (cache != null)
+            try
             {
-                cache.Date = instance.Date;
-                cache.Title = instance.Title;
-                cache.Body = instance.Body;
+                ProjectNews news = Db.ProjectNews.Find(instance.ProjectNewsId);
+                Type type = instance.GetType();
+
+                foreach (var info in type.GetProperties())
+                {
+                    if(info.CanWrite)
+                    {
+                        var value = info.GetValue(instance);
+                        if(value != null){
+                            info.SetValue(news, value, null);
+                        }
+                    }
+                }
                 Db.SaveChanges();
                 return true;
             }
-
-            return false;
+            catch
+            {
+                return false;
+            }
         }
 
         public bool DeleteProjectNews(int projectNewsId)
         {
-            var instance = Db.ProjectNews.FirstOrDefault(p => p.ProjectNewsId == projectNewsId);
-            if (instance != null)
+            try
             {
-                Db.ProjectNews.Remove(instance);
-                Db.SaveChanges();
-                return true;
+                var instance = Db.ProjectNews.FirstOrDefault(p => p.ProjectNewsId == projectNewsId);
+                if (instance != null)
+                {
+                    Db.ProjectNews.Remove(instance);
+                    Db.SaveChanges();
+                    return true;
+                }
+                return false;
             }
-
-            return false;
+            catch
+            {
+                return false;
+            }
         }
 
         public ProjectNews ReadProjectNews(int projectNewsId)

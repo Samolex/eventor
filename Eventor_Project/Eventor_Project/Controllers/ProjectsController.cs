@@ -9,27 +9,26 @@ using System.Web.Script.Serialization;
 using Eventor_Project.Models.ProjectModel;
 using Newtonsoft.Json;
 using Ninject.Infrastructure.Language;
+using Eventor_Project.Models.ViewModels;
+using Eventor_Project.Models.ProjectModel.Relations;
 
 namespace Eventor_Project.Controllers
 {
     public class ProjectsController : BaseController
     {
         [HttpGet]
-        public ActionResult Index(int? category, string filter = "")
+        public ActionResult Index()
         {
-            var projects = Repository.Projects.ToEnumerable();
-            if (filter == "categories" && category!=null)
-            {
-                projects = projects.Where(project => project.CategoryId == category);
-            }
-            return View(projects);
+            var projects = Repository.Projects;
+            var projectsViewModel = Repository.Projects.ToList()
+                .Select(m=>(ProjectCardViewModel)ModelMapper.Map(m, typeof(Project), typeof(ProjectCardViewModel))).ToEnumerable();
+            return View(projectsViewModel);
         }
 
         [HttpGet]
-        public ActionResult Project(int author_id, int project_id)
+        public ActionResult Project(int projectId)
         {
-            var project = Repository.Projects
-                .FirstOrDefault(p => p.AuthorId == author_id && p.ProjectId == project_id);
+            var project = Repository.ReadProject(projectId);
             if (project == null)
             {
                 return HttpNotFound();
@@ -37,39 +36,39 @@ namespace Eventor_Project.Controllers
             return View(project);
         }
 
-        [HttpGet]
-        [Authorize]
+        [HttpGet, Authorize]
         public ActionResult Add()
         {
-             var project = new  Project()
-             {
-                 AuthorId = CurrentUser.UserId,
-                 EventDate = null,
-                 OrganizationDate = null,
-                 AddedTime = DateTime.Now,
-                 ChangeTime = DateTime.Now
-             };
-            Db.Projects.Add(project);
-            Db.SaveChanges();
-            return Redirect(string.Format("Edit?project_id={0}", project.ProjectId));
+            var project = new  Project()
+            {
+                AuthorId = CurrentUser.UserId,
+                EventDate = null,
+                OrganizationDate = null,
+                AddedTime = DateTime.Now,
+                ChangeTime = DateTime.Now
+            };
+            var result = Repository.CreateProject(project);
+            return RedirectToAction("Edit", new {projectId=project.ProjectId});
         }
 
-        [HttpGet]
-        public ActionResult Delete(int project_id)
+        [HttpGet,Authorize]
+        public ActionResult Delete(int projectId)
         {
-            var project = Db.Projects.FirstOrDefault(p => p.ProjectId == project_id);
-            if (project == null)
+            var result = Repository.DeleteProject(projectId);
+            if (result)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
                 return HttpNotFound();
-            Db.Projects.Remove(project);
-            Db.SaveChanges();
-            return RedirectToAction("Index");
+            }
         }
 
-        [HttpGet]
-        public ActionResult Edit(int project_id)
+        [HttpGet,Authorize]
+        public ActionResult Edit(int projectId)
         {
-            var project = Repository.Projects
-                .FirstOrDefault(p =>p.ProjectId == project_id);
+            var project = Repository.ReadProject(projectId);
             if (project == null)
             {
                 return HttpNotFound();
@@ -78,29 +77,133 @@ namespace Eventor_Project.Controllers
             return View(project);
         }
 
-        [HttpPost]
+        [HttpPost,Authorize]
         public ActionResult Edit(Project project)
         {
             if (ModelState.IsValid)
             {
-                project.ChangeTime = DateTime.Now;
-                Db.Entry(project).State = EntityState.Modified;
-                Db.SaveChanges();
+                var result = Repository.UpdateProject(project);
+                if (result)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View(project);
+                }
             }
             ViewBag.CategoryId = new SelectList(Repository.Categories, "CategoryId", "Name", project.CategoryId);
             return View(project);
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            Db.Dispose();
-            base.Dispose(disposing);
-        }
-
         #region Inventory_Methods
 
+        [HttpGet, Authorize]
+        public JsonResult GetMaterials(int projectId)
+        {
+            var materials = Repository.ReadProject(projectId)
+                .Inventory.Select(m => ModelMapper.Map(m, typeof(Material), typeof(MaterialsJsonModel))).ToEnumerable();
+            if (materials == null)
+                return Json("");
+            return Json(materials, JsonRequestBehavior.AllowGet);
+        }
 
+        [HttpPost, Authorize]
+        public JsonResult AddMaterial(Material material)
+        {
+            if (Repository.CreateMaterial(material))
+            {
+                return Json(material);
+            }
+            else
+            {
+                return Json("");
+            }
+        }
+        [HttpPost, Authorize]
+        public JsonResult DeleteMaterial(int materialId)
+        {
+            var material = Db.Materials.Find(materialId);
+            if(Repository.DeleteMaterial(materialId))
+            {
+                return Json(material);
+            }
+            else
+            {
+                return Json("");
+            }
+        }
 
+        #endregion
+        #region Customers Methods
+        [HttpGet, Authorize]
+        public JsonResult GetCustomers(int projectId)
+        {
+            var customers = Repository.ReadProject(projectId)
+                .Customers.Select(c => ModelMapper.Map(c, typeof(Customer), typeof(CustomerJsonModel))).ToEnumerable();
+            if (customers == null)
+                return Json("");
+            return Json(customers, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost, Authorize]
+        public JsonResult AddCustomer(Customer customer)
+        {
+            if (Repository.CreateCustomer(customer))
+            {
+                return Json(customer);
+            }
+            else
+            {
+                return Json("");
+            }
+        }
+        [HttpPost, Authorize]
+        public JsonResult DeleteCustomer(int customerId)
+        {
+            var customer = Db.Customers.Find(customerId);
+            if (Repository.DeleteCustomer(customerId))
+                return Json(customer);
+            else
+                return Json("");
+        }
+        #endregion
+        #region Organizers Methods
+        [HttpGet, Authorize]
+        public JsonResult GetOrganizers(int projectId)
+        {
+            var organisers = Repository.ReadProject(projectId)
+                .Organisers.Select(o => ModelMapper.Map(o, typeof(Organizer), typeof(OrganizerJsonModel))).ToEnumerable();
+            if (organisers == null)
+                return Json("");
+            return Json(organisers, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost, Authorize]
+        public JsonResult AddOrganizer(Organizer organizer)
+        {
+            if (Repository.CreateOrganizer(organizer))
+            {
+                return Json(organizer);
+            }
+            else
+            {
+                return Json("");
+            }
+        }
+        [HttpPost, Authorize]
+        public JsonResult DeleteOrganizer(int organizerId)
+        {
+            var organizer = Db.Organisers.Find(organizerId);
+            if (Repository.DeleteOrganizer(organizerId))
+            {
+                return Json(organizer);
+            }
+            else
+            {
+                return Json("");
+            }
+        }
         #endregion
     }
 }

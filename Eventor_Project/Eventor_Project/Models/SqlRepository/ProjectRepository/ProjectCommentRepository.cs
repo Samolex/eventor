@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Eventor_Project.Models.ProjectModel;
+using System;
 
 namespace Eventor_Project.Models.SqlRepository
 {
@@ -12,33 +13,62 @@ namespace Eventor_Project.Models.SqlRepository
 
         public bool CreateProjectComment(ProjectComment instance)
         {
-            if (instance.ProjectCommentId == 0)
+            try
             {
-                Db.ProjectComments.Add(instance);
-                Db.SaveChanges();
-                return true;
+                if (instance.ProjectCommentId == 0)
+                {
+                    Db.ProjectComments.Add(instance);
+                    Db.SaveChanges();
+                    return true;
+                }
+                return false;
             }
-
-            return false;
+            catch
+            {
+                return false;
+            }
         }
 
         public bool UpdateProjectComment(ProjectComment instance)
         {
-            var cache = Db.ProjectComments.FirstOrDefault(p => p.ProjectCommentId == instance.ProjectCommentId);
-            if (cache == null) return false;
-            cache.Body = instance.Body;
-            cache.Date = instance.Date;
-            Db.SaveChanges();
-            return true;
+            try
+            {
+                ProjectComment comment = Db.ProjectComments.Find(instance.ProjectCommentId);
+                Type type = comment.GetType();
+                foreach(var info in type.GetProperties())
+                {
+                    if(info.CanWrite)
+                    {
+                        var value = info.GetValue(instance);
+                        if(value != null)
+                        {
+                            info.SetValue(comment, value, null);
+                        }
+                    }
+                }
+                Db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public bool DeleteProjectComment(int projectCommentId)
         {
-            var instance = Db.ProjectComments.FirstOrDefault(p => p.ProjectCommentId == projectCommentId);
-            if (instance == null) return false;
-            Db.ProjectComments.Remove(instance);
-            Db.SaveChanges();
-            return true;
+            try
+            {
+                var instance = Db.ProjectComments.FirstOrDefault(p => p.ProjectCommentId == projectCommentId);
+                if (instance == null) return false;
+                Db.ProjectComments.Remove(instance);
+                Db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public ProjectComment ReadProjectComment(int projectCommentId)

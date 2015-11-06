@@ -1,24 +1,73 @@
 ﻿
-@model IEnumerable<Eventor_Project.Models.ProjectModel.Project>
+@model IEnumerable<Eventor_Project.Models.ViewModels.ProjectCardViewModel>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="tab-content">
+<div class="content">
     <h2>Index</h2>
 
     @foreach (var item in Model)
     {
-        <div class="project-card col-md-3">
-            @Html.ActionLink(@item.Title??"Название", "Edit", "Projects", new{project_id=@item.ProjectId},null)
-            <p>
-                @item.ShortDescription
-            </p>
-            <p>
-                @item.AuthorId
-            </p>
+        <div class="card col-md-3">
+            <img class="card-cover" src="" alt="cover" />
+            <h5 class="card-title">
+                @if (item.Title != null)
+                {
+                    @Html.ActionLink(item.Title, "Edit", new { projectId = item.ProjectId });
+                }
+                else
+                {
+                    @Html.ActionLink("Неизвестный проект", "Edit", new { projectId = item.ProjectId });
+                }
+            </h5>
+            <p class="card-description">@item.ShortDescription</p>
+            @if(item.InventoryRequiredCount != 0)
+            {
+                <div class="card-progress">
+                    <div class="col-md-2 text-left">
+                        <i class="glyphicon glyphicon-briefcase"></i>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="@(item.InventoryCurrentCount+20)"
+                             aria-valuemin="0" aria-valuemax="@item.InventoryRequiredCount"
+                             style="width:@item.InventoryCurrentPercents%;">
+                            @item.InventoryCurrentCount
+                        </div>
+                    </div>
+                </div>
+            }
+            @if (item.OrganisersRequiredCount != 0)
+            {
+                <div class="card-progress">
+                    <div class="col-md-2 text-left">
+                        <i class="glyphicon glyphicon-user"></i>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="@item.OrganisersCurrentCount"
+                             aria-valuemin="0" aria-valuemax="@item.OrganisersRequiredCount"
+                             style="width:@item.OrganisersCurrentPercents%;">
+                            @item.OrganisersCurrentCount
+                        </div>
+                    </div>
+                </div>
+            }@if (item.CustomersRequiredCount != 0)
+            {
+                <div class="card-progress">
+                    <div class="col-md-2 text-left">
+                        <i class="glyphicon glyphicon-globe"></i>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="@item.CustomersCurrentCount"
+                             aria-valuemin="0" aria-valuemax="@item.CustomersRequiredCount"
+                             style="width:@item.CustomersCurrentPercents%;">
+                            @item.CustomersCurrentCount
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
     }
 </div>

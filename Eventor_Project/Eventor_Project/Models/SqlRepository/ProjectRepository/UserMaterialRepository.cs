@@ -12,32 +12,62 @@ namespace Eventor_Project.Models.SqlRepository
 
         public bool CreateUserMaterial(UserMaterial instance)
         {
-            if (instance.UserMaterialId != 0) return false;
-            Db.UserMaterials.Add(instance);
-            Db.SaveChanges();
-            return true;
+            try
+            {
+                if (instance.UserMaterialId != 0) return false;
+                Db.UserMaterials.Add(instance);
+                Db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return true;
+            }
         }
 
         public bool UpdateUserMaterial(UserMaterial instance)
         {
-            var cache = Db.UserMaterials.FirstOrDefault(p => p.UserMaterialId == instance.UserMaterialId);
-            if (cache == null) return false;
-            cache.Amount = instance.Amount;
-            Db.SaveChanges();
-            return true;
+            try
+            {
+                var userMaterial = Db.UserMaterials.Find(instance.UserMaterialId);
+                var type = instance.GetType();
+                foreach(var info in type.GetProperties())
+                {
+                    if(info.CanWrite)
+                    {
+                        var value = info.GetValue(instance);
+                        if(value != null)
+                        {
+                            info.SetValue(userMaterial, value, null);
+                        }
+                    }
+                }
+                Db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public bool DeleteUserMaterial(int userMaterialId)
         {
-            var instance = Db.UserMaterials.FirstOrDefault(p => p.UserMaterialId == userMaterialId);
-            if (instance != null)
+            try
             {
-                Db.UserMaterials.Remove(instance);
-                Db.SaveChanges();
-                return true;
+                var instance = Db.UserMaterials.FirstOrDefault(p => p.UserMaterialId == userMaterialId);
+                if (instance != null)
+                {
+                    Db.UserMaterials.Remove(instance);
+                    Db.SaveChanges();
+                    return true;
+                }
+                return false;
             }
-
-            return false;
+            catch
+            {
+                return false;
+            }
         }
 
         public UserMaterial ReadUserMaterial(int userMaterialId)

@@ -9,6 +9,7 @@
     <style>
     </style>
     @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -31,8 +32,6 @@
                             </span>
                         </div>
                     </form>
-                    <!--Login-->
-                    
                         <ul class=" nav navbar-nav navbar-right">
                             <li>@Html.ActionLink("Создать", "Add", "Projects")</li>
                             @if (ViewBag.CurrentUser == null)
@@ -66,21 +65,16 @@
                                 </li>
                             }
                         </ul>
-                    
                 </div>
             </div>
         </div>
     </nav>
     <main>
-        <div class="content">
-
-            @RenderBody()
-        </div>
-    </main>
-    @Scripts.Render("~/bundles/jquery")
+        @RenderBody()
+    </main>    
     @Scripts.Render("~/bundles/bootstrap")
-@Scripts.Render("~/bundles/main")
-@RenderSection("scripts", false)
+    @Scripts.Render("~/bundles/main")
+    @RenderSection("scripts", false)
 </body>
 </html>
 

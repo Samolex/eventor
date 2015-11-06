@@ -16,7 +16,14 @@ namespace Eventor_Project.Models.ProjectModel
 
         public virtual int CurrentCount
         {
-            get { return Customers.Count; }
+            get {
+                if (Customers != null)
+                {
+                    return Customers.Count;
+                }
+                else
+                    return 0;
+            }
         }
 
         public string Description { get; set; }

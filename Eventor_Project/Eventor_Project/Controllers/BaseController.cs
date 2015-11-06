@@ -31,10 +31,10 @@ namespace Eventor_Project.Controllers
         [Inject]
         public CurrentContext Db { get; set; }
 
-        protected override IAsyncResult BeginExecuteCore(AsyncCallback callback, object state)
+        protected override void OnResultExecuting(ResultExecutingContext filterContext)
         {
             ViewBag.CurrentUser = CurrentUser;
-            return base.BeginExecuteCore(callback, state);
+            base.OnResultExecuting(filterContext);
         }
     }
 }

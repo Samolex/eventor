@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Eventor_Project.Models.ProjectModel;
+using System;
 
 namespace Eventor_Project.Models.SqlRepository
 {
@@ -12,35 +13,64 @@ namespace Eventor_Project.Models.SqlRepository
 
         public bool CreateCustomer(Customer instance)
         {
-            if (instance.CustomerId == 0)
+            try
             {
-                Db.Customers.Add(instance);
-                Db.SaveChanges();
-                return true;
-            }
+                if (instance.CustomerId == 0)
+                {
+                    Db.Customers.Add(instance);
+                    Db.SaveChanges();
+                    return true;
+                }
 
-            return false;
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public bool UpdateCustomer(Customer instance)
         {
-            var cache = Db.Customers.FirstOrDefault(p => p.CustomerId == instance.CustomerId);
-            if (cache == null) return false;
-            cache.Role = instance.Role;
-            cache.MaxCount = instance.MaxCount;
-            cache.MinCount = instance.MinCount;
-            cache.Description = instance.Description;
-            Db.SaveChanges();
-            return true;
+            try
+            {
+                Customer customer = Db.Customers.Find(instance.CustomerId);
+                Type type = customer.GetType();
+
+                foreach(var info in type.GetProperties())
+                {
+                    if(info.CanWrite)
+                    {
+                        var value = info.GetValue(instance);
+                        if(value != null)
+                        {
+                            info.SetValue(customer, value, null);
+                        }
+                    }
+                }
+                Db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public bool DeleteCustomer(int customerId)
         {
-            var instance = Db.Customers.FirstOrDefault(p => p.CustomerId == customerId);
-            if (instance == null) return false;
-            Db.Customers.Remove(instance);
-            Db.SaveChanges();
-            return true;
+            try
+            {
+                var instance = Db.Customers.FirstOrDefault(p => p.CustomerId == customerId);
+                if (instance == null) return false;
+                Db.Customers.Remove(instance);
+                Db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public Customer ReadCustomer(int customerId)
