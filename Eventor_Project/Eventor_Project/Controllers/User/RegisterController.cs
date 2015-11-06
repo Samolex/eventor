@@ -43,7 +43,7 @@ namespace Eventor_Project.Controllers.User
             {
                 var user = (Models.User.User)ModelMapper.Map(userView, typeof(UserRegisterView), typeof(Models.User.User));
                 Repository.CreateUser(user);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Login");
             }
             return View(userView);
         }

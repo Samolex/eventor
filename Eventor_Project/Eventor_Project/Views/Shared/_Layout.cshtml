@@ -21,6 +21,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("Проекты", "Index","Projects")</li>
+                        <li>@Html.ActionLink("Пользователи", "Index","User")</li>
                     </ul>
                     <!--TODO: Search Form-->
                     <form class="navbar-form navbar-left" role="search">
@@ -62,7 +63,6 @@
                                         <!--Insert your links here-->
                                         <li>@Html.ActionLink("Личный кабинет", "Details", "User")</li>
                                         <li>@Html.ActionLink("Сообщения", "Index", "Mail")</li>
-                                        <li>@Html.ActionLink("Новое сообщение", "NewMessage", "Mail")</li>
                                         <li role="separator" class="divider"></li>
                                         <li>@Html.ActionLink("Выход", "Logout", "Login")</li>
                                     </ul>

@@ -22,7 +22,7 @@ namespace Eventor_Project.Models.User
         [MaxLength(20), DisplayName("Псевдоним")]
         public string Nickname { 
             get {
-                if (nickname == null)
+                if (String.IsNullOrEmpty(nickname))
                     return Name + " " + Surname;
                 else return nickname;
             } 

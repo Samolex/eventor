@@ -35,13 +35,16 @@ namespace Eventor_Project.Controllers.User
         }
 
         [Authorize]
-        [HttpGet, HttpPost]
-        public ActionResult NewMessage(int receiverId)
+        [HttpGet]
+        public ActionResult NewMessage(int receiverId, string prevTopic, int prevMessageId = -1)
         {
             var message = new MessageView();
             message.ReceiverId = receiverId;
             message.ReceiverNick = Repository.GetUser(receiverId).Nickname;
             message.SenderId = CurrentUser.UserId;
+            message.SenderNick = CurrentUser.Nickname;
+            message.Topic = String.IsNullOrEmpty(prevTopic) ? null : "Re: " + prevTopic;
+            message.PrevMessage = Repository.ReadMessage(prevMessageId);
             return View(message);
         }
 

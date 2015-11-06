@@ -25,6 +25,9 @@ namespace Eventor_Project.Models.User
         [Required]
         public string ReceiverNick { get; set; }
 
+        [Required]
+        public string SenderNick { get; set; }
+
         [Required, MaxLength(100)]
         public string Topic { get; set; }
 

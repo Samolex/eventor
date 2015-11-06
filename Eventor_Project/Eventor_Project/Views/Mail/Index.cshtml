@@ -7,8 +7,8 @@
 
 <h1>Входящие</h1>
 
-<table>
-    @foreach (var item in Model.Where(u => u.ReceiverId == ViewBag.CurrentUser.UserId))
+
+    @foreach (var item in Model.Where(u => u.ReceiverId == ViewBag.CurrentUser.UserId).OrderByDescending(u => u.DepartureTime))
     {
         <tr>
             <td>
@@ -19,19 +19,25 @@
         </tr>
         <tr>
             <td>
-                @String.Format("Отправитель: {0}", item.SenderId)
+                Отправитель: <a href=@String.Format("/id/{0}",item.SenderId)>@item.SenderNick</a> (id: @item.SenderId)
                 <br/>
                 @String.Format("Сообщение: {0}", item.Text)
             </td>
         </tr>
+        
+        <form action=@Url.Action("NewMessage", "Mail")>
+            @Html.Hidden("receiverId", item.SenderId)
+            @Html.Hidden("prevTopic", item.Topic)
+            @Html.Hidden("prevMessageId", item.MessageId)
+            <div class="btn-group right" role="group">
+                <input type="submit" class="btn btn-default" value="Ответить">
+            </div>
+        </form>
     }
-</table>
+
 
 <h1>Исходящие</h1>
-
-<table>
-
-    @foreach (var item in Model.Where(u => u.SenderId == ViewBag.CurrentUser.UserId))
+    @foreach (var item in Model.Where(u => u.SenderId == ViewBag.CurrentUser.UserId).OrderByDescending(u => u.DepartureTime))
     {
         <tr>
             <td>
@@ -42,11 +48,11 @@
         </tr>
         <tr>
             <td>
-                @String.Format("Получатель: {0}", item.ReceiverId)
+                Получатель: <a href=@String.Format("/id/{0}",item.ReceiverId)>@item.ReceiverNick</a> (id: @item.ReceiverId)
                 <br />
                 @String.Format("Сообщение: {0}", item.Text)
             </td>
         </tr>
     }
 
-</table>
+

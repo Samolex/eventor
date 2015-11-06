@@ -7,7 +7,8 @@ namespace Eventor_Project.Mappers
 {
     public class CommonMapper : IMapper
     {
-        [Inject] private static IRepository Repository;
+        [Inject]
+        private static IRepository Repository;
         static CommonMapper()
         {
             Mapper.CreateMap<Models.User.User, Models.ViewModels.UserRegisterView>();
@@ -16,8 +17,6 @@ namespace Eventor_Project.Mappers
 
             Mapper.CreateMap<Models.User.Message, Models.ViewModels.MessageView>();
             Mapper.CreateMap<Models.ViewModels.MessageView, Models.User.Message>()
-                .ForMember(x => x.ReceiverId, y => y.MapFrom(z => Repository.GetUser(z.Receiver).UserId)) // Не работает mapping
-                .ForMember(x => x.ReceiverNick, y => y.MapFrom(z => Repository.GetUser(z.Receiver).Nickname)) // Не работает mapping
                 .ForMember(x => x.DepartureTime, y => y.MapFrom(_ => DateTime.UtcNow));
         }
 

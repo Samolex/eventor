@@ -17,6 +17,8 @@
             @Html.ValidationSummary(true)
             @Html.HiddenFor(m => m.SenderId)
             @Html.HiddenFor(m => m.ReceiverId)
+            @Html.HiddenFor(m => m.ReceiverNick)
+            @Html.HiddenFor(m => m.SenderNick)
 
             <div class="form-group">
                 @Html.LabelFor(m => m.Topic, "Тема сообщения")
@@ -25,13 +27,24 @@
 
             <div class="form-group">
                 @Html.LabelFor(m => m.Text, "Текст собщения")
-                @Html.TextAreaFor(m => m.Text, new { @class = "form-control", @rows = "3" })
+                @Html.TextAreaFor(m => m.Text, new {@class = "form-control", @rows = "3"})
             </div>
             <div class="form-actions">
                 <button type="submit" class="btn btn-primary">
                     Отправить
                 </button>
             </div>
+
         </fieldset>
+        @if (Model.PrevMessage != null)
+        {
+            @String.Format("Предыдущее сообщение:")
+            <br/>
+            @(String.Format("Отправитель: {0} (id: {1})", Model.PrevMessage.SenderNick, Model.PrevMessage.SenderId))
+            <br/>
+            @(String.Format("Сообщение: {0}", Model.PrevMessage.Text))
+        }
+
+
     </div>
 }

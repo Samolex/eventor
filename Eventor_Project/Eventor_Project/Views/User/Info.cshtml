@@ -1,13 +1,12 @@
 ﻿@model Eventor_Project.Models.User.User
 @{
-    ViewBag.Title = "Личный кабинет";
+    ViewBag.Title = "Информация о пользователе";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Мой профиль (id: @Model.UserId)</h2>
+<h2>@Html.DisplayFor(model => model.Nickname)</h2>
 <fieldset>
     <legend>
-        
         @String.Format(Model.Surname + " " + Model.Name)
     </legend>
 
@@ -60,13 +59,7 @@
 
 </fieldset>
 
-<form action=@Url.Action("Edit", "User")>
-    <div class="btn-group right" role="group">
-        <input type="submit" class="btn btn-primary" value="Редактировать">
-    </div>
-</form>
 
 <p>
-    <!-- @Html.ActionLink("Edit", "Edit", new { id=Model.UserId }) -->
     @Html.ActionLink("Back to List", "Index")
 </p>

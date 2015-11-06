@@ -48,28 +48,22 @@ namespace Eventor_Project.Controllers.User
         // GET: /User/
 
 
-        [Authorize]
+        [Authorize] 
         public ActionResult Details()
         {
-            var id =  CurrentUser.UserId;
-            Models.User.User user = db.Users.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View("Details", user);
+            return View("Details", CurrentUser);
+        }
+
+        public ActionResult Info(int id = 0)
+        {
+            return View(Repository.GetUser(id) ?? CurrentUser);
         }
 
 
         [Authorize]
         public ActionResult Edit()
         {
-            Models.User.User user = CurrentUser;
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View("Edit", user);
+            return View("Edit", CurrentUser);
         }
 
         //
@@ -81,7 +75,6 @@ namespace Eventor_Project.Controllers.User
         {
             if (ModelState.IsValid)
             {
-
                 Repository.UpdateUser(user);
                 return RedirectToAction("Index");
             }
@@ -93,7 +86,7 @@ namespace Eventor_Project.Controllers.User
 
         public ActionResult Delete(int id = 0)
         {
-            Models.User.User user = db.Users.Find(id);
+            Models.User.User user = Repository.GetUser(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -108,9 +101,7 @@ namespace Eventor_Project.Controllers.User
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Models.User.User user = db.Users.Find(id);
-            db.Users.Remove(user);
-            db.SaveChanges();
+            Repository.DeleteUser(id);
             return RedirectToAction("Index");
         }
 
