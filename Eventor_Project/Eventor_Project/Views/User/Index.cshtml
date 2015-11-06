@@ -70,9 +70,10 @@
             @Html.DisplayFor(modelItem => item.Password)
         </td>
         <td>
-            @Html.ActionLink("Edit", "SEdit", new { id=item.UserId }) |
-            @Html.ActionLink("Details", "SDetails", new { id=item.UserId }) |
+            @Html.ActionLink("Edit", "Edit", new { id=item.UserId }) |
+            @Html.ActionLink("Info", "Info", new { id = item.UserId })
             @Html.ActionLink("Delete", "Delete", new { id=item.UserId })
+            
         </td>
     </tr>
 }

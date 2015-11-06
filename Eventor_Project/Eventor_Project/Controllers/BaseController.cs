@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Reflection;
 using System.Web.Mvc;
 using Eventor_Project.Models;
 using Eventor_Project.Models.SqlRepository;
@@ -36,5 +38,7 @@ namespace Eventor_Project.Controllers
             ViewBag.CurrentUser = CurrentUser;
             base.OnResultExecuting(filterContext);
         }
+
+
     }
 }

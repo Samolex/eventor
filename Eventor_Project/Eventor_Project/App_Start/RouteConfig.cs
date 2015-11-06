@@ -13,6 +13,25 @@ namespace Eventor_Project
                 "Archive/{id}",                            // URL with parameters
                 new { controller = "User", action = "Edit" }  // Parameter defaults
             );
+
+            routes.MapRoute(
+                "UserInfo",
+                "id/{id}",
+                new { controller = "User", action = "Info", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                "Users",
+                "Users",
+                new { controller = "User", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                "My Profile",
+                "im/{action}",
+                new { controller = "User", action = "Details", id = UrlParameter.Optional }
+            );
+
             routes.MapRoute(
                 "Default", 
                 "{controller}/{action}/{id}",
