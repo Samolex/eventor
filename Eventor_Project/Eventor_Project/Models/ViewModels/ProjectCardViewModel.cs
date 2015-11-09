@@ -52,7 +52,7 @@ namespace Eventor_Project.Models.ViewModels
         {
             get
             {
-                return OrganisersCurrentCount / OrganisersRequiredCount + 20;
+                return (OrganisersCurrentCount / (float)OrganisersRequiredCount) * 100;
             }
         }
 
@@ -76,7 +76,7 @@ namespace Eventor_Project.Models.ViewModels
         {
             get
             {
-                return InventoryCurrentCount / InventoryRequiredCount + 20;
+                return (InventoryCurrentCount / (float)InventoryRequiredCount) * 100;
             }
         }
 
@@ -99,7 +99,7 @@ namespace Eventor_Project.Models.ViewModels
         {
             get
             {
-                return CustomersCurrentCount / CustomersRequiredCount + 20;
+                return (CustomersCurrentCount / (float)CustomersRequiredCount) * 100;
             }
         }
         public DateTime AddedTime { get; set; }

@@ -50,8 +50,8 @@
         @Html.DisplayFor(model => model.PhoneNumber)
     </div>
 
-    <form action=@Url.Action("NewMessage", "Mail")>
-        @Html.Hidden("receiverId", Model.UserId)
+    <form action=@Url.Action("NewMessage", "Mail") method="POST">
+        @Html.Hidden("recId", Model.UserId)
         <div class="btn-group right" role="group">
             <input type="submit" class="btn btn-primary" value="Новое сообщение">
         </div>

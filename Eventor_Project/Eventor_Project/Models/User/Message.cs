@@ -22,6 +22,8 @@ namespace Eventor_Project.Models.User
         [Required]
         public int SenderId { get; set; }
 
+        public int? PrevMessageId { get; set; }
+
         [Required]
         public string ReceiverNick { get; set; }
 

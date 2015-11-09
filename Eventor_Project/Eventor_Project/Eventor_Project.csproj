@@ -210,6 +210,10 @@
     <Compile Include="Migrations\201511051302255_senderNick.Designer.cs">
       <DependentUpon>201511051302255_senderNick.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511090621592_PrevMessageId.cs" />
+    <Compile Include="Migrations\201511090621592_PrevMessageId.Designer.cs">
+      <DependentUpon>201511090621592_PrevMessageId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CurrentContext.cs" />
     <Compile Include="Models\SqlRepository\UserRepository\BenefitRepository.cs" />
@@ -393,6 +397,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511051302255_senderNick.resx">
       <DependentUpon>201511051302255_senderNick.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511090621592_PrevMessageId.resx">
+      <DependentUpon>201511090621592_PrevMessageId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -18,7 +18,6 @@ namespace Eventor_Project.Controllers.User
 {
     public class RegisterController : BaseController
     {
-        private readonly CurrentContext db = new CurrentContext();
 
         [HttpGet]
         public ActionResult Index()

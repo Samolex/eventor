@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Eventor_Project.Models.User;
 
 namespace Eventor_Project.Models.SqlRepository
 {

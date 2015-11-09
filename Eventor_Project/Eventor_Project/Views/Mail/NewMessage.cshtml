@@ -6,7 +6,7 @@
 
 @model Eventor_Project.Models.ViewModels.MessageView
 <h2>Новое сообщение</h2>
-@using (Html.BeginForm("NewMessage", "Mail", FormMethod.Post, new { @class = "form-horizontal" }))
+@using (Html.BeginForm("SendMessage", "Mail", FormMethod.Post, new { @class = "form-horizontal" }))
 {
     <div id="main" class="tab active">
         @Html.AntiForgeryToken()

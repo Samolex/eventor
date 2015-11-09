@@ -25,9 +25,8 @@
             </td>
         </tr>
         
-        <form action=@Url.Action("NewMessage", "Mail")>
-            @Html.Hidden("receiverId", item.SenderId)
-            @Html.Hidden("prevTopic", item.Topic)
+        <form action=@Url.Action("NewMessage", "Mail") method="POST">
+            @Html.Hidden("recId", item.SenderId)
             @Html.Hidden("prevMessageId", item.MessageId)
             <div class="btn-group right" role="group">
                 <input type="submit" class="btn btn-default" value="Ответить">

@@ -23,7 +23,21 @@ namespace Eventor_Project.Controllers.User
 
         [Authorize]
         [HttpPost]
-        public ActionResult NewMessage(MessageView messageView)
+        public ActionResult NewMessage(int recId = -1, int prevMessageId = -1)
+        {
+            var message = new MessageView();
+            message.ReceiverId = recId;
+            message.ReceiverNick = Repository.GetUser(recId).Nickname;
+            message.SenderId = CurrentUser.UserId;
+            message.SenderNick = CurrentUser.Nickname;
+            message.PrevMessage = ((prevMessageId > 0) ? Repository.ReadMessage(prevMessageId) : null);
+            message.Topic = ((message.PrevMessage != null) ? "Re: " + message.PrevMessage.Topic : null);
+            return View(message);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult SendMessage(MessageView messageView)
         {
             if (ModelState.IsValid)
             {
@@ -31,21 +45,7 @@ namespace Eventor_Project.Controllers.User
                 Repository.CreateMessage(message);
                 return RedirectToAction("Index");
             }
-            return View(messageView);
-        }
-
-        [Authorize]
-        [HttpGet]
-        public ActionResult NewMessage(int receiverId, string prevTopic, int prevMessageId = -1)
-        {
-            var message = new MessageView();
-            message.ReceiverId = receiverId;
-            message.ReceiverNick = Repository.GetUser(receiverId).Nickname;
-            message.SenderId = CurrentUser.UserId;
-            message.SenderNick = CurrentUser.Nickname;
-            message.Topic = String.IsNullOrEmpty(prevTopic) ? null : "Re: " + prevTopic;
-            message.PrevMessage = Repository.ReadMessage(prevMessageId);
-            return View(message);
+            return View("NewMessage");
         }
 
     }
