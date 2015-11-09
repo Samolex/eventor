@@ -1,6 +1,7 @@
 ﻿body {
     background-color: #ccc;
     color: #232323;
+    padding-top: 70px;
 }
 
 .link-decor-none a, .link-decor-none a:hover, .link-decor-none a:visited {

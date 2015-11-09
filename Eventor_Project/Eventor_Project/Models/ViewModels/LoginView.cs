@@ -6,6 +6,7 @@ using System.Web;
 
 namespace Eventor_Project.Models.ViewModels
 {
+    
     public class LoginView
     {
         [Required(ErrorMessage = "Введите email")]

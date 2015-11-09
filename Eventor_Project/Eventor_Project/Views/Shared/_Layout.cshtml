@@ -72,9 +72,11 @@
             </div>
         </div>
     </nav>
-    <main>
+<main>
+    <div class="container">
         @RenderBody()
-    </main>    
+    </div>
+</main>    
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/main")
     @RenderSection("scripts", false)
