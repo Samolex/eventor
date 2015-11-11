@@ -14,6 +14,13 @@ namespace Eventor_Project.Models.ViewModels
         public int AuthorId { get; set; }
 
         public string Title { get; set; }
+        public string GetTitle
+        {
+            get
+            {
+                return Title != null ? Title : "Неизвестный проект";
+            }
+        }
         public string ShortDescription { get; set; }
         public string Description { get; set; }
 
@@ -52,7 +59,7 @@ namespace Eventor_Project.Models.ViewModels
         {
             get
             {
-                return OrganisersCurrentCount / OrganisersRequiredCount + 20;
+                return OrganisersCurrentCount / OrganisersRequiredCount;
             }
         }
 
@@ -76,7 +83,7 @@ namespace Eventor_Project.Models.ViewModels
         {
             get
             {
-                return InventoryCurrentCount / InventoryRequiredCount + 20;
+                return InventoryCurrentCount / InventoryRequiredCount;
             }
         }
 
@@ -99,7 +106,7 @@ namespace Eventor_Project.Models.ViewModels
         {
             get
             {
-                return CustomersCurrentCount / CustomersRequiredCount + 20;
+                return CustomersCurrentCount / CustomersRequiredCount;
             }
         }
         public DateTime AddedTime { get; set; }
