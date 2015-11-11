@@ -1,0 +1,25 @@
+﻿@model IList<Eventor_Project.Models.User.Role>
+@{
+    ViewBag.Title = "CurrentProject";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eventor!</h2>
+
+<p>
+    @foreach (var role in Model)
+    {
+        <div class="item">
+            <span class="id">
+                @role.RoleId
+            </span>
+            <span class="name">
+                @role.Name
+            </span>
+            <span class="Code">
+                @role.Code
+            </span>
+        </div>
+    }
+</p>
+<h2>Index</h2>

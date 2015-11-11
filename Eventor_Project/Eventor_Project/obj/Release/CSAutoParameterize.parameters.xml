@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="CurrentContext-Web.config Connection String" description="CurrentContext Строка подключения в web.config, используемая приложением для доступа к базе данных." defaultValue="Data Source=tzn5ccyprf.database.windows.net;Initial Catalog=eventitA25q4r9sg;Integrated Security=False;User ID=Eventor;Password=GoodPassword1;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Study\\eventor\\Eventor_Project\\Eventor_Project\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='CurrentContext']/@connectionString" />
+  </parameter>
+  <parameter name="CurrentContext_DatabasePublish-Web.config Connection String" description="CurrentContext_DatabasePublish Строка подключения в web.config, используемая приложением для доступа к базе данных." defaultValue="CurrentContext_DatabasePublish.ConnetionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Study\\eventor\\Eventor_Project\\Eventor_Project\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='CurrentContext_DatabasePublish']/@connectionString" />
+  </parameter>
+</parameters>

@@ -1,0 +1,65 @@
+﻿@model Eventor_Project.Models.User.User
+@{
+    ViewBag.Title = "Информация о пользователе";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Html.DisplayFor(model => model.Nickname)</h2>
+<fieldset>
+    <legend>
+        @String.Format(Model.Surname + " " + Model.Name)
+    </legend>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.Email)<b>:</b>
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.Sex)<b>:</b>
+        @Html.DisplayFor(model => model.Sex)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.Nickname)<b>:</b>
+        @Html.DisplayFor(model => model.Nickname)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.Name)<b>:</b>
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.Surname)<b>:</b>
+        @Html.DisplayFor(model => model.Surname)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.Patronymic)<b>:</b>
+        @Html.DisplayFor(model => model.Patronymic)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.ContactEmail)<b>:</b>
+        @Html.DisplayFor(model => model.ContactEmail)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.PhoneNumber)<b>:</b>
+        @Html.DisplayFor(model => model.PhoneNumber)
+    </div>
+
+    <form action=@Url.Action("NewMessage", "Mail") method="POST">
+        @Html.Hidden("recId", Model.UserId)
+        <div class="btn-group right" role="group">
+            <input type="submit" class="btn btn-primary" value="Новое сообщение">
+        </div>
+    </form>
+
+</fieldset>
+
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
