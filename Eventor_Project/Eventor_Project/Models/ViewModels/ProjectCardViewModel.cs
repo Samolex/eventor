@@ -14,6 +14,13 @@ namespace Eventor_Project.Models.ViewModels
         public int AuthorId { get; set; }
 
         public string Title { get; set; }
+        public string GetTitle
+        {
+            get
+            {
+                return Title != null ? Title : "Неизвестный проект";
+            }
+        }
         public string ShortDescription { get; set; }
         public string Description { get; set; }
 

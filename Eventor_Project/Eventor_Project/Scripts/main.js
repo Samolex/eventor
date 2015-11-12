@@ -1,18 +1,6 @@
 ﻿
 $(document).ready(function () {
     
-    var tabsChanged = function (event) {
-        var hash = window.location.hash;
-        if (hash) {
-            // Show/Hide Tabs
-            $('.tabs ' + hash).show().siblings().hide();
-            var currentClass = hash.replace('#', '.');
-            $('.tabs .tab-links ' + currentClass).addClass('active').siblings().removeClass('active');
-        }
-    };
-    tabsChanged();
-
-    window.addEventListener('hashchange', tabsChanged, false);
     $('.datepicker').datepicker({
         format: "dd/mm/yyyy",
         startDate: "+0d",

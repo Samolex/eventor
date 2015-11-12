@@ -24,8 +24,7 @@
 </head>
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="content">
-            <div class="container-fluid">
+            <div class="container">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="/"><i class="glyphicon glyphicon-picture"></i> Logo</a>
                 </div>
@@ -35,7 +34,7 @@
                         <li>@Html.ActionLink("Пользователи", "Index","User")</li>
                     </ul>
                     <!--TODO: Search Form-->
-                    <form class="navbar-form navbar-left" role="search">
+                    <form class="navbar-form navbar-left center-block" role="search">
                         <div class="input-group">
                             <input type="text" name="search" value="" placeholder="Поиск..." class="form-control" />
                             <span class="input-group-btn">
@@ -80,7 +79,6 @@
                         </ul>
                 </div>
             </div>
-        </div>
     </nav>
 <main>
     <div class="container">
