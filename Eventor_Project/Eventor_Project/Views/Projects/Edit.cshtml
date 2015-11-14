@@ -13,7 +13,7 @@
     </ul>
 </div>
 <div class="container">
-    @using (@Html.BeginForm("Edit", "Projects", FormMethod.Post, new { }))
+    @using (@Html.BeginForm("Edit", "Projects", FormMethod.Post, new { id="project_form"}))
     {
 
         @Html.AntiForgeryToken()
@@ -69,88 +69,80 @@
                 </fieldset>
             </div>
             <div id="inventory" class="tab-pane" role="tabpanel">
-                <fieldset>
-                    <h4>Добавьте необходимые материалы.</h4>
-                    <table class="table" id="materialsTable" data-bind="visible: $root.materialModel.getMaterials() || true">
-                        <thead>
-                            <tr>
+               <fieldset>
+                       <h4>Организаторы</h4>
+                       <table class="table">
+                           <thead>
+                               <tr>
+                                   <th class="col-md-2">Кол-во</th>
+                                   <th class="col-md-3">Роль</th>
+                                   <th>Описание</th>
+                                   <th class="col-md-1"></th>
+                               </tr>
+                           </thead>
+                           <tbody data-bind="foreach: organisersModel.organisers">
+                               <tr>
+                                   <td><input type="text" data-bind="value: RequiredCount" class="form-control"></td>
+                                   <td><input type="text" data-bind="value: Name" class="form-control"></td>
+                                   <td><input type="text" data-bind="value: Description" class="form-control"></td>
+                                   <td><a href="#" class="btn btn-link" data-bind="click: $root.organisersModel.removeOrganizer"><i class="glyphicon glyphicon-remove"></i></a></td>
+                               </tr>
+                           </tbody>
+                       </table>
+                       <p>
+                           <a href="#" data-bind="click: $root.organisersModel.addOrganizer" class="btn btn-link">Добавить...</a>
+                       </p>
 
-                                <th class="col-md-3 text-center">Кол-во</th>
-                                <th class="col-md-8 text-center">Название</th>
-                                <th />
-                            </tr>
-                        </thead>
-                        <tbody data-bind="foreach: materialModel.materials, visible: materialModel.materials().length > 0">
-                            <tr>
-                                <td><span data-bind="text: RequiredAmount"></span></td>
-                                <td><span data-bind="text: Title"></span></td>
-                                <td class="link-decor-none text-center"><a href="" data-bind="click: $root.materialModel.removeMaterial"><i class="glyphicon glyphicon-remove"></i></a></td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td><input class="form-control input-sm" data-bind="value: materialModel.newMaterialAmount"></td>
-                                <td><input class="form-control input-sm" data-bind="value: materialModel.newMaterialTitle"></td>
-                                <td class="link-decor-none text-center"><a href="" data-bind="click: $root.materialModel.addMaterial"><i class="glyphicon glyphicon-plus"></i></a></td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                    <h4>Добавьте необходимое кол-во участников и их роли.</h4>
-                    <table class="table" id="customersTable" data-bind="visible: $root.customerModel.getCustomers() || true">
-                        <thead>
-                            <tr>
-                                <th class="col-md-1 text-center">Мин. кол-во</th>
-                                <th class="col-md-1 text-center">Макс. кол-во</th>
-                                <th class="col-md-4 text-center">Роль</th>
-                                <th class="col-md-6 text-center">Описание</th>
-                            </tr>
-                        </thead>
-                        <tbody data-bind="foreach: customerModel.customers, visible: customerModel.customers().length > 0">
-                            <tr>
-                                <td><span data-bind="text: MinCount"></span></td>
-                                <td><span data-bind="text: MaxCount"></span></td>
-                                <td><span data-bind="text: Role"></span></td>
-                                <td><span data-bind="text: Description"></span></td>
-                                <td class="link-decor-none text-center"><a href="" data-bind="click: $root.customerModel.removeCustomer"><i class="glyphicon glyphicon-remove"></i></a></td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td><input class="form-control input-sm" data-bind="value: customerModel.newCustomerMinCount"></td>
-                                <td><input class="form-control input-sm" data-bind="value: customerModel.newCustomerMaxCount"></td>
-                                <td><input class="form-control input-sm" data-bind="value: customerModel.newCustomerRole"></td>
-                                <td><input class="form-control input-sm" data-bind="value: customerModel.newCustomerDescription"></td>
-                                <td class="link-decor-none text-center"><a href="" data-bind="click: $root.customerModel.addCustomer"><i class="glyphicon glyphicon-plus"></i></a></td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                    <h4>Добавьте необходимое кол-во организаторов и их роли.</h4>
-                    <table class="table" id="organisersTable" data-bind="visible: $root.organizerModel.getOrganizers() || true">
-                        <thead>
-                            <tr>
-                                <th class="col-md-2 text-center">Кол-во</th>
-                                <th class="col-md-4 text-center">Роль</th>
-                                <th class="col-md-6 text-center">Описание</th>
-                            </tr>
-                        </thead>
-                        <tbody data-bind="foreach: organizerModel.organizers, visible: organizerModel.organizers().length > 0">
-                            <tr>
-                                <td><span data-bind="text: RequiredCount"></span></td>
-                                <td><span data-bind="text: Name"></span></td>
-                                <td><span data-bind="text: Description"></span></td>
-                                <td class="link-decor-none text-center"><a href="" data-bind="click: $root.organizerModel.removeOrganizer"><i class="glyphicon glyphicon-remove"></i></a></td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td><input class="form-control input-sm" data-bind="value: organizerModel.newOrganizerRequiredCount"></td>
-                                <td><input class="form-control input-sm" data-bind="value: organizerModel.newOrganizerName"></td>
-                                <td><input class="form-control input-sm" data-bind="value: organizerModel.newOrganizerDescription"></td>
-                                <td class="link-decor-none text-center"><a href="" data-bind="click: $root.organizerModel.addOrganizer"><i class="glyphicon glyphicon-plus"></i></a></td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                    </fieldset>
+                       <h4>Материалы</h4>
+                       <table class="table">
+                           <thead>
+                               <tr>
+                                   <th class="col-md-2">Кол-во</th>
+                                   <th>Название</th>
+                                   <th class="col-md-1"></th>
+                               </tr>
+                           </thead>
+                           <tbody data-bind="foreach: materialsModel.materials">
+                               <tr>
+                                   <td><input type="text" class="form-control" data-bind="value: RequiredAmount"></td>
+                                   <td><input type="text" class="form-control" data-bind="value: Title"></td>
+                                   <td>
+                                       <a href="#" class="btn btn-link" data-bind="click: $root.materialsModel.removeMaterial">
+                                           <i class="glyphicon glyphicon-remove"></i>
+                                       </a>
+                                   </td>
+                               </tr>
+                           </tbody>
+                       </table>
+                       <p>
+                           <a href="#" data-bind="click: $root.materialsModel.addMaterial" class="btn btn-link">Добавить...</a>
+                       </p>
+
+                       <h4>Участники</h4>
+                       <table class="table">
+                           <thead>
+                               <tr>
+                                   <th class="col-md-1">Мин. кол-во</th>
+                                   <th class="col-md-1">Мак. кол-во</th>
+                                   <th class="col-md-3">Роль</th>
+                                   <th>Описание</th>
+                                   <th class="col-md-1"></th>
+                               </tr>
+                           </thead>
+                           <tbody data-bind="foreach: customersModel.customers">
+                               <tr>
+                                   <td><input type="text" class="form-control" data-bind="value: MinCount"></td>
+                                   <td><input type="text" class="form-control" data-bind="value: MaxCount"></td>
+                                   <td><input type="text" class="form-control" data-bind="value: Role"></td>
+                                   <td><input type="text" class="form-control" data-bind="value: Description"></td>
+                                   <td><a href="#" class="btn btn-link" data-bind="click: $root.customersModel.removeCustomer"><i class="glyphicon glyphicon-remove"></i></a></td>
+                               </tr>
+                           </tbody>
+                       </table>
+                       <p>
+                           <a href="#" class="btn btn-link" data-bind="click: $root.customersModel.addCustomer">Добавить...</a>
+                       </p>
+               </fieldset>
             </div>
             <div id="moderation" class="tab-pane" role="tabpanel">
                 <fieldset>
@@ -159,8 +151,9 @@
             </div>
             <div class="form-group">
                 <div class="form-inline">
-                    <input type="submit" class="btn btn-success form-control" value="Сохранить">
-                    <a href="#" class="btn btn-danger form-control">Удалить</a>
+                    <a href="#" data-bind="click: $root.save">saves</a>
+                    <input type="submit" class="btn btn-success" value="Сохранить">
+                    <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span> Удалить проект</a>
                 </div>
             </div>
         </div>

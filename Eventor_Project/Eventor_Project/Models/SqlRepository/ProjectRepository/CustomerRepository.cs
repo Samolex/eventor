@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Eventor_Project.Models.ProjectModel;
 using System;
+using System.Collections.Generic;
 
 namespace Eventor_Project.Models.SqlRepository
 {
@@ -77,6 +78,14 @@ namespace Eventor_Project.Models.SqlRepository
         {
             var instance = Db.Customers.FirstOrDefault(p => p.CustomerId == customerId);
             return instance;
+        }
+
+        public void SaveCustomers(List<Customer> customers)
+        {
+            var projectId = customers.FirstOrDefault().ProjectId;
+            var project = ReadProject(projectId);
+            project.Customers = customers;
+            Db.SaveChanges();
         }
     }
 }

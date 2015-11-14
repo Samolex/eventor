@@ -95,6 +95,7 @@ namespace Eventor_Project.Models.SqlRepository
 
         Customer ReadCustomer(int CustomerId);
 
+        void SaveCustomers(List<Customer> customer);
         #endregion
 
         #region Material
@@ -108,6 +109,7 @@ namespace Eventor_Project.Models.SqlRepository
         bool DeleteMaterial(int MaterialId);
 
         Material ReadMaterial(int MaterialId);
+        void SaveMaterials(List<Material> materials);
 
         #endregion
 
@@ -123,6 +125,7 @@ namespace Eventor_Project.Models.SqlRepository
 
         Organizer ReadOrganizer(int OrganizerId);
 
+        void SaveOrganisers(List<Organizer> organisers);
         #endregion
 
         #region ProjectComment

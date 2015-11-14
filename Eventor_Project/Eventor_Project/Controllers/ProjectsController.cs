@@ -80,20 +80,13 @@ namespace Eventor_Project.Controllers
         [HttpPost,Authorize]
         public ActionResult Edit(Project project)
         {
+
+            ViewBag.CategoryId = new SelectList(Repository.Categories, "CategoryId", "Name", project.CategoryId);
             if (ModelState.IsValid)
             {
                 var result = Repository.UpdateProject(project);
-                if (result)
-                {
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    return View(project);
-                }
             }
-            ViewBag.CategoryId = new SelectList(Repository.Categories, "CategoryId", "Name", project.CategoryId);
-            return View(project);
+            return RedirectToAction("Edit", new { projectId = project.ProjectId });
         }
 
         #region Inventory_Methods
@@ -107,33 +100,12 @@ namespace Eventor_Project.Controllers
                 return Json("");
             return Json(materials, JsonRequestBehavior.AllowGet);
         }
-
         [HttpPost, Authorize]
-        public JsonResult AddMaterial(Material material)
+        public JsonResult SaveMaterials(List<Material> materials)
         {
-            if (Repository.CreateMaterial(material))
-            {
-                return Json(material);
-            }
-            else
-            {
-                return Json("");
-            }
+            Repository.SaveMaterials(materials);
+            return Json("");
         }
-        [HttpPost, Authorize]
-        public JsonResult DeleteMaterial(int materialId)
-        {
-            var material = Db.Materials.Find(materialId);
-            if(Repository.DeleteMaterial(materialId))
-            {
-                return Json(material);
-            }
-            else
-            {
-                return Json("");
-            }
-        }
-
         #endregion
         #region Customers Methods
         [HttpGet, Authorize]
@@ -145,27 +117,11 @@ namespace Eventor_Project.Controllers
                 return Json("");
             return Json(customers, JsonRequestBehavior.AllowGet);
         }
-
-        [HttpPost, Authorize]
-        public JsonResult AddCustomer(Customer customer)
+        [HttpPost,Authorize]
+        public JsonResult SaveCustomers(List<Customer> customers)
         {
-            if (Repository.CreateCustomer(customer))
-            {
-                return Json(customer);
-            }
-            else
-            {
-                return Json("");
-            }
-        }
-        [HttpPost, Authorize]
-        public JsonResult DeleteCustomer(int customerId)
-        {
-            var customer = Db.Customers.Find(customerId);
-            if (Repository.DeleteCustomer(customerId))
-                return Json(customer);
-            else
-                return Json("");
+            Repository.SaveCustomers(customers);
+            return Json("");
         }
         #endregion
         #region Organizers Methods
@@ -179,31 +135,14 @@ namespace Eventor_Project.Controllers
             return Json(organisers, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost, Authorize]
-        public JsonResult AddOrganizer(Organizer organizer)
+        [HttpPost,Authorize]
+        public JsonResult SaveOrganisers(List<Organizer> organisers)
         {
-            if (Repository.CreateOrganizer(organizer))
-            {
-                return Json(organizer);
-            }
-            else
-            {
-                return Json("");
-            }
+            Repository.SaveOrganisers(organisers);
+            return Json("");
         }
-        [HttpPost, Authorize]
-        public JsonResult DeleteOrganizer(int organizerId)
-        {
-            var organizer = Db.Organisers.Find(organizerId);
-            if (Repository.DeleteOrganizer(organizerId))
-            {
-                return Json(organizer);
-            }
-            else
-            {
-                return Json("");
-            }
-        }
+
         #endregion
+
     }
 }

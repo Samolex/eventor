@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Eventor_Project.Models.ProjectModel;
 using System;
+using System.Collections.Generic;
 
 namespace Eventor_Project.Models.SqlRepository
 {
@@ -76,6 +77,14 @@ namespace Eventor_Project.Models.SqlRepository
         {
             var instance = Db.Organisers.FirstOrDefault(p => p.OrganizerId == organizerId);
             return instance;
+        }
+
+        public void SaveOrganisers(List<Organizer> organisers)
+        {
+            var projectId = organisers.FirstOrDefault().ProjectId;
+            var project = ReadProject(projectId);
+            project.Organisers = organisers;
+            Db.SaveChanges();
         }
     }
 }

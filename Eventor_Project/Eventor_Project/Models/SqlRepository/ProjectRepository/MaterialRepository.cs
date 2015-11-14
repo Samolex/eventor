@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Eventor_Project.Models.ProjectModel;
 using System;
+using System.Collections.Generic;
 
 namespace Eventor_Project.Models.SqlRepository
 {
@@ -73,6 +74,28 @@ namespace Eventor_Project.Models.SqlRepository
         {
             var instance = Db.Materials.FirstOrDefault(p => p.MaterialId == materialId);
             return instance;
+        }
+
+        public void SaveMaterials(List<Material> materials)
+        {
+            try
+            {
+                var projectId = materials.FirstOrDefault().ProjectId;
+                var project = ReadProject(projectId);
+                Type type = project.GetType();
+                var info = type.GetProperty("Inventory");
+                if (info.CanWrite)
+                {
+                    info.SetValue(project,null)
+                    info.SetValue(project, materials);
+                }
+                info.SetValue()
+                Db.SaveChanges();
+            }
+            catch
+            {
+
+            }
         }
     }
 }
