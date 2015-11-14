@@ -4,57 +4,57 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="container">
+
+    <fieldset>
 
 
-<fieldset>
-
-
-    <legend>
-        <h2>@Html.DisplayFor(model => model.Nickname)</h2>
-    </legend>
-    <div align="center">
-        <img src="~/images/avatar-default.jpg" class="img-rounded" alt="Sample Image">
-    </div>
-
-    <div class="row text-center">
-        <div class="col-sm-6 contacts">
-            <h2>Контактные данные:</h2>
-            <b>@Html.LabelFor(model => model.ContactEmail)</b>:
-            @Html.DisplayFor(model => model.ContactEmail) <br/>
-            <b>@Html.LabelFor(model => model.PhoneNumber)</b>:
-            @Html.DisplayFor(model => model.PhoneNumber) <br/>
-            <form action=@Url.Action("NewMessage", "Mail") method="POST">
-                @Html.Hidden("recId", Model.UserId)
-                <div class="btn-group right" role="group">
-                    <input type="submit" class="btn btn-primary" value="Новое сообщение">
-                </div>
-            </form>
+        <legend>
+            @Html.DisplayFor(model => model.Nickname)
+        </legend>
+        <div align="center">
+            <img src="~/images/avatar-default.jpg" class="img-rounded" alt="Sample Image">
         </div>
 
-        <div class="col-sm-6 contacts">
-            <h2>Информация о пользователе:</h2>
-            <b>ФИО: </b>
-            @String.Format(Model.Surname + " " + Model.Name + " " + Model.Patronymic) <br/>
-            <b>@Html.LabelFor(model => model.PlaceOfLiving)</b>:
-            @Html.DisplayFor(model => model.PlaceOfLiving.PlaceInfo) <br/>
-            <b>@Html.LabelFor(model => model.PlaceOfStudy)</b>:
-            @Html.DisplayFor(model => model.PlaceOfStudy.PlaceInfo) <br/>
-            <b>@Html.LabelFor(model => model.Birthdate)</b>:
-            @Html.DisplayFor(model => model.DisplayBirthdate) <br/>
+        <div class="row text-center">
+            <div class="col-sm-6 contacts">
+                <h2>Контактные данные:</h2>
+                <b>@Html.LabelFor(model => model.ContactEmail)</b>:
+                @Html.DisplayFor(model => model.ContactEmail) <br />
+                <b>@Html.LabelFor(model => model.PhoneNumber)</b>:
+                @Html.DisplayFor(model => model.PhoneNumber) <br />
+                <form action=@Url.Action("NewMessage", "Mail") method="POST">
+                    @Html.Hidden("recId", Model.UserId)
+                    <div class="btn-group right" role="group">
+                        <input type="submit" class="btn btn-primary" value="Новое сообщение">
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-sm-6 contacts">
+                <h2>Информация о пользователе:</h2>
+                <b>ФИО: </b>
+                @String.Format(Model.Surname + " " + Model.Name + " " + Model.Patronymic) <br />
+                <b>@Html.LabelFor(model => model.PlaceOfLiving)</b>:
+                @Html.DisplayFor(model => model.PlaceOfLiving.PlaceInfo) <br />
+                <b>@Html.LabelFor(model => model.PlaceOfStudy)</b>:
+                @Html.DisplayFor(model => model.PlaceOfStudy.PlaceInfo) <br />
+                <b>@Html.LabelFor(model => model.Birthdate)</b>:
+                @Html.DisplayFor(model => model.DisplayBirthdate) <br />
+            </div>
+
+            <h2> О себе:</h2>
+            <p class="contacts">Данный пользователь пока не указал о себе никакой дополнительной информации.</p>
+
+
+            @foreach (var item in Model.Projects)
+            {
+                @item.Author
+            }
         </div>
 
-        <h2> О себе:</h2>
-        <p class="contacts">Данный пользователь пока не указал о себе никакой дополнительной информации.</p>
-
-
-        @foreach (var item in Model.Projects)
-        {
-            @item.Author
-        }
-    </div>
-
-</fieldset>
-
+    </fieldset>
+</div>
 
 
 @*<div class="bs-example">

@@ -20,16 +20,16 @@ namespace Eventor_Project.Controllers
         public ActionResult Index()
         {
             var projectsViewModel = Repository.Projects.ToList()
-                .Select(m=>(ProjectCardViewModel)ModelMapper.Map(m, typeof(Project), typeof(ProjectCardViewModel))).ToEnumerable();
+                .Select(m=>(ProjectCardViewModel)ModelMapper.Map(m, typeof(Project), typeof(ProjectCardViewModel))).ToList();
             return View(projectsViewModel);
         }
 
         [HttpPost]
-        public ActionResult Index(IEnumerable<Project> projects = null)
+        public ActionResult Index(IEnumerable<Project> projects)
         {
             projects = projects ?? Repository.Projects;
             var projectsViewModel = projects.ToList()
-                .Select(m => (ProjectCardViewModel)ModelMapper.Map(m, typeof(Project), typeof(ProjectCardViewModel))).ToEnumerable();
+                .Select(m => (ProjectCardViewModel)ModelMapper.Map(m, typeof(Project), typeof(ProjectCardViewModel))).ToList();
             return View(projectsViewModel);
         }
 
