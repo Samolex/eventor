@@ -11,8 +11,8 @@ main {
     margin: 10px;
     padding: 10px;
 }
-nav .content {
-    padding: 0px;
+nav .container {
+    background-color: transparent;
 }
 login-form {
     margin: auto;
@@ -57,14 +57,21 @@ legend {
 
 
 .panel{
-	padding: 0;
 	box-sizing: border-box;
 }
+
+.card{
+    box-sizing: border-box;
+}
+
 .card-cover{
 	width:100%;
 }
-.card-cover2{
-	width:50%;
+.card-cover2 {
+    width: 50%;
+}
+.panel-body{
+    height: 275px;
 }
 .card-title,
 .card-body{

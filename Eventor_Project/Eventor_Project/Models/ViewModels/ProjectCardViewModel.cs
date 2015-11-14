@@ -31,6 +31,13 @@ namespace Eventor_Project.Models.ViewModels
 
         public DateTime? OrganizationDate { get; set; }
         public DateTime? EventDate { get; set; }
+        public virtual string GetEventDate
+        {
+            get
+            {
+                return EventDate != null ? EventDate.Value.ToShortDateString() : "";
+            }
+        }
 
 
         public List<Organizer> Organisers { get; set; }
@@ -59,7 +66,7 @@ namespace Eventor_Project.Models.ViewModels
         {
             get
             {
-                return (OrganisersCurrentCount / (float)OrganisersRequiredCount) * 100;
+                return OrganisersRequiredCount != 0 ? (OrganisersCurrentCount / (float)OrganisersRequiredCount) * 100 : 100;
             }
         }
 
@@ -83,7 +90,7 @@ namespace Eventor_Project.Models.ViewModels
         {
             get
             {
-                return (InventoryCurrentCount / (float)InventoryRequiredCount) * 100;
+                return InventoryRequiredCount != 0 ? (InventoryCurrentCount / (float)InventoryRequiredCount) * 100 : 100;
             }
         }
 
@@ -106,7 +113,7 @@ namespace Eventor_Project.Models.ViewModels
         {
             get
             {
-                return (CustomersCurrentCount / (float)CustomersRequiredCount) * 100;
+                return CustomersRequiredCount != 0 ? (CustomersCurrentCount / (float)CustomersRequiredCount) * 100 : 100;
             }
         }
         public DateTime AddedTime { get; set; }
