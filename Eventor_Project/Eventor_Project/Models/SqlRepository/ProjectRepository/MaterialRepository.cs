@@ -86,10 +86,9 @@ namespace Eventor_Project.Models.SqlRepository
                 var info = type.GetProperty("Inventory");
                 if (info.CanWrite)
                 {
-                    info.SetValue(project,null)
+                    info.SetValue(project,null);
                     info.SetValue(project, materials);
                 }
-                info.SetValue()
                 Db.SaveChanges();
             }
             catch
