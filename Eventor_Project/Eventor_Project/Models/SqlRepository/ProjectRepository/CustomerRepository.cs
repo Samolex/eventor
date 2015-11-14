@@ -84,6 +84,10 @@ namespace Eventor_Project.Models.SqlRepository
         {
             var projectId = customers.FirstOrDefault().ProjectId;
             var project = ReadProject(projectId);
+            foreach (var customer in project.Customers.ToList())
+            {
+                DeleteCustomer(customer.CustomerId);
+            }
             project.Customers = customers;
             Db.SaveChanges();
         }

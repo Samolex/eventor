@@ -82,16 +82,14 @@ namespace Eventor_Project.Models.SqlRepository
             {
                 var projectId = materials.FirstOrDefault().ProjectId;
                 var project = ReadProject(projectId);
-                Type type = project.GetType();
-                var info = type.GetProperty("Inventory");
-                if (info.CanWrite)
+                foreach (var material in project.Inventory.ToList())
                 {
-                    info.SetValue(project,null);
-                    info.SetValue(project, materials);
+                    DeleteMaterial(material.MaterialId);
                 }
+                project.Inventory = materials;
                 Db.SaveChanges();
             }
-            catch
+            catch (Exception e)
             {
 
             }

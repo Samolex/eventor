@@ -83,8 +83,13 @@ namespace Eventor_Project.Models.SqlRepository
         {
             var projectId = organisers.FirstOrDefault().ProjectId;
             var project = ReadProject(projectId);
+            foreach (var organiser in project.Organisers.ToList())
+            {
+                DeleteOrganizer(organiser.OrganizerId);
+            }
             project.Organisers = organisers;
             Db.SaveChanges();
+
         }
     }
 }

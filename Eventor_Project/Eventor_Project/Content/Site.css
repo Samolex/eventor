@@ -63,8 +63,9 @@ legend {
 .card-cover{
 	width:100%;
 }
-.card-cover2{
-	width:50%;
+.card-cover2 {
+    width: 50%;
+}
 .panel-body{
     height: 275px;
 }
