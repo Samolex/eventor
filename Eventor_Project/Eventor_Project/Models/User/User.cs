@@ -40,7 +40,7 @@ namespace Eventor_Project.Models.User
         public virtual Place PlaceOfStudy { get; set; }
         [DisplayName("Место проживания")]
         public virtual Place PlaceOfLiving { get; set; }
-        [MaxLength(200), EmailAddress, DisplayName("Контактный Email")]
+        [MaxLength(200), EmailAddress, DisplayName("E-mail")]
         public string ContactEmail {
             get
             {
@@ -86,6 +86,14 @@ namespace Eventor_Project.Models.User
                 }
             }
             return false;
+        }
+
+        public string DisplayBirthdate
+        {
+            get
+            {
+                return Birthdate.ToString("dd MMMM yyyy");
+            }
         }
 
 

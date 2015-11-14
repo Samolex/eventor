@@ -40,5 +40,31 @@ namespace Eventor_Project.Controllers
         }
 
 
+        protected static string ErrorPage = "~/Error";
+        protected static string NotFoundPage = "~/NotFoundPage";
+
+        protected static string NotAdminPage = "~/NotAdminPage";
+
+        public RedirectResult RedirectToNotFoundPage
+        {
+            get
+            {
+                return Redirect(NotFoundPage);
+            }
+        }
+
+        public RedirectResult RedirectToNotAdminPage
+        {
+            get
+            {
+                return Redirect(NotAdminPage);
+            }
+        }
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            base.OnException(filterContext);
+
+            filterContext.Result = Redirect(ErrorPage);
+        }
     }
 }

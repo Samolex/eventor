@@ -72,3 +72,4 @@ C:\Study\eventor\Eventor_Project\Eventor_Project\bin\Content\bootstrap.min.css
 C:\Study\eventor\Eventor_Project\Eventor_Project\bin\Content\Site.css
 C:\Study\eventor\Eventor_Project\Eventor_Project\bin\Content\bootstrap-theme.css.map
 C:\Study\eventor\Eventor_Project\Eventor_Project\bin\Content\bootstrap.css.map
+C:\Study\eventor\Eventor_Project\Eventor_Project\bin\Images\avatar-tiny.jpg

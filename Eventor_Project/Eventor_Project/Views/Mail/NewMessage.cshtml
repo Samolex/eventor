@@ -12,9 +12,8 @@
         @Html.AntiForgeryToken()
         <fieldset>
             <legend>
-                @String.Format("Новое сообщение для '{0}' (id: {1})", Model.ReceiverNick, Model.ReceiverId)
+                @String.Format("Получатель: '{0}' (id: {1})", Model.ReceiverNick, Model.ReceiverId)
             </legend>
-            @Html.ValidationSummary(true)
             @Html.HiddenFor(m => m.SenderId)
             @Html.HiddenFor(m => m.ReceiverId)
             @Html.HiddenFor(m => m.ReceiverNick)
@@ -22,13 +21,17 @@
 
             <div class="form-group">
                 @Html.LabelFor(m => m.Topic, "Тема сообщения")
-                @Html.TextBoxFor(m => m.Topic, new {@class = "form-control"})
+                @Html.TextBoxFor(m => m.Topic, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Topic)
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(m => m.Text, "Текст собщения")
-                @Html.TextAreaFor(m => m.Text, new {@class = "form-control", @rows = "3"})
+                @Html.TextAreaFor(m => m.Text, new { @class = "form-control", @rows = "3" })
+                @Html.ValidationMessageFor(m => m.Text)
             </div>
+
+
             <div class="form-actions">
                 <button type="submit" class="btn btn-primary">
                     Отправить
@@ -36,14 +39,14 @@
             </div>
 
         </fieldset>
-        @if (Model.PrevMessage != null)
+        @*@if (Model.PrevMessage != null)
         {
             @String.Format("Предыдущее сообщение:")
-            <br/>
+            <br />
             @(String.Format("Отправитель: {0} (id: {1})", Model.PrevMessage.SenderNick, Model.PrevMessage.SenderId))
-            <br/>
+            <br />
             @(String.Format("Сообщение: {0}", Model.PrevMessage.Text))
-        }
+        }*@
 
 
     </div>

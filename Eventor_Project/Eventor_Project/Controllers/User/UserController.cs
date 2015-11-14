@@ -51,7 +51,7 @@ namespace Eventor_Project.Controllers.User
         [Authorize] 
         public ActionResult Details()
         {
-            return View("Details", CurrentUser);
+            return View("Info", CurrentUser);
         }
 
         public ActionResult Info(int id = 0)
@@ -83,15 +83,21 @@ namespace Eventor_Project.Controllers.User
 
         //
         // GET: /User/Delete/5
-
+        [Authorize]
         public ActionResult Delete(int id = 0)
         {
+
             Models.User.User user = Repository.GetUser(id);
-            if (user == null)
+            if (user != null)
             {
-                return HttpNotFound();
+                if (CurrentUser.InRoles("admin"))
+                {
+                    //Разрешено удаление
+                    return View(user);
+                }
+                return RedirectToNotAdminPage;
             }
-            return View(user);
+            return RedirectToNotFoundPage;
         }
 
         //
@@ -101,8 +107,12 @@ namespace Eventor_Project.Controllers.User
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Repository.DeleteUser(id);
-            return RedirectToAction("Index");
+            if (CurrentUser.InRoles("admin"))
+            {
+                Repository.DeleteUser(id);
+                return RedirectToAction("Index");
+            }
+            return RedirectToNotAdminPage;
         }
 
         protected override void Dispose(bool disposing)

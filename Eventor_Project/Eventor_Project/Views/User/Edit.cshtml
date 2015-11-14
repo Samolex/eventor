@@ -1,104 +1,94 @@
 ﻿@model Eventor_Project.Models.User.User
-
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Информация о пользователе";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
 
+
+<fieldset>
+
+
+    <legend>
+        <h2>@Html.DisplayFor(model => model.Nickname)</h2>
+    </legend>
+    <div align="center">
+        <img src="~/images/avatar-default.jpg" class="img-rounded" alt="Sample Image">
+    </div>
 @using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-
-    <fieldset>
-        <legend>
-            @Html.DisplayFor(model => model.Nickname)
-        </legend>
-
-
-        @Html.HiddenFor(model => model.UserId)
-        @Html.HiddenFor(model => model.Birthdate)
-        @Html.HiddenFor(model => model.PlaceOfStudy)
-        @Html.HiddenFor(model => model.PlaceOfLiving)
-        @Html.HiddenFor(model => model.Sex)
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Email)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Email)
-            @Html.ValidationMessageFor(model => model.Email)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Nickname)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Nickname)
-            @Html.ValidationMessageFor(model => model.Nickname)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Name)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Name)
-            @Html.ValidationMessageFor(model => model.Name)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Surname)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Surname)
-            @Html.ValidationMessageFor(model => model.Surname)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Patronymic)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Patronymic)
-            @Html.ValidationMessageFor(model => model.Patronymic)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ContactEmail)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ContactEmail)
+    <div class="row text-center">
+        <div class="col-sm-6 contacts">
+            
+            <h2>Контактные данные:</h2>
+            <b>@Html.LabelFor(model => model.ContactEmail)</b>:
+            @Html.EditorFor(model => model.ContactEmail) <br/>
             @Html.ValidationMessageFor(model => model.ContactEmail)
+            <b>@Html.LabelFor(model => model.PhoneNumber)</b>:
+            @Html.EditorFor(model => model.PhoneNumber) <br/>
+            <form action=@Url.Action("NewMessage", "Mail") method="POST">
+                @Html.Hidden("recId", Model.UserId)
+                <div class="btn-group right" role="group">
+                    <input type="submit" class="btn btn-primary" value="Новое сообщение">
+                </div>
+            </form>
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PhoneNumber)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PhoneNumber)
-            @Html.ValidationMessageFor(model => model.PhoneNumber)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Password)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Password)
-            @Html.ValidationMessageFor(model => model.Password)
+        <div class="col-sm-6 contacts">
+            <h2>Информация о пользователе:</h2>
+            <b>ФИО: </b>
+            @String.Format(Model.Surname + " " + Model.Name + " " + Model.Patronymic) <br/>
+            <b>@Html.LabelFor(model => model.PlaceOfLiving)</b>:
+            @Html.EditorFor(model => model.PlaceOfLiving.PlaceInfo) <br/>
+            <b>@Html.LabelFor(model => model.PlaceOfStudy)</b>:
+            @Html.EditorFor(model => model.PlaceOfStudy.PlaceInfo) <br/>
+            <b>@Html.LabelFor(model => model.Birthdate)</b>:
+            @Html.EditorFor(model => model.DisplayBirthdate) <br/>
         </div>
 
-        <p>
-            <div class="btn-group right" role="group">
-                <input type="submit" class="btn btn-success" value="Сохранить">
-            </div>
-        </p>
-    </fieldset>
-}
+        <h2> О себе:</h2>
+        <p class="contacts">Данный пользователь пока не указал о себе никакой дополнительной информации.</p>
 
-<div>
+
+        @foreach (var item in Model.Projects)
+        {
+            @item.Author
+        }
+    </div>
+
+</fieldset>
+
+
+
+@*<div class="bs-example">
+	<div class="media">
+        <a href="#" class="pull-left">
+            <img src="~/images/avatar-tiny.jpg" class="media-object" alt="Sample Image">
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading">Jhon Carter <small><i>Posted on January 10, 2014</i></small></h4>
+            <p>Excellent feature! I love it. One day I'm definitely going to put this Bootstrap component into use and I'll let you know once I do.</p>
+        </div>
+    </div>
+    <div class="media">
+        <a href="#" class="pull-left">
+            <img src="~/images/avatar-tiny.jpg" class="media-object" alt="Sample Image">
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading">Jhon Carter <small><i>Posted on January 10, 2014</i></small></h4>
+            <p>Excellent feature! I love it. One day I'm definitely going to put this Bootstrap component into use and I'll let you know once I do.</p>
+        </div>
+    </div>
+    <div class="media">
+        <a href="#" class="pull-left">
+            <img src="~/images/avatar-tiny.jpg" class="media-object" alt="Sample Image">
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading">Jhon Carter <small><i>Posted on January 10, 2014</i></small></h4>
+            <p>Excellent feature! I love it. One day I'm definitely going to put this Bootstrap component into use and I'll let you know once I do.</p>
+        </div>
+    </div>
+</div>*@
+                            		
+<p>
     @Html.ActionLink("Back to List", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+</p>

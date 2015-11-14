@@ -46,7 +46,7 @@ namespace Eventor_Project.Controllers.User
                 Repository.CreateMessage(message);
                 return RedirectToAction("Index");
             }
-            return View("NewMessage");
+            return View("NewMessage", messageView);
         }
 
     }

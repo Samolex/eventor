@@ -69,7 +69,6 @@ namespace Eventor_Project.App_Start
             kernel.Bind<CurrentContext>().ToMethod(c => new CurrentContext());
             kernel.Bind<IRepository>().To<SqlRepository>().InRequestScope();
             kernel.Bind<IMapper>().To<CommonMapper>().InSingletonScope();
-            
         }
     }
 }

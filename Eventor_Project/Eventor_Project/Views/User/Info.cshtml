@@ -4,62 +4,90 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Html.DisplayFor(model => model.Nickname)</h2>
+
+
 <fieldset>
+
+
     <legend>
-        @String.Format(Model.Surname + " " + Model.Name)
+        <h2>@Html.DisplayFor(model => model.Nickname)</h2>
     </legend>
-
-    <div class="display-label">
-        @Html.LabelFor(model => model.Email)<b>:</b>
-        @Html.DisplayFor(model => model.Email)
+    <div align="center">
+        <img src="~/images/avatar-default.jpg" class="img-rounded" alt="Sample Image">
     </div>
 
-    <div class="display-label">
-        @Html.LabelFor(model => model.Sex)<b>:</b>
-        @Html.DisplayFor(model => model.Sex)
-    </div>
-
-    <div class="display-label">
-        @Html.LabelFor(model => model.Nickname)<b>:</b>
-        @Html.DisplayFor(model => model.Nickname)
-    </div>
-
-    <div class="display-label">
-        @Html.LabelFor(model => model.Name)<b>:</b>
-        @Html.DisplayFor(model => model.Name)
-    </div>
-
-    <div class="display-label">
-        @Html.LabelFor(model => model.Surname)<b>:</b>
-        @Html.DisplayFor(model => model.Surname)
-    </div>
-
-    <div class="display-label">
-        @Html.LabelFor(model => model.Patronymic)<b>:</b>
-        @Html.DisplayFor(model => model.Patronymic)
-    </div>
-
-    <div class="display-label">
-        @Html.LabelFor(model => model.ContactEmail)<b>:</b>
-        @Html.DisplayFor(model => model.ContactEmail)
-    </div>
-
-    <div class="display-label">
-        @Html.LabelFor(model => model.PhoneNumber)<b>:</b>
-        @Html.DisplayFor(model => model.PhoneNumber)
-    </div>
-
-    <form action=@Url.Action("NewMessage", "Mail") method="POST">
-        @Html.Hidden("recId", Model.UserId)
-        <div class="btn-group right" role="group">
-            <input type="submit" class="btn btn-primary" value="Новое сообщение">
+    <div class="row text-center">
+        <div class="col-sm-6 contacts">
+            <h2>Контактные данные:</h2>
+            <b>@Html.LabelFor(model => model.ContactEmail)</b>:
+            @Html.DisplayFor(model => model.ContactEmail) <br/>
+            @Html.ValidateFor(model => model.ContactEmail);
+            <b>@Html.LabelFor(model => model.PhoneNumber)</b>:
+            @Html.DisplayFor(model => model.PhoneNumber) <br/>
+            <form action=@Url.Action("NewMessage", "Mail") method="POST">
+                @Html.Hidden("recId", Model.UserId)
+                <div class="btn-group right" role="group">
+                    <input type="submit" class="btn btn-primary" value="Новое сообщение">
+                </div>
+            </form>
         </div>
-    </form>
+
+        <div class="col-sm-6 contacts">
+            <h2>Информация о пользователе:</h2>
+            <b>ФИО: </b>
+            @String.Format(Model.Surname + " " + Model.Name + " " + Model.Patronymic) <br/>
+            <b>@Html.LabelFor(model => model.PlaceOfLiving)</b>:
+            @Html.DisplayFor(model => model.PlaceOfLiving.PlaceInfo) <br/>
+            <b>@Html.LabelFor(model => model.PlaceOfStudy)</b>:
+            @Html.DisplayFor(model => model.PlaceOfStudy.PlaceInfo) <br/>
+            <b>@Html.LabelFor(model => model.Birthdate)</b>:
+            @Html.DisplayFor(model => model.DisplayBirthdate) <br/>
+        </div>
+
+        <h2> О себе:</h2>
+        <p class="contacts">Данный пользователь пока не указал о себе никакой дополнительной информации.</p>
+
+
+        @foreach (var item in Model.Projects)
+        {
+            @item.Author
+        }
+    </div>
 
 </fieldset>
 
 
+
+@*<div class="bs-example">
+	<div class="media">
+        <a href="#" class="pull-left">
+            <img src="~/images/avatar-tiny.jpg" class="media-object" alt="Sample Image">
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading">Jhon Carter <small><i>Posted on January 10, 2014</i></small></h4>
+            <p>Excellent feature! I love it. One day I'm definitely going to put this Bootstrap component into use and I'll let you know once I do.</p>
+        </div>
+    </div>
+    <div class="media">
+        <a href="#" class="pull-left">
+            <img src="~/images/avatar-tiny.jpg" class="media-object" alt="Sample Image">
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading">Jhon Carter <small><i>Posted on January 10, 2014</i></small></h4>
+            <p>Excellent feature! I love it. One day I'm definitely going to put this Bootstrap component into use and I'll let you know once I do.</p>
+        </div>
+    </div>
+    <div class="media">
+        <a href="#" class="pull-left">
+            <img src="~/images/avatar-tiny.jpg" class="media-object" alt="Sample Image">
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading">Jhon Carter <small><i>Posted on January 10, 2014</i></small></h4>
+            <p>Excellent feature! I love it. One day I'm definitely going to put this Bootstrap component into use and I'll let you know once I do.</p>
+        </div>
+    </div>
+</div>*@
+                            		
 <p>
     @Html.ActionLink("Back to List", "Index")
 </p>

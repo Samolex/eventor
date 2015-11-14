@@ -19,9 +19,17 @@ namespace Eventor_Project.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var projects = Repository.Projects;
             var projectsViewModel = Repository.Projects.ToList()
                 .Select(m=>(ProjectCardViewModel)ModelMapper.Map(m, typeof(Project), typeof(ProjectCardViewModel))).ToEnumerable();
+            return View(projectsViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Index(IEnumerable<Project> projects = null)
+        {
+            projects = projects ?? Repository.Projects;
+            var projectsViewModel = projects.ToList()
+                .Select(m => (ProjectCardViewModel)ModelMapper.Map(m, typeof(Project), typeof(ProjectCardViewModel))).ToEnumerable();
             return View(projectsViewModel);
         }
 
@@ -205,5 +213,35 @@ namespace Eventor_Project.Controllers
             }
         }
         #endregion
+
+        [Authorize]
+        public ActionResult MyProjects()
+        {
+            Func<Project, bool> filter = 
+                p => 
+                    p.AuthorId == CurrentUser.UserId ||
+                    p.Organisers.Any(o => o.Users.Any(u => u.UserId == CurrentUser.UserId)) ||
+                    p.Customers.Any(c => c.Customers.Any(u => u.UserId == CurrentUser.UserId));
+
+            return View("Index", CardsByFilter(filter));
+        }
+
+
+        private IEnumerable<ProjectCardViewModel> CardsByFilter(Func<Project, bool> filer)
+        {
+            return Repository
+                .Projects
+                .ToList()
+                .Where(filer)
+                .Select(m => (ProjectCardViewModel) ModelMapper.Map(m, typeof (Project), typeof (ProjectCardViewModel)));
+        }
+
+        [HttpGet]
+        public ActionResult Search(string title)
+        {
+            Func<Project, bool> filter = p => !String.IsNullOrEmpty(p.Title) && p.Title.ToLower().Contains(title.ToLower());
+
+            return View("Index", CardsByFilter(filter));
+        }
     }
 }

@@ -28,7 +28,7 @@ namespace Eventor_Project.Models.ViewModels
 
         [Required, MaxLength(500)]
         public string SenderNick { get; set; }
-        [Required(ErrorMessage = "Введите тему сообщения"), MaxLength(100, ErrorMessage = "СЛишком длинная тема (более 100 символов)")]
+        [Required(ErrorMessage = "Введите тему сообщения"), MaxLength(100, ErrorMessage = "Слишком длинная тема (более 100 символов)")]
         public string Topic { get; set; }
 
         [Required(ErrorMessage = "Введите текст сообщения"), MaxLength(5000, ErrorMessage = "Слишком длинное сообщения (более 5000 символов)")]

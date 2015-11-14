@@ -15,14 +15,14 @@
             <div class="col-md-4 panel panel-default card">
                 <img src="" alt="cover" class="card-cover">
                 <div class="panel-heading card-title">
-                    @Html.ActionLink(item.GetTitle, "Edit", new { projectId = item.ProjectId })
+                    @Html.ActionLink(item.GetTitle, "Edit", new {projectId = item.ProjectId})
                 </div>
                 <div class="panel-body card-body">
                     <p class="card-description">@item.ShortDescription</p>
                     @if (item.OrganisersRequiredCount > 0)
                     {
                         <div class="progress card-progress">
-                            <div class="progress-bar progress-bar-success" style="width:@item.OrganisersCurrentPercents%;">
+                            <div class="progress-bar progress-bar-success" style="width: @item.OrganisersCurrentPercents%;">
                                 <i class="glyphicon glyphicon-user"></i>
                             </div>
                         </div>
@@ -30,7 +30,7 @@
                     @if (item.InventoryRequiredCount > 0)
                     {
                         <div class="progress card-progress">
-                            <div class="progress-bar progress-bar-info" style="width:@item.InventoryCurrentPercents%;">
+                            <div class="progress-bar progress-bar-info" style="width: @item.InventoryCurrentPercents%;">
                                 <i class="glyphicon glyphicon-briefcase"></i>
                             </div>
                         </div>
@@ -38,15 +38,17 @@
                     @if (item.CustomersRequiredCount > 0)
                     {
                         <div class="progress card-progress">
-                            <div class="progress-bar progress-bar-warning" style="width:@item.CustomersCurrentPercents%;">
+                            <div class="progress-bar progress-bar-warning" style="width: @item.CustomersCurrentPercents%;">
                                 <i class="glyphicon glyphicon-globe"></i>
                             </div>
                         </div>
                     }
-                    @if(item.EventDate != null){
-                       <p class="card-date"><i class="glyphicon glyphicon-calendar"></i> @item.EventDate.Value.ToShortDateString()</p>
+                    @if (item.EventDate != null)
+                    {
+                        <p class="card-date"><i class="glyphicon glyphicon-calendar"></i> @item.EventDate.Value.ToShortDateString()</p>
                     }
-                    @if (item.Place != null) { 
+                    @if (item.Place != null)
+                    {
                         <p class="card-place"><i class="glyphicon glyphicon-map-marker"></i> @item.Place</p>
                     }
                 </div>
@@ -56,6 +58,7 @@
                     <a href="#" class="btn btn-link card-button">Помогу</a>
                 </div>
             </div>
+            <div class="clearfix"></div>
         }
     </div>
 </div>

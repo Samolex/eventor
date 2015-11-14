@@ -208,6 +208,7 @@
     <Compile Include="Auth\UserIndentity.cs" />
     <Compile Include="Auth\UserProvider.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\User\LoginController.cs" />
@@ -342,6 +343,7 @@
     <Content Include="Content\Site.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\avatar-default.jpg" />
     <Content Include="Models\sqlTable.snippet">
       <SubType>Designer</SubType>
     </Content>
@@ -392,6 +394,9 @@
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Images\avatar-tiny.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -411,7 +416,6 @@
     <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Details.cshtml" />
-    <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Delete.cshtml" />
     <Content Include="Views\Register\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
@@ -423,6 +427,15 @@
     <Content Include="Views\Mail\Index.cshtml" />
     <Content Include="Views\Mail\NewMessage.cshtml" />
     <Content Include="Views\User\Info.cshtml" />
+    <Content Include="Views\Shared\NotAdminPage.cshtml" />
+    <Content Include="Views\Shared\NotFoundPage.cshtml" />
+    <Content Include="Views\Error\Error.cshtml" />
+    <Content Include="Views\Error\NotAdminPage.cshtml" />
+    <Content Include="Views\Error\NotFoundPage.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\User\Info - Копировать.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Edit - Копировать.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
