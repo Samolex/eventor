@@ -25,6 +25,8 @@ function ajaxReq(url, method, data, cb) {
         url: url,
         type: method,
         data: data,
+        dataType: "json",
+        contentType: "application/json",
         success: function (data) {
             cb(data);
         },
