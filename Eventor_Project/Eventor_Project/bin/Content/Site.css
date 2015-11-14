@@ -57,9 +57,13 @@ legend {
 
 
 .panel{
-	padding: 0;
 	box-sizing: border-box;
 }
+
+.card{
+    box-sizing: border-box;
+}
+
 .card-cover{
 	width:100%;
 }
