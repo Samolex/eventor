@@ -21,7 +21,6 @@
             <h2>Контактные данные:</h2>
             <b>@Html.LabelFor(model => model.ContactEmail)</b>:
             @Html.DisplayFor(model => model.ContactEmail) <br/>
-            @Html.ValidateFor(model => model.ContactEmail);
             <b>@Html.LabelFor(model => model.PhoneNumber)</b>:
             @Html.DisplayFor(model => model.PhoneNumber) <br/>
             <form action=@Url.Action("NewMessage", "Mail") method="POST">
