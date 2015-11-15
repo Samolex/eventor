@@ -1,8 +1,213 @@
-﻿
+﻿@model Eventor_Project.Models.ViewModels.ProjectCardViewModel
 
 @{
     ViewBag.Title = "Project";
-    Layout = "~/Views/_ViewStart.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="container">
+    <div class="page-header text-center"><h1>@Model.Title</h1></div>
+    <img src="~/Images/avatar-default.jpg" alt="cover" class="project-page-cover center-block"/>
+    <p class="project-page-description text-center">@Model.Description</p>
+    <div class="row center-block">
+        <div class="col-md-4 project-page-card">
+            <div class="page-header"><h3>Участники</h3></div>
+            <div class="progress">
+                <div class="progress-bar progress-bar-warning" style="width:@Model.CustomersCurrentPercents%;">
+                </div>
+            </div>
+            <div class="card-body text-center">
+                @foreach (var item in Model.Customers.Take(4))
+                {
+                    <h4>@item.Role</h4>
+                    <p>@item.CurrentCount из @item.MinCount (макс. @item.MaxCount)</p>
+                }
+            </div>
+            <div class="form-group text-center">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#customersModal">
+                    Посмотреть всех
+                </button>
+            </div>
 
-<h2>Project</h2>
+            <div class="modal fade" id="customersModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Участники</h4>
+                        </div>
+                        <div class="modal-body">
+                            @foreach (var item in Model.Customers)
+                            {
+                                <h4>@item.Role</h4>
+                                <p>@item.Description</p>
+                                <p>@item.CurrentCount из @item.MinCount (макс. @item.MaxCount)</p>
+                                <br />
+                            }
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 project-page-card">
+            <div class="page-header"><h3>Инвентарь</h3></div>
+            <div class="progress">
+                <div class="progress-bar progress-bar-info" style="width:@Model.InventoryNeedfulPercents%;">
+                </div>
+            </div>
+            <div class="card-body text-center">
+                @foreach (var item in Model.Inventory.Take(4))
+                {
+                    <h4>@item.Title</h4>
+                    <p>@item.CurrentAmount из @item.RequiredAmount</p>
+                }
+            </div>
+            <div class="form-group text-center">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inventoryModal">
+                    Посмотреть всех
+                </button>
+            </div>
+
+            <div class="modal fade" id="inventoryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Инвентарь</h4>
+                        </div>
+                        <div class="modal-body">
+                            @foreach (var item in Model.Inventory)
+                            {
+                                <h4>@item.Title</h4>
+                                <p>@item.CurrentAmount из @item.RequiredAmount</p>
+                                <br />
+                            }
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 project-page-card">
+            <div class="page-header"><h3>Организаторы</h3></div>
+            <div class="progress">
+                <div class="progress-bar progress-bar-success" style="width:@Model.OrganisersCurrentPercents%;">
+                </div>
+            </div>
+            <div class="card-body text-center">
+                @foreach (var item in Model.Organisers.Take(4))
+                {
+                    <h4>@item.Name</h4>
+                    <p>@item.CurrentCount из @item.RequiredCount</p>
+                }
+            </div>
+            <div class="form-group text-center">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#organisersModal">
+                    Посмотреть всех
+                </button>
+            </div>
+
+            <div class="modal fade" id="organisersModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Организаторы</h4>
+                        </div>
+                        <div class="modal-body">
+                            @foreach (var item in Model.Organisers)
+                            {
+                                <h4>@item.Name</h4>
+                                <p>@item.Description</p>
+                                <p>@item.CurrentCount из @item.RequiredCount</p>
+                                <br />
+                            }
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group text-center">
+            <div class="form-group text-center">
+                <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#customer">
+                    Участвовать!
+                </button>
+            </div>
+        </div>
+            <div class="modal fade" id="customer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Участие</h4>
+                        </div>
+                        <div class="modal-body">
+                            @using (@Html.BeginForm("Project","Projects","POST"))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.Hidden("projectId", Model.ProjectId)
+                                <div class="form-group">
+                                    @Html.Label("Выберите роль")
+                                    @Html.DropDownList("customerId", null, new { @class = "form-control" })
+                                </div>
+                                <div class="form-group">
+                                    <label>Материалы</label>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-md-2">Кол-во</th>
+                                                <th>Название</th>
+                                                <th class="col-md-1"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody data-bind="foreach: materialsUserModel.materialsUser">
+                                            <tr>
+                                                <td><input type="text" class="form-control" data-bind="value: Amount"></td>
+                                                <td>
+                                                    <select data-bind="options: $root.materialsUserModel.materials, optionsText: 'Title',optionsValue: 'MaterialId', value: MaterialId"
+                                                            class="form-control">
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <a href="#" class="btn btn-link" data-bind="click: $root.materialsUserModel.removeMaterial">
+                                                        <i class="glyphicon glyphicon-remove"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <p>
+                                        <a href="#" data-bind="click: $root.materialsUserModel.addMaterial" class="btn btn-link">Добавить...</a>
+                                    </p>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("Стать организатором")
+                                    @Html.DropDownList("organizerId", null, new { @class = "form-control" })
+
+                                </div>
+                                <a href="#" data-bind="click: $root.saveUserMaterials">saves</a>
+
+                                <div class="modal-footer">
+                                    <input type="submit" class="btn btn-success" value="Участвовать" />
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                                </div>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+@Scripts.Render("~/bundles/knockout")
+@Scripts.Render("~/bundles/materials")

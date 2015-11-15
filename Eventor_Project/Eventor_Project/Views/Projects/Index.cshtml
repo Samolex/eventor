@@ -9,33 +9,45 @@
     <div class="page-header"><h1>Проекты</h1></div>
 </div>
 <div class="container">
-    <div class="col-md-12 cards">
+    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 cards">
             @foreach (var item in Model)
             {
                 <div class="col-md-3 col-sm-6 col-xs-12 card">
-                    <img src="" alt="cover" class="card-cover">
+                    <img src="~/Images/avatar-default.jpg" alt="cover" class="card-cover">
                     <div class="card-title">
-                        @Html.ActionLink(item.GetTitle, "Edit", new { projectId = item.ProjectId })
+                        @Html.ActionLink(item.GetTitle, "Project", new { projectId = item.ProjectId })
                     </div>
                     <div class="card-body">
                         <p class="card-description">@item.ShortDescription</p>
-                            <div class="progress card-progress">
-                                <div class="progress-bar progress-bar-success" style="width:@item.OrganisersCurrentPercents%;">
-                                    <i class="glyphicon glyphicon-user"></i>
+                            <div class="row">
+                                <i class="glyphicon glyphicon-user col-md-2 col-sm-2 col-xs-2 col-lg-2"></i>
+                                <div class="progress card-progress col-md-10 col-sm-10 col-xs-10 xol-lg-10">
+                                    <div class="progress-bar progress-bar-success" style="width:@item.OrganisersCurrentPercents%;">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="progress card-progress">
-                                <div class="progress-bar progress-bar-info" style="width:@item.InventoryCurrentPercents%;">
-                                    <i class="glyphicon glyphicon-briefcase"></i>
+                            <div class="row">
+                                <i class="glyphicon glyphicon-briefcase col-md-2 col-sm-2 col-xs-2 col-lg-2"></i>
+                                <div class="progress card-progress col-md-10 col-sm-10 col-xs-10 xol-lg-10">
+                                    <div class="progress-bar progress-bar-info" style="width:@item.InventoryNeedfulPercents%;">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="progress card-progress">
-                                <div class="progress-bar progress-bar-warning" style="width:@item.CustomersCurrentPercents%;">
-                                    <i class="glyphicon glyphicon-globe"></i>
+                            <div class="row">
+                                <i class="glyphicon glyphicon-globe col-md-2 col-sm-2 col-xs-2 col-lg-2"></i>
+                                <div class="progress card-progress col-md-10 col-sm-10 col-xs-10 xol-lg-10">
+                                    <div class="progress-bar progress-bar-warning" style="width:@item.CustomersCurrentPercents%;">
+                                    </div>
                                 </div>
                             </div>
-                            <p class="card-date"><i class="glyphicon glyphicon-calendar"></i> @item.GetEventDate</p>
-                            <p class="card-place"><i class="glyphicon glyphicon-map-marker"></i> @item.Place</p>
+                        <div class="row card-date">
+                            <i class="glyphicon glyphicon-calendar col-md-2"></i>
+                            <span class="col-md-10 card-date-text">@item.GetEventDate</span>
+                        </div>
+                        <div class="row card-place">
+                            <i class="glyphicon glyphicon-map-marker col-md-2"></i>
+                            <span class="col-md-10 card-place-text">@item.Place</span>
+                        </div>
                     </div>
                     <div class="card-footer">
                         @*TODO*@

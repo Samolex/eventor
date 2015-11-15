@@ -79,12 +79,38 @@
 
     };
 
+    var MaterialUserModel = function (materials, projectId) {
+        var self = this;
+        self.materials = ko.observableArray(materials);
+        self.materialsUser = ko.observableArray();
+        self.projectId = ko.observable(projectId);
+
+        self.addMaterial = function () {
+            self.materialsUser.push({
+                MaterialId: 0,
+                Amount:0
+            });
+        }
+
+        self.removeMaterial=function(material){
+            self.materialsUser.remove(material);
+        }
+
+        self.saveUserMaterials = function () {
+            self.materialsUser(self.materialsUser().filter(function (item) {
+                return item.Amount > 0 && item.MaterialId != 0 && item.MaterialId > 0;
+            }));
+            return JSON.stringify(ko.toJS(self.materialsUser));
+        }
+    }
+
     var ViewModel = function () {
         var self = this;
         var projectId = getQueryVariable("projectId");
         self.organisersModel = new OrganisersModel(null, projectId);
         self.materialsModel = new MaterialsModel(null, projectId);
         self.customersModel = new CustomersModel(null, projectId);
+        self.materialsUserModel = new MaterialUserModel(null, projectId);
 
         self.load = function () {
             ajaxReq("/Projects/GetMaterials", "GET", { projectId: projectId },
@@ -92,6 +118,7 @@
                     if (data) {
                         data.forEach(function (item) {
                             self.materialsModel.materials.push(item);
+                            self.materialsUserModel.materials.push(item);
                         });
                     }
                 });
@@ -120,6 +147,11 @@
             var customers = self.customersModel.saveCustomers();
             ajaxReq("SaveCustomers", "POST", customers);
         };
+
+        self.saveUserMaterials = function () {
+            var userMaterials = self.materialsUserModel.saveUserMaterials();
+            ajaxReq("/Projects/SaveMaterialsUser", "POST", userMaterials);
+        }
     }
     var viewModel = new ViewModel();
     viewModel.load();

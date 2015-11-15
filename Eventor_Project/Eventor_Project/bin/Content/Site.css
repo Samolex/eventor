@@ -67,6 +67,7 @@ legend {
 }
 .card-footer{
     padding-top:5px;
+<<<<<<< HEAD
 }
 
 .card-title a:hover{
@@ -83,10 +84,29 @@ legend {
 }
 .card-body{
     height: 200px;
+=======
+}
+.card .col-md-4{
+}
+.card-title{
+    height:18px;
+    overflow:hidden;
+}
+.card-title a:hover{
+    text-decoration: underline;
+}
+.card-cover{
+	width:100%;
+    vertical-align: top;
+    height: 150px;
+    min-height: 150px;
+    object-fit:cover;
+>>>>>>> 15nov2
 }
 .card-cover2 {
     width: 50%;
 }
+<<<<<<< HEAD
 .card-description{
     height: 45px;
     overflow: hidden;
@@ -95,6 +115,15 @@ legend {
 .card-message-body {
     height: 200px;
     overflow: hidden;    
+=======
+.card-body{
+    height: 200px;
+}
+
+.card-description{
+    height: 45px;
+    overflow: hidden;
+>>>>>>> 15nov2
 }
 
 .card-title,
@@ -102,27 +131,51 @@ legend {
 	padding: 5px 10px;
 }
 .card-date,
-.card-user,
 .card-place,
-.card-cover{
-	padding: 0;
-	margin: 3px;
+.card-place-text,
+.card-date-text{
+    padding:0;
+}
+.card-date{
+    margin-top:10px;
+}
+.card-place{
+    margin-top:3px;
 }
 
 .card-message {
 	padding: 0;
 	margin-top: 20px;
 }
-.card-progress{
+.card-progress {
 	padding: 0;
     height: 16px;
+<<<<<<< HEAD
     text-align:center;
     vertical-align:central;
+=======
+    margin:0;
+    margin-bottom:8px;
+    margin-right: 0px;
+>>>>>>> 15nov2
 }
 .card-button{
 	width: 100%;
 }
 
+.project-page-card .card-body{
+    height: 300px;
+}
+.project-page-description{
+    width:80%;
+    align-content:center;
+    margin: 0 auto;
+    font-size: 16px;
+}
+.project-page-card card-body h4,
+.project-page-card card-body p{
+    text-wrap:normal;
+}
 .container{
     background: #fff;
     padding-top:5px;
