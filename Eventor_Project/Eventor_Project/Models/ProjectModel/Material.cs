@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Eventor_Project.Models.ProjectModel.Relations;
+using System;
 
 namespace Eventor_Project.Models.ProjectModel
 {
@@ -17,6 +18,11 @@ namespace Eventor_Project.Models.ProjectModel
         public int CurrentAmount
         {
             get { return UserMaterials == null ? 0 : UserMaterials.Select(x => x.Amount).Sum(); }
+        }
+
+        public int NeedfulAmount
+        {
+            get { return Math.Min(RequiredAmount, CurrentAmount); }
         }
 
         public virtual Project Project { get; set; }

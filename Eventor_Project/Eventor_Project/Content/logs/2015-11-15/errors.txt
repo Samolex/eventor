@@ -1,0 +1,1 @@
+2015-11-15 04:15:57.0576|ERROR|Eventor_Project.Auth.CustomAuthentication|Failed authentication: Произошла ошибка базового поставщика в Open.

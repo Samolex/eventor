@@ -1,12 +1,13 @@
 ﻿
 $(document).ready(function () {
-    
     $('.datepicker').datepicker({
         format: "dd/mm/yyyy",
         startDate: "+0d",
         language: "ru",
         autoclose: true
     });
+
+    $('[data-toggle="tooltip"]').tooltip();
 });
 
 function getQueryVariable(variable) {

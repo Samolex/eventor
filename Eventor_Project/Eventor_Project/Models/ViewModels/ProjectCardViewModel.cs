@@ -62,11 +62,11 @@ namespace Eventor_Project.Models.ViewModels
             }
         }
 
-        public virtual float OrganisersCurrentPercents
+        public virtual int OrganisersCurrentPercents
         {
             get
             {
-                return OrganisersRequiredCount != 0 ? (OrganisersCurrentCount / (float)OrganisersRequiredCount) * 100 : 100;
+                return OrganisersRequiredCount != 0 ? (int)((OrganisersCurrentCount / (float)OrganisersRequiredCount) * 100) : 100;
             }
         }
 
@@ -78,6 +78,14 @@ namespace Eventor_Project.Models.ViewModels
             }
         }
 
+        public virtual int InventoryNeedfulCount
+        {
+            get
+            {
+                return Inventory != null ? Inventory.Sum(m => m.NeedfulAmount) : 0;
+            }
+        }
+
         public virtual int InventoryRequiredCount
         {
             get
@@ -86,11 +94,11 @@ namespace Eventor_Project.Models.ViewModels
             }
         }
 
-        public virtual float InventoryCurrentPercents
+        public virtual int InventoryNeedfulPercents
         {
             get
             {
-                return InventoryRequiredCount != 0 ? (InventoryCurrentCount / (float)InventoryRequiredCount) * 100 : 100;
+                return InventoryRequiredCount != 0 ? (int)((InventoryNeedfulCount / (float)InventoryRequiredCount) * 100) : 100;
             }
         }
 
@@ -109,11 +117,11 @@ namespace Eventor_Project.Models.ViewModels
                 return Customers != null ? Customers.Sum(m => m.MinCount) : 0;
             }
         }
-        public virtual float CustomersCurrentPercents
+        public virtual int CustomersCurrentPercents
         {
             get
             {
-                return CustomersRequiredCount != 0 ? (CustomersCurrentCount / (float)CustomersRequiredCount) * 100 : 100;
+                return CustomersRequiredCount != 0 ? (int)((CustomersCurrentCount / (float)CustomersRequiredCount) * 100) : 100;
             }
         }
         public DateTime AddedTime { get; set; }
