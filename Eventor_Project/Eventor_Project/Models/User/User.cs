@@ -74,6 +74,11 @@ namespace Eventor_Project.Models.User
                 return String.IsNullOrEmpty(about) ? "Данный пользователь пока не указал о себе никакой дополнительной информации" : about;
             }
             set { about = value; }}
+
+        public string Fio2
+        {
+            get { return Name + " " + Surname + " " + Name; }
+        }
         [DisplayName("Дата рождения")]
         public DateTime Birthdate { get; set; }
         [DisplayName("Привилегии")]

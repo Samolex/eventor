@@ -443,6 +443,7 @@
     <Content Include="Views\Register\Index - Копировать.cshtml" />
     <Content Include="Views\User\Index - Копировать.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Mail\Index - Копировать.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

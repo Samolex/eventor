@@ -87,13 +87,16 @@ legend {
 .card-cover2 {
     width: 50%;
 }
-.panel-body{
-    height: 275px;
-}
 .card-description{
     height: 45px;
     overflow: hidden;
 }
+
+.card-message-body {
+    height: 200px;
+    overflow: hidden;    
+}
+
 .card-title,
 .card-body{
 	padding: 5px 10px;
@@ -109,7 +112,6 @@ legend {
 .card-message {
 	padding: 0;
 	margin-top: 20px;
-    max-height: 500px;
 }
 .card-progress{
 	padding: 0;
@@ -178,6 +180,7 @@ legend {
 
 .close:hover { background: #00d9ff; }
 
+.card-message,
 .card-description {
     overflow-wrap: break-word;  /* не поддерживает IE, Firefox; является копией word-wrap */ 
     word-wrap: break-word;
@@ -185,6 +188,8 @@ legend {
     line-break: strict;  /* нет поддержки для русского языка */ 
     -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto;  /* не поддерживает IE, Opera12.14, значение auto не поддерживается Chrome */ 
 }
+
+
 
 .contacts {
     font-size: 18px;

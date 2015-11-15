@@ -175,11 +175,35 @@ namespace Eventor_Project.Controllers
         }
 
         [HttpGet]
-        public ActionResult Search(string title)
+        public ActionResult Search(string title,  int? categoryId)
         {
-            Func<Project, bool> filter = p => !String.IsNullOrEmpty(p.Title) && p.Title.ToLower().Contains(title.ToLower());
+            Func<Project, bool> titleFilter;
+            Func<Project, bool> categoryFilter;
 
-            return View("Index", CardsByFilter(filter));
+            if (String.IsNullOrEmpty(title))
+                titleFilter = p => true;
+            else
+                titleFilter = p => !String.IsNullOrEmpty(p.Title) && p.Title.ToLower().Contains(title.ToLower());
+
+
+            if (categoryId == 0 || categoryId == null)
+                categoryFilter = p => true;
+            else
+                categoryFilter = p => p.CategoryId == categoryId;
+
+
+            Func<Project, bool> searchFilter = p => titleFilter(p) && categoryFilter(p);
+
+            return View("Index", CardsByFilter(searchFilter));
+        }
+
+        [HttpGet]
+
+        public ActionResult CardsByCategory(int categoryId)
+        {
+
+            Func<Project, bool> categoryFilter = p => p.CategoryId == categoryId;
+            return View("Index", CardsByFilter(categoryFilter));
         }
     }
 }

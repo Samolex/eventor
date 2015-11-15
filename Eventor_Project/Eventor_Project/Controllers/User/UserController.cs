@@ -132,5 +132,23 @@ namespace Eventor_Project.Controllers.User
             db.Dispose();
             base.Dispose(disposing);
         }
+
+        private IEnumerable<Models.User.User> UsersByFilter(Func<Models.User.User, bool> filer)
+        {
+            var fios = Repository.Users.ToList().Select(u => u.Fio2.ToLower()).ToList();
+            return Repository
+                .Users
+                .ToList()
+                .Where(filer);
+        }
+
+        [HttpGet]
+        public ActionResult Search(string title)
+        {
+            title = title ?? "";
+            title = title.ToLower();
+            Func<Models.User.User, bool> filter = p => p.Nickname.ToLower().Contains(title) || p.Fio2.ToLower().Contains(title);
+            return View("Index", UsersByFilter(filter));
+        }
     }
 }

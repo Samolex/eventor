@@ -44,7 +44,7 @@ namespace Eventor_Project
 
             routes.MapRoute(
                 "Users",
-                "Users",
+                "Users/{action}/{id}",
                 new { controller = "User", action = "Index", id = UrlParameter.Optional }
             );
 

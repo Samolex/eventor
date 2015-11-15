@@ -9,7 +9,14 @@
 <div class="container">
     <div class="page-header"><h1>Пользователи</h1></div>
     <div style="margin-bottom: 20px">
-
+        <form action=@Url.Action("Search", "User") role="search">
+            <div class="input-group">
+                <input type="text" name="title" value="" placeholder="Поиск пользователя" class="form-control" />
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                </span>
+            </div>
+        </form>
         @foreach (var item in Model)
         {
             <div class="media">

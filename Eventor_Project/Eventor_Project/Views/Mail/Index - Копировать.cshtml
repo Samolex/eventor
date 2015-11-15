@@ -10,38 +10,6 @@
         <h1>Входящие</h1>
         @foreach (var item in Model.Where(u => u.ReceiverId == ViewBag.CurrentUser.UserId).OrderByDescending(u => u.DepartureTime))
         {
-
-            <!-- Modal -->
-            <div class="modal fade" id=@String.Format("iopenModal{0}",item.MessageId) tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content panel panel-default">
-                        <div class="modal-header panel-title panel-heading">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <div class="modal-title" id="myModalLabel">
-                                <b>@item.Topic</b>
-                                <p>
-                                    <i class="glyphicon glyphicon-user"></i> <a href=@String.Format("/id/{0}", item.SenderId)>@item.SenderNick</a>
-                                </p>
-                                <p><i class="glyphicon glyphicon-calendar"></i> @item.DepartureTime</p>
-                            </div>
-                        </div>
-                        <div class="modal-body panel-body">
-                            <p class="card-message"> @item.Text </p>
-                        </div>
-                        <div class="modal-footer panel-footer">
-                            <form action=@Url.Action("NewMessage", "Mail") method="POST">
-                                @Html.Hidden("recId", item.SenderId)
-                                @Html.Hidden("prevMessageId", item.MessageId)
-                                <div class="btn-group right" role="group">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                                    <input type="submit" class="btn btn-default" value="Ответить">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div id=@String.Format("openModal{0}",item.MessageId) class="modalDialog">
 
                 <div class="panel panel-default" style="max-height: none">
@@ -54,10 +22,19 @@
                         <p><i class="glyphicon glyphicon-calendar"></i> @item.DepartureTime</p>
                     </div>
                     <div class="panel-body">
-                        
+                        <p class="card-message"> @item.Text </p>
 
                     </div>
-
+                    <div class="panel-footer">
+                        <form action=@Url.Action("NewMessage", "Mail") method="POST">
+                            @Html.Hidden("recId", item.SenderId)
+                            @Html.Hidden("prevMessageId", item.MessageId)
+                            <div class="btn-group right" role="group">
+                                <a href="#close" title="Закрыть" class="btn btn-primary">Закрыть</a>
+                                <input type="submit" class="btn btn-default" value="Ответить">
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
 
@@ -81,7 +58,7 @@
                             @Html.Hidden("recId", item.SenderId)
                             @Html.Hidden("prevMessageId", item.MessageId)
                             <div class="btn-group right" role="group">
-                                <a class="btn btn-default" data-toggle="modal" data-target=@String.Format("#iopenModal{0}", item.MessageId)>
+                                <a class="btn btn-default" href=@String.Format("#openModal{0}", item.MessageId)>
                                     Открыть сообщение
                                 </a>
                                 <input type="submit" class="btn btn-default" value="Ответить">
@@ -96,32 +73,29 @@
         <h1>Исходящие</h1>
         @foreach (var item in Model.Where(u => u.SenderId == ViewBag.CurrentUser.UserId).OrderByDescending(u => u.DepartureTime))
         {
-            <div class="modal fade" id=@String.Format("oopenModal{0}",item.MessageId) tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content panel panel-default">
-                        <div class="modal-header panel-title panel-heading">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <div class="modal-title" id="myModalLabel">
-                                <b>@item.Topic</b>
-                                <p>
-                                    <i class="glyphicon glyphicon-user"></i> <a href=@String.Format("/id/{0}", item.ReceiverId)>@item.ReceiverNick</a>
-                                </p>
-                                <p><i class="glyphicon glyphicon-calendar"></i> @item.DepartureTime</p>
+            <div id=@String.Format("openModal{0}",item.MessageId) class="modalDialog">
+
+                <div class="panel panel-default" style="max-height: none">
+                    <a href="#close" title="Закрыть" class="close">X</a>
+                    <div class="panel-heading">
+                        <b>@item.Topic</b>
+                        <p>
+                            <i class="glyphicon glyphicon-user"></i> <a href=@String.Format("/id/{0}", item.ReceiverId)>@item.ReceiverNick</a>
+                        </p>
+                        <p><i class="glyphicon glyphicon-calendar"></i> @item.DepartureTime</p>
+                    </div>
+                    <div class="panel-body">
+                        <p class="card-message"> @item.Text </p>
+                    </div>
+                    <div class="panel-footer">
+                        <form action=@Url.Action("NewMessage", "Mail") method="POST">
+                            @Html.Hidden("recId", item.SenderId)
+                            @Html.Hidden("prevMessageId", item.MessageId)
+                            <div class="btn-group right" role="group">
+                                <a href="#close" title="Закрыть" class="btn btn-primary">Закрыть</a>
+                                <input type="submit" class="btn btn-default" value="Написать ещё">
                             </div>
-                        </div>
-                        <div class="modal-body panel-body">
-                            <p class="card-message"> @item.Text </p>
-                        </div>
-                        <div class="modal-footer panel-footer">
-                            <form action=@Url.Action("NewMessage", "Mail") method="POST">
-                                @Html.Hidden("recId", item.ReceiverId)
-                                @Html.Hidden("prevMessageId", item.MessageId)
-                                <div class="btn-group right" role="group">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                                    <input type="submit" class="btn btn-default" value="Написать ещё">
-                                </div>
-                            </form>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -149,7 +123,7 @@
                         @Html.Hidden("recId", item.SenderId)
                         @Html.Hidden("prevMessageId", item.MessageId)
                         <div class="btn-group right" role="group">
-                            <a class="btn btn-default" data-toggle="modal" data-target=@String.Format("#oopenModal{0}", item.MessageId)>
+                            <a class="btn btn-default" href=@String.Format("#openModal{0}", item.MessageId)>
                                 Открыть сообщение
                             </a>
                             <input type="submit" class="btn btn-default" value="Написать ещё">

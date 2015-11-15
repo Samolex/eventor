@@ -44,19 +44,19 @@
                     </div>
 
                     <div class="col-sm-6 contacts">
-                        <b>@Html.LabelFor(model => model.ConfirmPassword)</b>:
-                        <div data-toggle="tooltip" data-placement="right">
-                            @Html.TextBoxFor(x => x.ConfirmPassword, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(x => x.ConfirmPassword)
-                        </div> <br />
+
 
                         <b>@Html.LabelFor(model => model.Password)</b>:
                         <div data-toggle="tooltip" data-placement="right">
-                            @Html.TextBoxFor(x => x.Password, new { @class = "form-control" })
+                            @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
                             @Html.ValidationMessageFor(x => x.Password)
                         </div> <br />
 
-
+                        <b>@Html.LabelFor(model => model.ConfirmPassword)</b>:
+                        <div data-toggle="tooltip" data-placement="right">
+                            @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.ConfirmPassword)
+                        </div> <br />
 
                         <b>@Html.LabelFor(model => model.PhoneNumber)</b>:
                         <div data-toggle="tooltip" data-placement="right">
