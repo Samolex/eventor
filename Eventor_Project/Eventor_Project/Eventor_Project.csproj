@@ -248,6 +248,10 @@
     <Compile Include="Migrations\201511090621592_PrevMessageId.Designer.cs">
       <DependentUpon>201511090621592_PrevMessageId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511142234260_Add About for User.cs" />
+    <Compile Include="Migrations\201511142234260_Add About for User.Designer.cs">
+      <DependentUpon>201511142234260_Add About for User.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CurrentContext.cs" />
     <Compile Include="Models\SqlRepository\UserRepository\BenefitRepository.cs" />
@@ -434,8 +438,8 @@
     <Content Include="Views\Error\NotFoundPage.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\User\Info - Копировать.cshtml" />
-    <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Edit - Копировать.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -471,6 +475,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511090621592_PrevMessageId.resx">
       <DependentUpon>201511090621592_PrevMessageId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511142234260_Add About for User.resx">
+      <DependentUpon>201511142234260_Add About for User.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

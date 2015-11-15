@@ -2,6 +2,7 @@
 using Eventor_Project.Models.ProjectModel;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 
 namespace Eventor_Project.Models.SqlRepository
 {
@@ -83,11 +84,18 @@ namespace Eventor_Project.Models.SqlRepository
         {
             var projectId = organisers.FirstOrDefault().ProjectId;
             var project = ReadProject(projectId);
-            foreach (var organiser in project.Organisers.ToList())
+            var was = project.Organisers.ToList();
+            foreach (var organiser in was.Where(o => organisers.All(n => n.OrganizerId != o.OrganizerId)))
             {
                 DeleteOrganizer(organiser.OrganizerId);
             }
-            project.Organisers = organisers;
+            foreach (var organiser in organisers)
+            {
+                if (organiser.OrganizerId == 0)
+                    Db.Organisers.Add(organiser);
+                else
+                    UpdateOrganizer(organiser);
+            }
             Db.SaveChanges();
 
         }

@@ -76,7 +76,7 @@ namespace Eventor_Project.Controllers.User
             if (ModelState.IsValid)
             {
                 Repository.UpdateUser(user);
-                return RedirectToAction("Index");
+                return RedirectToAction("Details");
             }
             return View(user);
         }

@@ -9,6 +9,15 @@ $(document).ready(function () {
     });
 });
 
+$(document).ready(function () {
+    $('.datepicker-all').datepicker({
+        format: "dd/mm/yyyy",
+        language: "ru",
+        autoclose: true
+    });
+    $('[data-toggle="tooltip"]').tooltip();
+});
+
 function getQueryVariable(variable) {
     var query = window.location.search.substring(1);
     var vars = query.split('&');

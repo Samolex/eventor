@@ -148,3 +148,4 @@ C:\Users\AlexeyMorozov\Documents\code\eventor\Eventor_Project\Eventor_Project\ob
 C:\Users\AlexeyMorozov\Documents\code\eventor\Eventor_Project\Eventor_Project\obj\Debug\Eventor_Project.csproj.GenerateResource.Cache
 C:\Users\AlexeyMorozov\Documents\code\eventor\Eventor_Project\Eventor_Project\obj\Debug\Eventor_Project.dll
 C:\Users\AlexeyMorozov\Documents\code\eventor\Eventor_Project\Eventor_Project\obj\Debug\Eventor_Project.pdb
+C:\Study\eventor\Eventor_Project\Eventor_Project\obj\Debug\Eventor_Project.Migrations.AddAboutforUser.resources

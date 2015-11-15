@@ -44,7 +44,7 @@
             </div>
 
             <h2> О себе:</h2>
-            <p class="contacts">Данный пользователь пока не указал о себе никакой дополнительной информации.</p>
+            <p class="contacts">@Html.DisplayFor(model => model.About)</p>
 
 
             @foreach (var item in Model.Projects)

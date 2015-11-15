@@ -12,6 +12,7 @@ namespace Eventor_Project.Models.User
         #region private fields
         private string nickname;
         private string contactEmail;
+        private string about;
         #endregion
         //TODO: Skills, Items, Photo, Avatar, Social networks
 
@@ -55,6 +56,14 @@ namespace Eventor_Project.Models.User
         public string PhoneNumber { get; set; }
         [Required, MaxLength(200), DisplayName("Пароль")]
         public string Password { get; set; }
+
+        [MaxLength(5000), DisplayName("Информация о пользователе")]
+        public string About {
+            get
+            {
+                return String.IsNullOrEmpty(about) ? "Данный пользователь пока не указал о себе никакой дополнительной информации" : about;
+            }
+            set { about = value; }}
         [DisplayName("Дата рождения")]
         public DateTime Birthdate { get; set; }
         [DisplayName("Привилегии")]

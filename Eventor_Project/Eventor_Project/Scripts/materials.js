@@ -72,7 +72,7 @@
 
         self.saveCustomers = function () {
             self.customers(self.customers().filter(function (item) {
-                return item.MinCount > 0 && item.MaxCount > item.MinCount && item.Role;
+                return item.MinCount >= 0 && item.MaxCount >= item.MinCount && item.Role && (item.MinCount + item.MaxCount > 0);
             }));
             return data = JSON.stringify(ko.toJS(self.customers()));
         };
@@ -124,5 +124,14 @@
     var viewModel = new ViewModel();
     viewModel.load();
     ko.applyBindings(viewModel);
+    $("#projectSave").on("click", function() {
+        viewModel.save();
+    });
 
+    $(function () {
+        $('#form-inline').submit(function () {
+            viewModel.save();
+            return true; // return false to cancel form action
+        });
+    });
 });

@@ -3,33 +3,36 @@
     ViewBag.Title = "Вход";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "form-horizontal col-md-4 tab-content" }))
-{
-    <fieldset>
-        <div class="form-group">
-            <h3>Вход на сайт</h3>
-            @Html.ValidationMessage("Password")
-        </div>
-        <div class="form-group">
-            <label class="control-label" for="Email">Email</label>
-            <div class="controls">
-                @Html.TextBox("Email", Model.Email, new {@class = "form-control"})
+<div class="container">
+    @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "form-horizontal col-md-4 " }))
+    {
+        <fieldset>
+            <div class="form-group">
+                <h3>Вход на сайт</h3>
+                @Html.ValidationMessage("Password")
             </div>
+            <div class="form-group">
+                <label class="control-label" for="Email">Email</label>
+                <div class="controls">
+                    @Html.TextBox("Email", Model.Email, new { @class = "form-control" })
+                </div>
 
-        </div>
-        <div class="form-group">
-            <label class="control-label" for="Password">
-                Пароль
-            </label>
-            <div class="controls">
-                @Html.Password("Password", Model.Password, new {@class = "form-control"})
             </div>
-        </div>
-        <div class="form-inline">
-            <button type="submit" class="btn btn-primary col-md-6">
-                Войти
-            </button>
-            <a href="/register" class="btn btn-link col-md-6">Регистрация</a>
-        </div>
-    </fieldset>
-}
+            <div class="form-group">
+                <label class="control-label" for="Password">
+                    Пароль
+                </label>
+                <div class="controls">
+                    @Html.Password("Password", Model.Password, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-inline">
+                <button type="submit" class="btn btn-primary col-md-6">
+                    Войти
+                </button>
+                <a href="/register" class="btn btn-link col-md-6">Регистрация</a>
+            </div>
+        </fieldset>
+    }
+    
+</div>

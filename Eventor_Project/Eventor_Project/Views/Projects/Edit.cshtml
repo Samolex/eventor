@@ -13,7 +13,7 @@
     </ul>
 </div>
 <div class="container">
-    @using (@Html.BeginForm("Edit", "Projects", FormMethod.Post, new { id="project_form"}))
+    @using (@Html.BeginForm("Edit", "Projects", FormMethod.Post, new { id="edit_form"}))
     {
 
         @Html.AntiForgeryToken()
@@ -152,7 +152,7 @@
             <div class="form-group">
                 <div class="form-inline">
                     <a href="#" data-bind="click: $root.save">saves</a>
-                    <input type="submit" class="btn btn-success" value="Сохранить">
+                    <input type="submit" id="projectSave" class="btn btn-success" value="Сохранить">
                     <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span> Удалить проект</a>
                 </div>
             </div>
