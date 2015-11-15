@@ -1,83 +1,35 @@
-﻿@model IEnumerable<Eventor_Project.Models.User.User>
+﻿@using System.Runtime.InteropServices.ComTypes
+@model IEnumerable<Eventor_Project.Models.User.User>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <div class="container">
-    <h2>Index</h2>
-
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <p>
-        @Html.ActionLink("Register New", "Register")
-    </p>
-
-    <table>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nickname)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Surname)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Patronymic)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ContactEmail)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PhoneNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Password)
-            </th>
-            <th></th>
-        </tr>
+    <div class="page-header"><h1>Пользователи</h1></div>
+    <div style="margin-bottom: 20px">
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nickname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Surname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Patronymic)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ContactEmail)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PhoneNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Password)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) |
-                    @Html.ActionLink("Info", "Info", new { id = item.UserId })
-                    @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
-
-                </td>
-            </tr>
+            <div class="media">
+                <a href=@String.Format("/id/{0}",@item.UserId) class="pull-left">
+                    <img src="~/images/avatar-tiny.jpg" class="media-object" alt="Sample Image">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading"> <a href=@String.Format("/id/{0}",@item.UserId)> @item.Surname @item.Name  </a><small>  <i>Ник: (@item.Nickname2)</i></small></h4>
+                    <p>
+                        @if (item.About.Length > 150)
+                        {
+                            @String.Format("{0}...", item.About.Substring(0, 150))
+                        }
+                        else
+                        {
+                            @item.About
+                        }
+                    </p>
+                </div>
+            </div>
         }
-
-    </table>
+    </div>
 </div>

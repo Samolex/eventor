@@ -29,10 +29,6 @@ namespace Eventor_Project.Controllers.User
         [HttpPost]
         public ActionResult Index(UserRegisterView userView)
         {
-            if (userView.Captcha != (string)Session[CaptchaImage.CaptchaValueKey])
-            {
-                ModelState.AddModelError("Captcha", "Текст с картинки введен неверно");
-            }
             var anyUser = Repository.Users.Any(p => string.Compare(p.Email, userView.Email) == 0);
             if (anyUser)
             {

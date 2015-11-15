@@ -418,7 +418,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Projects\Index.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\AIndex.cshtml" />
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\User\Delete.cshtml" />
     <Content Include="Views\Register\Index.cshtml" />
@@ -440,6 +440,9 @@
     <Content Include="Views\User\Info - Копировать.cshtml" />
     <Content Include="Views\User\Edit - Копировать.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\Register\Index - Копировать.cshtml" />
+    <Content Include="Views\User\Index - Копировать.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

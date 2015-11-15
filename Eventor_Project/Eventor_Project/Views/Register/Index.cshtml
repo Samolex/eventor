@@ -1,99 +1,82 @@
-﻿@{
-    ViewBag.Title = "Register";
+﻿@using System.Web.UI.WebControls
+@model Eventor_Project.Models.ViewModels.UserRegisterView
+@{
+    ViewBag.Title = "Информация о пользователе";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
-@model Eventor_Project.Models.ViewModels.UserRegisterView
-    <h2>RegisterUser</h2>
-    @using (Html.BeginForm("Index", "Register", FormMethod.Post, new { @class = "form-horizontal" }))
-    {
+@using (Html.BeginForm("Index", "Register", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+        @Html.HiddenFor(model => model.UserId)
         <fieldset>
-            @Html.ValidationSummary(). 
-            <div class="control-group">
-                <label class="control-label" for="Email">
-                    E-mail
-                </label>
-                <div class="controls">
-                    @Html.TextBox("Email", Model.Email)
-                    @Html.ValidationMessage("Email")
-                </div>
-                <label class="control-label" for="FirstName">
-                    Пароль
-                </label>
-                <div class="controls">
-                    @Html.Password("Password", Model.Password)
-                    @Html.ValidationMessage("Password")
-                </div>
-                <label class="control-label" for="FirstName">
-                    Подтверждение пароля
-                </label>
-                <div class="controls">
-                    @Html.Password("ConfirmPassword", Model.ConfirmPassword)
-                    @Html.ValidationMessage("ConfirmPassword")
-                </div>
-                <label class="control-label" for="FirstName">
-                    Имя
-                </label>
-                <div class="controls">
-                    @Html.EditorFor(model => model.Name)
-                    @Html.ValidationMessageFor(model => model.Name)
-                </div>
-                <label class="control-label" for="FirstName">
-                    Фамилия
-                </label>
-                <div class="controls">
-                    @Html.EditorFor(model => model.Surname)
-                    @Html.ValidationMessageFor(model => model.Surname)
-                </div>
-                <label class="control-label" for="FirstName">
-                    Отчество
-                </label>
-                <div class="controls">
-                    @Html.EditorFor(model => model.Patronymic)
-                    @Html.ValidationMessageFor(model => model.Patronymic)
-                </div>
-
-                <label class="control-label" for="FirstName">
-                    Номер телефона
-                </label>
-                <div class="controls">
-                    @Html.EditorFor(model => model.PhoneNumber)
-                    @Html.ValidationMessageFor(model => model.PhoneNumber)
-                </div>
-
-                <label class="control-label" for="FirstName">
-                    Ваш пол
-                </label>
-                <div class="controls">
-                @Html.DropDownListFor(m => m.Sex,
-                             new SelectList(Model.SexOptions,
-                                                Model.SexOptions.First()))
-                    @Html.ValidationMessageFor(model => model.Sex)
-                </div>
-                
-
-
-
-
-                <label class="controls" for="FirstName">
-                    <img src="@Url.Action("Captcha", "User")" alt="captcha" />
-                </label>
-                <label class="controls" for="FirstName">
-                    <br />
-                    Введите цифры с картинки
-                </label>
-                <div class="controls">
-                    @Html.TextBox("Captcha", Model.Captcha)
-                    @Html.ValidationMessage("Captcha")
-                </div>
+            <legend>
+                <b>@Html.LabelFor(model => model.Nickname)</b>:
+                <div data-toggle="tooltip" data-placement="right">
+                    @Html.TextBoxFor(x => x.Nickname, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(x => x.Nickname)
+                </div> <br/>
+            </legend>
+            <div align="center">
+                <img src="~/images/avatar-default.jpg" class="img-rounded" alt="Sample Image">
             </div>
+            <div>
+                <h2>Регистрация:</h2>
+                <div class="row text-center">
+                    <div class="col-sm-6 contacts">
+                        <b>@Html.LabelFor(model => model.Name)</b>:
+                        <div data-toggle="tooltip" data-placement="right">
+                            @Html.TextBoxFor(x => x.Name, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(x => x.Name)
+                        </div> <br/>
 
-            <div class="form-actions">
-                <button type="submit" class="btn btn-primary">
-                    Register
-                </button>
-                @Html.ActionLink("Cancel", "Index", null, null, new { @class = "btn" })
+                        <b>@Html.LabelFor(model => model.Surname)</b>:
+                        <div data-toggle="tooltip" data-placement="right">
+                            @Html.TextBoxFor(x => x.Surname, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(x => x.Surname)
+                        </div> <br/>
+
+                        <b>@Html.LabelFor(model => model.Email)</b>:
+                        <div data-toggle="tooltip" data-placement="right">
+                            @Html.TextBoxFor(x => x.Email, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(x => x.Email)
+                        </div> <br/>
+                    </div>
+
+                    <div class="col-sm-6 contacts">
+                        <b>@Html.LabelFor(model => model.ConfirmPassword)</b>:
+                        <div data-toggle="tooltip" data-placement="right">
+                            @Html.TextBoxFor(x => x.ConfirmPassword, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.ConfirmPassword)
+                        </div> <br />
+
+                        <b>@Html.LabelFor(model => model.Password)</b>:
+                        <div data-toggle="tooltip" data-placement="right">
+                            @Html.TextBoxFor(x => x.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.Password)
+                        </div> <br />
+
+
+
+                        <b>@Html.LabelFor(model => model.PhoneNumber)</b>:
+                        <div data-toggle="tooltip" data-placement="right">
+                            @Html.TextBoxFor(x => x.PhoneNumber, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(x => x.PhoneNumber)
+                        </div> <br/>
+
+                    </div>
+                </div>
+                <h2> О себе:</h2>
+                <div data-toggle="tooltip contacts" data-placement="right">
+                    @Html.TextAreaFor(x => x.About, new {@class = "form-control ", @rows = 5})
+                    @Html.ValidationMessageFor(x => x.About)
+                </div> <br/>
+
+            </div>
+            <div class="form-group text-center" role="group">
+                <button type="submit" class="btn btn-success btn-vlg"> Зарегистрироваться! </button>
             </div>
         </fieldset>
-    }
+
+    </div>
+}

@@ -44,6 +44,18 @@ namespace Eventor_Project.Controllers.User
             return View(db.Users.ToList());
         }
 
+        [Authorize]
+        public ActionResult AIndex()
+        {
+
+            if (CurrentUser.InRoles("admin"))
+            {
+                //Разрешен просмотр панели управления
+                return View(db.Users.ToList());
+            }
+            return RedirectToNotAdminPage;
+            
+        }
         //
         // GET: /User/
 

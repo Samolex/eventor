@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Eventor_Project.Models.User;
 
 namespace Eventor_Project.Models.ViewModels
 {
@@ -15,20 +17,16 @@ namespace Eventor_Project.Models.ViewModels
         public string Email { get; set; }
 
 
+        [MaxLength(5000), DisplayName("Информация о пользователе")]
+        public string About { get; set; }
 
+        [Required(ErrorMessage = "Необходимо указать пароль")]
         public string Password { get; set; }
 
 
-        [Compare("Password", ErrorMessage = "Пароли должны совпадать")]
+
+        [Required]
         public string ConfirmPassword { get; set; }
-
-
-        public DateTime Birthdate { get; set; }
-
-
-        [MaxLength(10, ErrorMessage = "Поле не може содержать более 10 символов")]
-        public string Captcha { get; set; }
-
 
         [MaxLength(50, ErrorMessage = "Поле не може содержать более 50 символов")]
         public string Nickname { get; set; }
@@ -46,22 +44,7 @@ namespace Eventor_Project.Models.ViewModels
         public string Patronymic { get; set; }
 
 
-        [Required(ErrorMessage = "Укажите ваш пол")]
-        public User.Sex Sex { get; set; }
-
-
-        [EmailAddress, MaxLength(200, ErrorMessage = "Поле не може содержать более 200 символов")]
-        public string ContactEmail { get; set; }
-
-
         [Phone, MaxLength(50)]
         public string PhoneNumber { get; set; }
-
-        public IEnumerable<User.Sex> SexOptions =
-            new List<User.Sex>
-            {
-                User.Sex.Male,
-                User.Sex.Female,
-            };
     }
 }

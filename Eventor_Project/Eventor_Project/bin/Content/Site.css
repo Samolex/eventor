@@ -189,3 +189,11 @@ legend {
 .contacts {
     font-size: 18px;
 }
+
+.btn-vlg,
+.btn-group-vlg > .btn {
+  padding: 10px 16px;
+  font-size: 60px;
+  line-height: 1.3333333;
+  border-radius: 15px;
+}

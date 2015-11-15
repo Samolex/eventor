@@ -29,6 +29,16 @@ namespace Eventor_Project.Models.User
             } 
             set { nickname = value; } 
         }
+
+        public string Nickname2
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(nickname))
+                    return "Не указан";
+                else return nickname;
+            }
+        }
         [Required, MaxLength(50), DisplayName("Имя")]
         public string Name { get; set; }
         [MaxLength(50), DisplayName("Фамилия")]
