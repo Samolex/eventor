@@ -160,10 +160,14 @@
         viewModel.save();
     });
 
-    $(function () {
-        $('#form-inline').submit(function () {
-            viewModel.save();
-            return true; // return false to cancel form action
-        });
+    $("#projectCustom").on("click", function () {
+        viewModel.saveUserMaterials();
     });
+
+    //$(function () {
+    //    $('#form-inline').submit(function () {
+    //        viewModel.save();
+    //        return true; // return false to cancel form action
+    //    });
+    //});
 });

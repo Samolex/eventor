@@ -151,13 +151,13 @@
                             <h4 class="modal-title" id="myModalLabel">Участие</h4>
                         </div>
                         <div class="modal-body">
-                            @using (@Html.BeginForm("Project","Projects","POST"))
+                            @using (@Html.BeginForm("Project", "Projects", "POST"))
                             {
                                 @Html.AntiForgeryToken()
                                 @Html.Hidden("projectId", Model.ProjectId)
                                 <div class="form-group">
                                     @Html.Label("Выберите роль")
-                                    @Html.DropDownList("customerId", null, new { @class = "form-control" })
+                                    @Html.DropDownList("customerId", null,"Выберите роль", new { @class = "form-control" })
                                 </div>
                                 <div class="form-group">
                                     <label>Материалы</label>
@@ -192,13 +192,12 @@
 
                                 <div class="form-group">
                                     @Html.Label("Стать организатором")
-                                    @Html.DropDownList("organizerId", null, new { @class = "form-control" })
+                                    @Html.DropDownList("organizerId", null,"Выберите роль", new { @class = "form-control" })
 
                                 </div>
-                                <a href="#" data-bind="click: $root.saveUserMaterials">saves</a>
 
                                 <div class="modal-footer">
-                                    <input type="submit" class="btn btn-success" value="Участвовать" />
+                                    <input type="submit" class="btn btn-success" id="projectCustom" value="Участвовать" />
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
                                 </div>
                             }

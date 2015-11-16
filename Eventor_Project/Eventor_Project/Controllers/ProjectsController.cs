@@ -21,6 +21,7 @@ namespace Eventor_Project.Controllers
         {
             var projectsViewModel = Repository.Projects.ToList()
                 .Select(m=>(ProjectCardViewModel)ModelMapper.Map(m, typeof(Project), typeof(ProjectCardViewModel))).ToList();
+            ViewBag.Categories = Repository.Categories.ToList();
             return View(projectsViewModel);
         }
 
@@ -30,6 +31,7 @@ namespace Eventor_Project.Controllers
             projects = projects ?? Repository.Projects;
             var projectsViewModel = projects.ToList()
                 .Select(m => (ProjectCardViewModel)ModelMapper.Map(m, typeof(Project), typeof(ProjectCardViewModel))).ToList();
+            ViewBag.Categories = Repository.Categories.ToList();
             return View(projectsViewModel);
         }
 
@@ -42,7 +44,8 @@ namespace Eventor_Project.Controllers
                 return HttpNotFound();
             }
             var projectView = (ProjectCardViewModel)ModelMapper.Map(project, typeof(Project), typeof(ProjectCardViewModel));
-            ViewBag.customerId = new SelectList(Repository.Customers.Where(m => m.ProjectId == projectId), "customerId", "Role");
+            var customList = new SelectList(Repository.Customers.Where(m => m.ProjectId == projectId), "customerId", "Role");
+            ViewBag.customerId =customList;
             ViewBag.organizerId = new SelectList(Repository.Organisers.Where(m => m.ProjectId == projectId), "organizerId", "Name");
             return View(projectView);
         }
@@ -51,20 +54,27 @@ namespace Eventor_Project.Controllers
         public ActionResult Project(int projectId, int? customerId, int? organizerId)
         {
             var project = Repository.ReadProject(projectId);
-            var customer = project.Customers.First(m => m.CustomerId == customerId);
-            var customers = customer.Customers;
-            if (!customers.Contains(CurrentUser))
+            if (customerId != null && customerId != 0)
             {
-                customers.Add(CurrentUser);
+                var customer = project.Customers.First(m => m.CustomerId == customerId);
+                var customers = customer.Customers;
+                if (!customers.Contains(CurrentUser))
+                {
+                    customers.Add(CurrentUser);
+                }
+
+                Repository.UpdateCustomer(customer);
             }
-            var organiser = project.Organisers.First(m => m.OrganizerId == organizerId);
-            var organisers = organiser.Users;
-            if (!organisers.Contains(CurrentUser))
+            if (organizerId != null)
             {
-                organisers.Add(CurrentUser);
+                var organiser = project.Organisers.First(m => m.OrganizerId == organizerId);
+                var organisers = organiser.Users;
+                if (!organisers.Contains(CurrentUser))
+                {
+                    organisers.Add(CurrentUser);
+                }
+                Repository.UpdateOrganizer(organiser);
             }
-            Repository.UpdateOrganizer(organiser);
-            Repository.UpdateCustomer(customer);
             ViewBag.customerId = new SelectList(Repository.Customers.Where(m => m.ProjectId == projectId), "customerId", "Role");
             ViewBag.organizerId = new SelectList(Repository.Organisers.Where(m => m.ProjectId == projectId), "organizerId", "Name");
             var projectView = (ProjectCardViewModel)ModelMapper.Map(project, typeof(Project), typeof(ProjectCardViewModel));
@@ -145,10 +155,13 @@ namespace Eventor_Project.Controllers
         [HttpPost, Authorize]
         public JsonResult SaveMaterialsUser(List<UserMaterial> userMaterials)
         {
-            foreach (var item in userMaterials)
+            if (userMaterials != null)
             {
-                item.UserId = CurrentUser.UserId;
-                Repository.CreateUserMaterial(item);
+                foreach (var item in userMaterials)
+                {
+                    item.UserId = CurrentUser.UserId;
+                    Repository.CreateUserMaterial(item);
+                }
             }
             return Json("");
         }

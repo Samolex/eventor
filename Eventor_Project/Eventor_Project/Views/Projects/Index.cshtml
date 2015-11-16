@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<Eventor_Project.Models.ViewModels.ProjectCardViewModel>
-
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -56,5 +55,13 @@
                     </div>
                 </div>
             }
+        <div>
+            <ul class="list-group col-md-2">
+                @foreach(var item in ViewBag.Categories)
+                {
+                    <li class="list-group-item"><a href="/Projects?categoryId=@item.CategoryId">@item.Name</a></li>
+                }
+            </ul>
+        </div>
     </div>
 </div>
