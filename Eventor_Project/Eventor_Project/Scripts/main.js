@@ -1,7 +1,6 @@
 ﻿
 $(document).ready(function () {
     $('.datepicker').datepicker({
-        format: "dd/mm/yyyy",
         startDate: "+0d",
         language: "ru",
         autoclose: true
@@ -12,7 +11,6 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $('.datepicker-all').datepicker({
-        format: "dd/mm/yyyy",
         language: "ru",
         autoclose: true
     });
