@@ -22,7 +22,7 @@ namespace Eventor_Project.Controllers.User
                 var user = Auth.Login(loginView.Email, loginView.Password, loginView.IsPersistent);
                 if (user != null)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Projects");
                 }
                 ModelState["Password"].Errors.Add("Неверный логин или пароль!");
             }
@@ -32,7 +32,7 @@ namespace Eventor_Project.Controllers.User
         public ActionResult Logout()
         {
             Auth.LogOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Projects");
         }
     }
 

@@ -218,6 +218,7 @@ namespace Eventor_Project.Controllers
 
         private IEnumerable<ProjectCardViewModel> CardsByFilter(Func<Project, bool> filer)
         {
+            ViewBag.Categories = Repository.Categories.ToList();
             return Repository
                 .Projects
                 .ToList()

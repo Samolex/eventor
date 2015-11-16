@@ -57,7 +57,7 @@ namespace Eventor_Project
             routes.MapRoute(
                 "Default", 
                 "{controller}/{action}/{id}",
-                new {controller = "Home", action = "Index", id = UrlParameter.Optional}
+                new {controller = "Projects", action = "Index", id = UrlParameter.Optional}
             );
         }
     }
