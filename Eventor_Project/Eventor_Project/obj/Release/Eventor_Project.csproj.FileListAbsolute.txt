@@ -35,13 +35,6 @@ C:\Study\eventor\Eventor_Project\Eventor_Project\bin\System.Web.WebPages.xml
 C:\Study\eventor\Eventor_Project\Eventor_Project\bin\System.Web.WebPages.Deployment.xml
 C:\Study\eventor\Eventor_Project\Eventor_Project\bin\System.Web.WebPages.Razor.xml
 C:\Study\eventor\Eventor_Project\Eventor_Project\obj\Release\Eventor_Project.csprojResolveAssemblyReference.cache
-C:\Study\eventor\Eventor_Project\Eventor_Project\obj\Release\Eventor_Project.Migrations.SuperMigration.resources
-C:\Study\eventor\Eventor_Project\Eventor_Project\obj\Release\Eventor_Project.Migrations.message3.resources
-C:\Study\eventor\Eventor_Project\Eventor_Project\obj\Release\Eventor_Project.Migrations.message4.resources
-C:\Study\eventor\Eventor_Project\Eventor_Project\obj\Release\Eventor_Project.Migrations.messages5.resources
-C:\Study\eventor\Eventor_Project\Eventor_Project\obj\Release\Eventor_Project.Migrations.message6.resources
-C:\Study\eventor\Eventor_Project\Eventor_Project\obj\Release\Eventor_Project.Migrations.senderNick.resources
-C:\Study\eventor\Eventor_Project\Eventor_Project\obj\Release\Eventor_Project.Migrations.PrevMessageId.resources
 C:\Study\eventor\Eventor_Project\Eventor_Project\obj\Release\Eventor_Project.csproj.GenerateResource.Cache
 C:\Study\eventor\Eventor_Project\Eventor_Project\obj\Release\Eventor_Project.dll
 C:\Study\eventor\Eventor_Project\Eventor_Project\obj\Release\Eventor_Project.pdb
@@ -72,3 +65,8 @@ C:\Study\eventor\Eventor_Project\Eventor_Project\bin\Content\bootstrap.min.css
 C:\Study\eventor\Eventor_Project\Eventor_Project\bin\Content\Site.css
 C:\Study\eventor\Eventor_Project\Eventor_Project\bin\Content\bootstrap-theme.css.map
 C:\Study\eventor\Eventor_Project\Eventor_Project\bin\Content\bootstrap.css.map
+C:\Study\eventor\Eventor_Project\Eventor_Project\bin\Images\avatar-tiny.jpg
+C:\Study\eventor\Eventor_Project\Eventor_Project\obj\Release\Eventor_Project.Migrations.InitialCreate.resources
+C:\Study\eventor\Eventor_Project\Eventor_Project\obj\Release\Eventor_Project.Migrations.test.resources
+C:\Study\eventor\Eventor_Project\Eventor_Project\obj\Release\Eventor_Project.Migrations._123123.resources
+C:\Study\eventor\Eventor_Project\Eventor_Project\bin\Scripts\materials.js
