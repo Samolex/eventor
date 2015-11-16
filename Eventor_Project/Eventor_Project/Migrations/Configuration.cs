@@ -9,7 +9,7 @@ namespace Eventor_Project.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(Eventor_Project.Models.CurrentContext context)

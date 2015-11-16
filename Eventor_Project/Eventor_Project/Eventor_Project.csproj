@@ -228,6 +228,10 @@
     <Compile Include="Migrations\201511161741495_test.Designer.cs">
       <DependentUpon>201511161741495_test.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511161919380_123123.cs" />
+    <Compile Include="Migrations\201511161919380_123123.Designer.cs">
+      <DependentUpon>201511161919380_123123.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CurrentContext.cs" />
     <Compile Include="Models\SqlRepository\UserRepository\BenefitRepository.cs" />
@@ -441,6 +445,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511161741495_test.resx">
       <DependentUpon>201511161741495_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511161919380_123123.resx">
+      <DependentUpon>201511161919380_123123.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

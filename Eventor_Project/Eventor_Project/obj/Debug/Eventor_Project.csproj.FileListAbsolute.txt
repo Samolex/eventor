@@ -144,3 +144,4 @@ C:\Users\AlexeyMorozov\Documents\code\eventor\Eventor_Project\Eventor_Project\ob
 C:\Study\eventor\Eventor_Project\Eventor_Project\obj\Debug\Eventor_Project.Migrations.InitialCreate.resources
 C:\Study\eventor\Eventor_Project\Eventor_Project\obj\Debug\Eventor_Project.csproj.GenerateResource.Cache
 C:\Study\eventor\Eventor_Project\Eventor_Project\obj\Debug\Eventor_Project.Migrations.test.resources
+C:\Study\eventor\Eventor_Project\Eventor_Project\obj\Debug\Eventor_Project.Migrations._123123.resources
