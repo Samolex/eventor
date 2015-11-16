@@ -3,7 +3,7 @@ namespace Eventor_Project.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class SuperMigration : DbMigration
+    public partial class InitialCreate : DbMigration
     {
         public override void Up()
         {
@@ -181,6 +181,22 @@ namespace Eventor_Project.Migrations
                 .Index(t => t.UserId);
             
             CreateTable(
+                "dbo.Messages",
+                c => new
+                    {
+                        MessageId = c.Int(nullable: false, identity: true),
+                        ReceiverId = c.Int(nullable: false),
+                        SenderId = c.Int(nullable: false),
+                        PrevMessageId = c.Int(),
+                        ReceiverNick = c.String(nullable: false),
+                        SenderNick = c.String(nullable: false),
+                        Topic = c.String(nullable: false, maxLength: 100),
+                        Text = c.String(nullable: false),
+                        DepartureTime = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.MessageId);
+            
+            CreateTable(
                 "dbo.BenefitUsers",
                 c => new
                     {
@@ -280,6 +296,7 @@ namespace Eventor_Project.Migrations
             DropTable("dbo.OrganizerUsers");
             DropTable("dbo.RoleUsers");
             DropTable("dbo.BenefitUsers");
+            DropTable("dbo.Messages");
             DropTable("dbo.ProjectComments");
             DropTable("dbo.Customers");
             DropTable("dbo.ProjectNews");

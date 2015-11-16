@@ -220,37 +220,13 @@
     </Compile>
     <Compile Include="Mappers\CommonMapper.cs" />
     <Compile Include="Mappers\IMapper.cs" />
-    <Compile Include="Migrations\201510141447585_SuperMigration.cs" />
-    <Compile Include="Migrations\201510141447585_SuperMigration.Designer.cs">
-      <DependentUpon>201510141447585_SuperMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201511101654206_InitialCreate.cs" />
+    <Compile Include="Migrations\201511101654206_InitialCreate.Designer.cs">
+      <DependentUpon>201511101654206_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201511021627042_message3.cs" />
-    <Compile Include="Migrations\201511021627042_message3.Designer.cs">
-      <DependentUpon>201511021627042_message3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201511021643088_message4.cs" />
-    <Compile Include="Migrations\201511021643088_message4.Designer.cs">
-      <DependentUpon>201511021643088_message4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201511022134242_messages5.cs" />
-    <Compile Include="Migrations\201511022134242_messages5.Designer.cs">
-      <DependentUpon>201511022134242_messages5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201511031013504_message-6.cs" />
-    <Compile Include="Migrations\201511031013504_message-6.Designer.cs">
-      <DependentUpon>201511031013504_message-6.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201511051302255_senderNick.cs" />
-    <Compile Include="Migrations\201511051302255_senderNick.Designer.cs">
-      <DependentUpon>201511051302255_senderNick.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201511090621592_PrevMessageId.cs" />
-    <Compile Include="Migrations\201511090621592_PrevMessageId.Designer.cs">
-      <DependentUpon>201511090621592_PrevMessageId.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201511142234260_Add About for User.cs" />
-    <Compile Include="Migrations\201511142234260_Add About for User.Designer.cs">
-      <DependentUpon>201511142234260_Add About for User.cs</DependentUpon>
+    <Compile Include="Migrations\201511161741495_test.cs" />
+    <Compile Include="Migrations\201511161741495_test.Designer.cs">
+      <DependentUpon>201511161741495_test.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CurrentContext.cs" />
@@ -460,29 +436,11 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201510141447585_SuperMigration.resx">
-      <DependentUpon>201510141447585_SuperMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201511101654206_InitialCreate.resx">
+      <DependentUpon>201511101654206_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511021627042_message3.resx">
-      <DependentUpon>201511021627042_message3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511021643088_message4.resx">
-      <DependentUpon>201511021643088_message4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511022134242_messages5.resx">
-      <DependentUpon>201511022134242_messages5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511031013504_message-6.resx">
-      <DependentUpon>201511031013504_message-6.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511051302255_senderNick.resx">
-      <DependentUpon>201511051302255_senderNick.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511090621592_PrevMessageId.resx">
-      <DependentUpon>201511090621592_PrevMessageId.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511142234260_Add About for User.resx">
-      <DependentUpon>201511142234260_Add About for User.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201511161741495_test.resx">
+      <DependentUpon>201511161741495_test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

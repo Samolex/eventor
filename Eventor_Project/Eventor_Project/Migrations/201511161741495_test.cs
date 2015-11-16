@@ -3,16 +3,16 @@ namespace Eventor_Project.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class message6 : DbMigration
+    public partial class test : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.Messages", "ReceiverNick", c => c.String(nullable: false));
+            AddColumn("dbo.Users", "About", c => c.String());
         }
         
         public override void Down()
         {
-            DropColumn("dbo.Messages", "ReceiverNick");
+            DropColumn("dbo.Users", "About");
         }
     }
 }
