@@ -145,3 +145,4 @@ C:\Study\eventor\Eventor_Project\Eventor_Project\obj\Debug\Eventor_Project.Migra
 C:\Study\eventor\Eventor_Project\Eventor_Project\obj\Debug\Eventor_Project.csproj.GenerateResource.Cache
 C:\Study\eventor\Eventor_Project\Eventor_Project\obj\Debug\Eventor_Project.Migrations.test.resources
 C:\Study\eventor\Eventor_Project\Eventor_Project\obj\Debug\Eventor_Project.Migrations._123123.resources
+C:\Study\eventor\Eventor_Project\Eventor_Project\bin\Scripts\materials.js
