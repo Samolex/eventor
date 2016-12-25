@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Eventor_Project.Models.Picture>
+
+@{
+    ViewBag.Title = "Album";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="col-md-10 col-sm-10 col-xs-10 col-lg-10 cards">
+        <h1>Галерея</h1>
+        <form action=@Url.Action("NewPicture", "Album") method="POST">
+            <div class="btn-group right" role="group">
+                <input type="submit" class="btn btn-default" value="Загрузить">
+            </div>
+        </form>
+        @foreach (var item in Model.Where(u => u.OwnerId == ViewBag.CurrentUser.UserId).OrderBy(u => u.PictureId))
+        {
+
+            <!-- Modal -->
+            <div class="modal fade" id=@String.Format("iopenModal{0}",item.PictureId) tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header panel-heading">
+                            <div class="panel-heading">
+                                <b>@item.Name</b>
+                            </div>
+                        </div>
+                        <div class="modal-body panel-body">
+                            <p class="card-picture" >
+                                @Html.Raw("<img src=\"data:image/png;base64," + Convert.ToBase64String(item.Image) + "\" />")
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id=@String.Format("openModal{0}",item.PictureId) class="modalDialog">
+
+                <div class="panel panel-default" style="max-height: none">
+                    <a href="#close" title="Закрыть" class="close">X</a>
+                    <div class="panel-heading">
+                        <b>@item.Name</b>
+                    </div>
+                    <div class="panel-body">
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="col-md-4 col-sm-6 col-xs-12 card">
+                <div class="card-body">
+                    <p class="card-picture">
+                        <asp:ImageButton id="imagebutton1"
+                                         AlternateText="ImageButton 1"
+                                         ImageAlign="left"
+                                         ImageUrl="~/Images/avatar-default.jpg" />
+                        <a class="btn btn-default" data-toggle="modal" data-target=@String.Format("#iopenModal{0}", item.PictureId)>
+                            @Html.Raw("<img style='width:160px; height:120px;' src=\"data:image/png;base64," + Convert.ToBase64String(item.Image) + "\" />")
+                        </a>
+                        
+
+                    </p>
+
+                </div>
+                <div class="panel-footer">
+                    <form action=@Url.Action("NewMessage", "Mail") method="POST">
+                        <div class="btn-group right" role="group">
+                            <b>@item.Name</b>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+

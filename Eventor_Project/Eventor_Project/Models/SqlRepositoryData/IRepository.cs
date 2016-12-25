@@ -14,6 +14,21 @@ namespace Eventor_Project.Models.SqlRepository
         User.User GetUser(int id);
         User.User Login(string email, string password);
 
+
+        #region Picture
+
+        IQueryable<Picture> Pictures { get; }
+
+        bool CreatePicture(Picture instance);
+
+        bool UpdatePicture(Picture instance);
+
+        bool DeletePicture(int PictureId);
+
+        Picture ReadPicture(int PictureId);
+
+        #endregion
+
         #region Role
 
         IQueryable<User.Role> Roles { get; }

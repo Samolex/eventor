@@ -120,7 +120,11 @@ legend {
 .card-place{
     margin-top:3px;
 }
-
+.card-picture {
+	padding: 0;
+    display: block;
+    margin: 0 auto;
+}
 .card-message {
 	padding: 0;
 	margin-top: 20px;
@@ -155,6 +159,10 @@ legend {
 }
 /* Styles for model dialog
 -----------------------------------------------------------*/
+
+.modal-dialog{text-align:center;}
+.modal-content{display:inline-block;}
+
 .modalDialog {
 	position: absolute;
     height: 300%;

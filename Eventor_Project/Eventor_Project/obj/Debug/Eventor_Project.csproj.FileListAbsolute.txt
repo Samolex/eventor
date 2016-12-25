@@ -143,6 +143,5 @@ C:\Users\AlexeyMorozov\Documents\code\eventor\Eventor_Project\Eventor_Project\ob
 C:\Users\AlexeyMorozov\Documents\code\eventor\Eventor_Project\Eventor_Project\obj\Debug\Eventor_Project.Migrations.AddAboutforUser.resources
 C:\Study\eventor\Eventor_Project\Eventor_Project\obj\Debug\Eventor_Project.Migrations.InitialCreate.resources
 C:\Study\eventor\Eventor_Project\Eventor_Project\obj\Debug\Eventor_Project.csproj.GenerateResource.Cache
-C:\Study\eventor\Eventor_Project\Eventor_Project\obj\Debug\Eventor_Project.Migrations.test.resources
-C:\Study\eventor\Eventor_Project\Eventor_Project\obj\Debug\Eventor_Project.Migrations._123123.resources
 C:\Study\eventor\Eventor_Project\Eventor_Project\bin\Scripts\materials.js
+C:\Study\eventor\Eventor_Project\Eventor_Project\obj\Debug\Eventor_Project.Migrations.AlbumAndPicture.resources

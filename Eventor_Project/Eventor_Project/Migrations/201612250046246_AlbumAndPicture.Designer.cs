@@ -5,13 +5,13 @@ namespace Eventor_Project.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    public sealed partial class _123123 : IMigrationMetadata
+    public sealed partial class AlbumAndPicture : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(_123123));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AlbumAndPicture));
         
         string IMigrationMetadata.Id
         {
-            get { return "201511161919380_123123"; }
+            get { return "201612250046246_AlbumAndPicture"; }
         }
         
         string IMigrationMetadata.Source

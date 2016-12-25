@@ -207,6 +207,7 @@
     <Compile Include="Auth\IUserProvider.cs" />
     <Compile Include="Auth\UserIndentity.cs" />
     <Compile Include="Auth\UserProvider.cs" />
+    <Compile Include="Controllers\AlbumController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -224,16 +225,14 @@
     <Compile Include="Migrations\201511101654206_InitialCreate.Designer.cs">
       <DependentUpon>201511101654206_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201511161741495_test.cs" />
-    <Compile Include="Migrations\201511161741495_test.Designer.cs">
-      <DependentUpon>201511161741495_test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201511161919380_123123.cs" />
-    <Compile Include="Migrations\201511161919380_123123.Designer.cs">
-      <DependentUpon>201511161919380_123123.cs</DependentUpon>
+    <Compile Include="Migrations\201612250046246_AlbumAndPicture.cs" />
+    <Compile Include="Migrations\201612250046246_AlbumAndPicture.Designer.cs">
+      <DependentUpon>201612250046246_AlbumAndPicture.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CurrentContext.cs" />
+    <Compile Include="Models\Picture.cs" />
+    <Compile Include="Models\SqlRepository\PictureRepository.cs" />
     <Compile Include="Models\SqlRepository\UserRepository\BenefitRepository.cs" />
     <Compile Include="Models\SqlRepositoryData\IRepository.cs" />
     <Compile Include="Models\SqlRepository\UserRepository\MessageRepository.cs" />
@@ -427,6 +426,8 @@
     <Content Include="Views\User\Index - Копировать.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Mail\Index - Копировать.cshtml" />
+    <Content Include="Views\Album\Index.cshtml" />
+    <Content Include="Views\Album\NewPicture.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -445,11 +446,8 @@
     <EmbeddedResource Include="Migrations\201511101654206_InitialCreate.resx">
       <DependentUpon>201511101654206_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511161741495_test.resx">
-      <DependentUpon>201511161741495_test.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511161919380_123123.resx">
-      <DependentUpon>201511161919380_123123.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612250046246_AlbumAndPicture.resx">
+      <DependentUpon>201612250046246_AlbumAndPicture.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

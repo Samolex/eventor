@@ -12,6 +12,7 @@ namespace Eventor_Project.Models
         public DbSet<Role> Roles { get; set; }
         public DbSet<Place> Places { get; set; }
         public DbSet<Benefit> Benefits { get; set; }
+        public DbSet<Picture> Pictures { get; set; }
 
         #region ProjectDbSets
 
